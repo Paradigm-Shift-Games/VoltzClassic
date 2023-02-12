@@ -19,6 +19,21 @@ function onAdded(object)
 	ValueReplicator.New():BindNode(node)
 end
 
-CollectionService:GetInstanceAddedSignal(script.Name):Connect(onAdded)
+local SpawnServer = {}
+SpawnServer.__index = SpawnServer
 
-return module
+function SpawnServer.new(instance)
+	local self = setmetatable({}, SpawnServer)
+	self.Instance = instance
+
+	-- Shim
+	onAdded(instance)
+
+	return self
+end
+
+function SpawnServer:Destroy()
+	
+end
+
+return SpawnServer

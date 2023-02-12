@@ -102,16 +102,30 @@ function ShieldDestroyed(shield)
 	AddCooldown(shield.Generator.Value, 3)
 end
 
-module.Run = function(delta)
-	for _, v in pairs(CollectionService:GetTagged(script.Name)) do
-		runObject(v, delta)
-	end
-end
-
-CollectionService:GetInstanceAddedSignal(script.Name):Connect(onAdded)
-CollectionService:GetInstanceRemovedSignal(script.Name):Connect(onRemoved)
-
 CleanupService.Bind("Shield", ShieldDestroyed)
 
-return module
+local ShieldGeneratorServer = {}
+ShieldGeneratorServer.__index = ShieldGeneratorServer
+
+function ShieldGeneratorServer.new(instance)
+	local self = setmetatable({}, ShieldGeneratorServer)
+	self.Instance = instance
+
+	-- Shim
+	onAdded(instance)
+
+	return self
+end
+
+function ShieldGeneratorServer:Update(deltaTime)
+	-- Shim
+	runObject(self.Instance, deltaTime)
+end
+
+function ShieldGeneratorServer:Destroy()
+	-- Shim
+	onRemoved(self.Instance)
+end
+
+return ShieldGeneratorServer
 

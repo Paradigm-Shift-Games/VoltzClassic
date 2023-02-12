@@ -32,13 +32,25 @@ function runObject(object, delta)
 	end
 end
 
-module.Run = function(delta)
-	for _, v in pairs(CollectionService:GetTagged(script.Name)) do
-		runObject(v, delta)
-	end
+local GravityDisplacerServer = {}
+GravityDisplacerServer.__index = GravityDisplacerServer
+
+function GravityDisplacerServer.new(instance)
+	local self = setmetatable({}, GravityDisplacerServer)
+	self.Instance = instance
+
+	-- Shim
+	onAdded(instance)
 end
 
-CollectionService:GetInstanceAddedSignal(script.Name):Connect(onAdded)
-CollectionService:GetInstanceRemovedSignal(script.Name):Connect(onRemoved)
+function GravityDisplacerServer:Update(delta)
+	-- Shim
+	runObject(self.Instance, delta)
+end
 
-return module
+function GravityDisplacerServer:Destroy()
+	-- Shim
+	onRemoved(self.Instance)
+end
+
+return GravityDisplacerServer
