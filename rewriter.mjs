@@ -33,8 +33,22 @@ function isLuaSource(file) {
     return false;
 }
 
+function isMeta(file) {
+    if (file.endsWith(`.meta.json`)) {
+        return true;
+    }
+
+    return false;
+}
+
 const files = await discover('./Game/src');
 const luaSources = files.filter(isLuaSource);
+const metas = files.filter(isMeta);
+
+// delete all metas
+for (const meta of metas) {
+    fs.unlink(meta);
+}
 
 const memoryFiles = await Promise.all(luaSources.map(async file => {
     return {
@@ -184,6 +198,6 @@ function rewriteSource(memoryFile) {
     fs.writeFile(path, newContent);
 }
 
-for (const memoryFile of memoryFiles) {
-    rewriteSource(memoryFile);
-}
+// for (const memoryFile of memoryFiles) {
+//     rewriteSource(memoryFile);
+// }
