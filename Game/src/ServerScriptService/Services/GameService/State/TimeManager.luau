@@ -1,6 +1,6 @@
 --Author: n0pa
 
-local PlayersService = game:GetService("Players")
+local Players = game:GetService("Players")
 
 local DeathTimeData = {}
 local TotalTimeData = {}
@@ -68,7 +68,7 @@ module.ActivateTracking = function()
 	print("GameService.State.TimeManager - ActivateTracking", GameDate, GameTime)
 	
 	connectTracking()
-	for _, player in ipairs(PlayersService:GetPlayers()) do module.UpdateTotalTimeData(tostring(player.UserId)) end
+	for _, player in ipairs(Players:GetPlayers()) do module.UpdateTotalTimeData(tostring(player.UserId)) end
 	
 	DeathTimeData = {}
 	TotalTimeData = {}
@@ -78,7 +78,7 @@ end
 module.TerminateTracking = function()
 	GameTime = timeDifferenceMillis(DateTime.now(), GameDate)
 	print("GameService.State.TimeManager - TerminateTracking", GameDate, GameTime)
-	for _, player in ipairs(PlayersService:GetPlayers()) do
+	for _, player in ipairs(Players:GetPlayers()) do
 		local stringUserID = tostring(player.UserId)
 		module.UpdateTotalTimeData(stringUserID)
 		module.UpdateDeathTimeData(stringUserID, GameTime)

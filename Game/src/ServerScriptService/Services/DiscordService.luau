@@ -1,6 +1,6 @@
 --Author: Styx
 
-local httpService = game:GetService("HttpService")
+local HttpService = game:GetService("HttpService")
 local webhookLinks = {
 	["errorHook"] = "https://discordapp.com/api/webhooks/660694264711217152/r60iTViDdLe4mWdWIGFmdmSoU9Fe2tWeTkohUSX-ggnZ1M8wen3Xm7GSVjUyMRhbYtj5";
 	["winHook"] = "https://discordapp.com/api/webhooks/672597377139343360/8tFZe031l2lOqr2JNMoFgkCX4XP1VLYgaYiVOpTY-iQ4yOaD4heLCccz9u0_Fb7wFOln";
@@ -71,7 +71,7 @@ DiscordService.SendContent = function(hookName, content)
 	local hook = webhookLinks[hookName]
 	if hook == nil then error(hookName.." is not a valid hookName!") end
 	
-	local successful, err = pcall(httpService.PostAsync, httpService, hook, httpService:JSONEncode(content:_getData()))
+	local successful, err = pcall(HttpService.PostAsync, HttpService, hook, HttpService:JSONEncode(content:_getData()))
 	if not successful then warn(err) end
 end
 

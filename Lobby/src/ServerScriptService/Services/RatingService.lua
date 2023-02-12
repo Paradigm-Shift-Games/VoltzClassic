@@ -1,6 +1,6 @@
 --Author: n0pa
 
-local PlayersService = game:GetService("Players")
+local Players = game:GetService("Players")
 local GameDataService = require(game.ServerScriptService.Services.GameDataService)
 
 local RatingService = {}
@@ -17,7 +17,7 @@ end
 RatingService.SetRating = function(userID, rating)
 	local newRating = GameDataService.SetKeyData("PlayerRating", userID, math.floor(rating * Precision))
 
-	local player = PlayersService:GetPlayerByUserId(userID)
+	local player = Players:GetPlayerByUserId(userID)
 	if not player then return newRating end
 
 	local leaderStats = game.Players:WaitForChild(player.Name):WaitForChild("leaderstats")
@@ -32,7 +32,7 @@ end
 RatingService.AddRating = function(userID, ratingDelta) --USE THIS AS OFTEN AS POSSIBLE
 	local newRating = GameDataService.UpdateKeyData("PlayerRating", userID, function (rating) return rating + math.floor(ratingDelta * Precision) end)
 
-	local player = PlayersService:GetPlayerByUserId(userID)
+	local player = Players:GetPlayerByUserId(userID)
 	if not player then return newRating end
 
 	local leaderStats = game.Players:WaitForChild(player.Name):WaitForChild("leaderstats")
@@ -44,7 +44,7 @@ RatingService.AddRating = function(userID, ratingDelta) --USE THIS AS OFTEN AS P
 	return newRating
 end
 
-PlayersService.PlayerAdded:Connect(function(player)
+Players.PlayerAdded:Connect(function(player)
 	local leaderStats = Instance.new("Folder")
 	leaderStats.Name = "leaderstats"
 	leaderStats.Parent = player

@@ -2,7 +2,7 @@
 
 local CollectionService = game:GetService("CollectionService")
 local RunService = game:GetService("RunService")
-local PlayersService = game:GetService("Players")
+local Players = game:GetService("Players")
 local DiscordService = require(game.ServerScriptService.Services.DiscordService)
 local RatingService = require(game.ServerScriptService.Services.RatingService)
 
@@ -66,7 +66,7 @@ local function writePlayerTexts(team, ratings, intendedSign, text)
 end
 
 WinService.sendMatchResultAndUpdateRatings = function(livingTeamCount, lastTeam, remainingTeams)
-	--if #PlayersService:GetPlayers() <= 1 and #game.Teams:GetTeams() <= 1 then return end
+	--if #Players:GetPlayers() <= 1 and #game.Teams:GetTeams() <= 1 then return end
 
 	remainingTeams[lastTeam] = true
 	

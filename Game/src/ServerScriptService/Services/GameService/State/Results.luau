@@ -1,7 +1,7 @@
 --Author: n0pa
 
 local RunService = game:GetService("RunService")
-local PlayersService = game:GetService("Players")
+local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
 local DiscordService = require(game.ServerScriptService.Services.DiscordService)
 local ChatService = require(game.ServerScriptService.Services.ChatService)
@@ -44,7 +44,7 @@ local function formatColor(color)
 end
 
 local function addPlayerResult(stringUserID, ratingStringUserIDs, ratingDelta, deathTimeData, sign)
-	local name = PlayersService:GetNameFromUserIdAsync(tonumber(stringUserID))
+	local name = Players:GetNameFromUserIdAsync(tonumber(stringUserID))
 	local rating = math.floor(ratingStringUserIDs[stringUserID]) or "unavailable"
 	local playerTime = deathTimeData[stringUserID] or 0
 
@@ -61,7 +61,7 @@ module.SendWinMessage = function(winningTeam, ratingDeltas)
 	ChatService.SendGlobalMessage("Congratulations Team: "..winningTeam.Name);
 	
 	for userID, ratingDelta in pairs(ratingDeltas["WinningRatingDeltas"]) do
-		local name = PlayersService:GetNameFromUserIdAsync(userID)
+		local name = Players:GetNameFromUserIdAsync(userID)
 		local ratingDelta = ratingDeltas["WinningRatingDeltas"][userID]
 		
 		ChatService.SendGlobalMessage("Well done, "..name.."! Rating earned: "..math.floor(ratingDelta).."\n");

@@ -4,7 +4,7 @@ local Version = "0.4.2"
 --Object Reference
 local ServerScriptService = game:GetService("ServerScriptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local PlayersService = game:GetService("Players")
+local Players = game:GetService("Players")
 local Storage = workspace.Storage
 local Objects = workspace:WaitForChild("Objects")
 local Extras = workspace:WaitForChild("Extras")
@@ -38,7 +38,7 @@ Extras.Parent = ReplicatedStorage
 
 print("Server Starting", "Version:", Version)
 --
-PlayersService.PlayerAdded:Connect(function(player) LogService.MessageClient(player, "Startup", "Game Version: "..Version) end)
+Players.PlayerAdded:Connect(function(player) LogService.MessageClient(player, "Startup", "Game Version: "..Version) end)
 --
 SnapData.Generate()
 UpgradeData.Generate()

@@ -1,6 +1,6 @@
 --Author: n0pa
 
-local PlayersService = game:GetService("Players")
+local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
 local ServerMessageRemote = game.ReplicatedStorage.Events.ServerChat
 

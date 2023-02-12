@@ -1,7 +1,7 @@
 --Author: 4812571, Hexcede
 
 local module = {}
-local DebrisService = game:GetService("Debris")
+local Debris = game:GetService("Debris")
 local StructureUtil = require(game.ReplicatedStorage.StructureUtility)
 --local Destruction = require(game.ServerScriptService.Services.DamageService)
 
@@ -30,7 +30,7 @@ local function ApplyKnockback(part, direction, force)
 	local bodyForce = Instance.new("BodyForce")
 	bodyForce.Force = direction.Unit * force
 	bodyForce.Parent = part
-	DebrisService:AddItem(bodyForce, 0.05)
+	Debris:AddItem(bodyForce, 0.05)
 end
 
 local function getHitParts()

@@ -1,7 +1,7 @@
 local messagingService = game:GetService("MessagingService")
 local TeleportService = game:GetService("TeleportService")
 local tweenService = game:GetService("TweenService")
-local runService = game:GetService("RunService")
+local RunService = game:GetService("RunService")
 local DoorService = require(script.Parent:WaitForChild("DoorService"))
 local TeamService = require(script.Parent:WaitForChild("TeamService"))
 local Players = game:GetService("Players")
@@ -91,7 +91,7 @@ end
 
 local launching = false
 local function onHeartBeat(delta)
-	if MeetsLaunchRequirements() and MatchMakingService.Enabled and not launching and not runService:IsStudio() then
+	if MeetsLaunchRequirements() and MatchMakingService.Enabled and not launching and not RunService:IsStudio() then
 		--Launch the players
 		launching = true
 		local reservedServer = TeleportService:ReserveServer(4566800668)
@@ -137,10 +137,10 @@ local function onHeartBeat(delta)
 	openEmptyTeamDoors()
 end
 
-if runService:IsStudio() then
+if RunService:IsStudio() then
 	warn("MatchMakingService will not be able to teleport you in Studio! (It will just error so I added a debounce)")
 end
 
-runService.Heartbeat:Connect(onHeartBeat)
+RunService.Heartbeat:Connect(onHeartBeat)
 
 return MatchMakingService

@@ -2,7 +2,7 @@
 
 --Roblox Services
 local CollectionService = game:GetService("CollectionService")
-local PlayersService = game:GetService("Players")
+local Players = game:GetService("Players")
 
 --Imports
 local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
@@ -24,7 +24,7 @@ local function getCharactersInRange(position, teamToIgnore)
 		function(character, distance)
 			if not character then return end
 			
-			local player = PlayersService:GetPlayerFromCharacter(character)
+			local player = Players:GetPlayerFromCharacter(character)
 			if not player or player.Team == teamToIgnore then return end
 			
 			return -distance

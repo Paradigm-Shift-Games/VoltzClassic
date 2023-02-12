@@ -1,8 +1,8 @@
 --Author: Styx
 
-local userInputService = game:GetService("UserInputService")
-local runService = game:GetService("RunService")
-local contextActionService = game:GetService("ContextActionService")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local ContextActionService = game:GetService("ContextActionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 local Events = ReplicatedStorage:WaitForChild("Remotes")
@@ -44,7 +44,7 @@ end
 
 local function onRenderStepped(delta)
 	local consumption = 0
-	if userInputService:IsKeyDown(Enum.KeyCode.Space) and isInAir and spacePressed and not (currentThrustTime > maxThrustTime) and tick()-timeJumped >= .25 then
+	if UserInputService:IsKeyDown(Enum.KeyCode.Space) and isInAir and spacePressed and not (currentThrustTime > maxThrustTime) and tick()-timeJumped >= .25 then
 		--JetpackEvent:FireServer(consumption)
 		effects(true)
 		currentThrustTime = currentThrustTime + delta
@@ -78,7 +78,7 @@ local function onInputBegan(input)
 	end
 end
 
-userInputService.InputBegan:Connect(onInputBegan)
+UserInputService.InputBegan:Connect(onInputBegan)
 humanoid.StateChanged:Connect(onHumanoidStateChanged)
-runService:BindToRenderStep("jetpack", 200, onRenderStepped)
+RunService:BindToRenderStep("jetpack", 200, onRenderStepped)
 script.Function.OnInvoke = getData

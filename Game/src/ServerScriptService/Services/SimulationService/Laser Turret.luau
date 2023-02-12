@@ -2,7 +2,7 @@
 
 --Roblox Services
 local CollectionService = game:GetService("CollectionService")
-local PlayersService = game:GetService("Players")
+local Players = game:GetService("Players")
 
 --Imports
 local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
@@ -80,7 +80,7 @@ local function getClosestCharacterInRange(turret, teamToIgnore)
 	end
 	if not character then return end
 	
-	local player = 	PlayersService:GetPlayerFromCharacter(character)
+	local player = 	Players:GetPlayerFromCharacter(character)
 	if not player then return end
 
 	if player.Team ~= teamToIgnore then return character end

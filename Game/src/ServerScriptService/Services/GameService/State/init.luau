@@ -2,7 +2,7 @@
 
 local RunService = game:GetService("RunService")
 local CollectionService = game:GetService("CollectionService")
-local PlayersService = game:GetService("Players")
+local Players = game:GetService("Players")
 local GameDataService = require(game.ServerScriptService.Services.GameDataService)
 local RatingService = require(game.ServerScriptService.Services.RatingService)
 local RatingProcessor = require(script.RatingProcessor)
