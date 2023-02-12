@@ -8,11 +8,9 @@ for _, v in ipairs(script:GetChildren()) do
 	Effects[v.Name] = require(v)
 end
 
-
 module.FireEffect = function(effectName, ...)
 	Effects[effectName].Fire(...)
 end
-
 
 module.CreateEffect = function(effectName, ...)
 	--print("CREATE", effectName)

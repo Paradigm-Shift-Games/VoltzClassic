@@ -40,7 +40,6 @@ function Update()
 	end
 end
 
-
 connection = RunService.Heartbeat:Connect(Update)
 
 Character:WaitForChild("Humanoid").Died:Connect(function() connection:Disconnect() TeamRemote:FireServer(NeutralTeam) end)

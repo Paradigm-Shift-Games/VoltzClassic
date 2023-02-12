@@ -1,6 +1,5 @@
 --Author: 4812571
 
-
 local MouseRemote = game.ReplicatedStorage.Remotes.MouseData
 local module = {}
 local MouseData = {}

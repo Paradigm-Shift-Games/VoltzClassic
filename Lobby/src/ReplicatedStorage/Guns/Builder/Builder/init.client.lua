@@ -5,7 +5,7 @@ script:WaitForChild("Placer")
 --Services
 local ContextActionService = game:GetService("ContextActionService")
 local CollectionService = game:GetService("CollectionService")
-local Runservice = game:GetService("RunService")
+local RunService = game:GetService("RunService")
 local ReplicatedFirst = game:GetService("ReplicatedFirst")
 
 --Modules
@@ -112,7 +112,7 @@ function OnEquipped()
 	ContextActionService:BindAction("Pull", SetAction, false, Enum.KeyCode.E)
 	ContextActionService:BindAction("Break", SetAction, false, Enum.KeyCode.G)
 	ContextActionService:BindAction("Upgrade", Upgrade, false, Enum.KeyCode.B)
-	Runservice:BindToRenderStep("PortafabRender", 255, OnRender)
+	RunService:BindToRenderStep("PortafabRender", 255, OnRender)
 end
 
 function OnUnequipped()
@@ -130,7 +130,7 @@ function OnUnequipped()
 	ContextActionService:UnbindAction("Push")
 	ContextActionService:UnbindAction("Pull")
 	ContextActionService:UnbindAction("Break")
-	Runservice:UnbindFromRenderStep("PortafabRender")
+	RunService:UnbindFromRenderStep("PortafabRender")
 end
 
 tool.Equipped:Connect(OnEquipped)

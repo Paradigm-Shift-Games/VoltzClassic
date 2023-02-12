@@ -93,5 +93,4 @@ DoorService.IsDoorOpen = function(input)
 	return not doorStateExternal[index]
 end
 
-
 return DoorService

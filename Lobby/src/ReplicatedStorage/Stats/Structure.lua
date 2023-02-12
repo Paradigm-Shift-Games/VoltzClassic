@@ -79,7 +79,6 @@ local Structure = {}
 --	Storage = 50;
 --}
 
-
 ----Producers
 
 --Structure["Generator"] = {
