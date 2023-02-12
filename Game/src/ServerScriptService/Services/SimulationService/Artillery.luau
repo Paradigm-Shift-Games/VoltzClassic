@@ -1,5 +1,6 @@
 -- Author: n0pa
 
+local Players = game:GetService("Players")
 local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
@@ -10,10 +11,13 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ProjectileService = require(ServerScriptService.Services.ProjectileService)
 
 
+
+
+
 local module = {}
 
 local ArtilleryStats = Stats.Artillery
-local Events = game.ReplicatedStorage:WaitForChild("Events")
+local Events = ReplicatedStorage:WaitForChild("Events")
 local ArtilleryRemote = Events:WaitForChild("ArtilleryRemote")
 local RocketTemplate = workspace.Extras.Projectiles.Rocket
 
@@ -48,7 +52,7 @@ local function onAdded(artillery)
 		local artilleryData = ArtilleryData[artillery]
 		
 		if humanoid then
-			artilleryData.Occupant = game.Players:GetPlayerFromCharacter(humanoid.Parent)
+			artilleryData.Occupant = Players:GetPlayerFromCharacter(humanoid.Parent)
 			
 		else
 			artilleryData.NetPitch = 0;

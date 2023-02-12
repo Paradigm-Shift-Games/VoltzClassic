@@ -8,6 +8,8 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ProjectileService = require(ServerScriptService.Services.ProjectileService)
 
 
+
+
 local function Explode(projectileData)
 	local hit = projectileData.Hit
 	local projectileStats = projectileData.parameters.stats

@@ -1,11 +1,15 @@
 -- Author: 4812571, Hexcede
 
 local Debris = game:GetService("Debris")
+local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
 local StructureUtil = require(ReplicatedStorage.StructureUtility)
 local Destruction = require(ServerScriptService.Services.DamageService)
+
+
+
 
 
 local module = {}
@@ -108,7 +112,7 @@ module.Explode = function(position, radius, damage)
 		end
 		
 		--Players
-		for _, v in pairs(game.Players:GetPlayers()) do
+		for _, v in pairs(Players:GetPlayers()) do
 			if not (v.Character and v.Character:FindFirstChild("HumanoidRootPart")) then continue end
 			local distance = (v.Character.HumanoidRootPart.Position - position).Magnitude
 			local blastDamage = damage * getDamageMultiplier(distance, radius)

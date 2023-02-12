@@ -1,13 +1,16 @@
 -- Author: Accedo
 
+local Players = game:GetService("Players")
 local ContextActionService = game:GetService("ContextActionService")
+
+
 
 
 
 local sprinting = false
 local sprintMultiplier = 1.5
 
-local player = game.Players.LocalPlayer
+local player = Players.LocalPlayer
 local humanoid = player.Character:WaitForChild("Humanoid")
 
 function SprintPlayer(actionName, inputState, inputObject)

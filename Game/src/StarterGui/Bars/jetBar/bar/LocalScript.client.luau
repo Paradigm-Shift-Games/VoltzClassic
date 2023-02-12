@@ -1,5 +1,7 @@
+local Players = game:GetService("Players")
+
 local parent = script.Parent
-local getData = game.Players.LocalPlayer.Character:WaitForChild("jetpackMain"):WaitForChild("Function")
+local getData = Players.LocalPlayer.Character:WaitForChild("jetpackMain"):WaitForChild("Function")
 local percentText = script.Parent.Parent:WaitForChild("Percent")
 local function onChange()
 	local maxthrust, currentThrust = getData:Invoke()

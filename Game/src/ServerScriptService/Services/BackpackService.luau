@@ -12,8 +12,11 @@ local ElectricNode = require(ServerScriptService.Packages.Electricity.Classes.No
 local ValueReplicator = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.ValueReplicator)
 
 
+
+
+
 local jetpackModel = script:WaitForChild("Backpack")
-local ChargeAnimator = 	require(game.ServerScriptService.Packages.Electricity.Classes.NetworkObjects.ChargeAnimator)
+local ChargeAnimator = 	require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.ChargeAnimator)
 local Events = ReplicatedStorage:WaitForChild("Events")
 local ThrusterEvent = Events:WaitForChild("thruster")
 local jetpacks = {}

@@ -2,6 +2,7 @@
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local PrivateServerId = game:GetService("PrivateServerId")
 local CollectionService = game:GetService("CollectionService")
 local ServerScriptService = game:GetService("ServerScriptService")
 
@@ -10,6 +11,9 @@ local TimeManager = require(script.TimeManager)
 local RatingProcessor = require(script.RatingProcessor)
 local RatingService = require(ServerScriptService.Services.RatingService)
 local GameDataService = require(ServerScriptService.Services.GameDataService)
+
+
+
 
 
 
@@ -160,10 +164,10 @@ end
 local function connectTracking()
 	Connection = RunService.Heartbeat:Connect(onHeartbeat)
 	
-	game.Players.PlayerAdded:Connect(onPlayerAdded)
-	for _, player in ipairs(game.Players:GetPlayers()) do onPlayerAdded(player) end
+	Players.PlayerAdded:Connect(onPlayerAdded)
+	for _, player in ipairs(Players:GetPlayers()) do onPlayerAdded(player) end
 
-	game.Players.PlayerRemoving:Connect(onPlayerRemoved)
+	Players.PlayerRemoving:Connect(onPlayerRemoved)
 end
 
 local function disconnectTracking()
@@ -192,7 +196,7 @@ module.StartGame = function(teamData)
 	TimeManager.ActivateTracking()
 	connectTracking()
 	
-	if not RunService:IsStudio() then coroutine.wrap(function() GameDataService.SetKeyData("ActiveGames", game.PrivateServerId, DateTime.now().UnixTimestamp) end)() end
+	if not RunService:IsStudio() then coroutine.wrap(function() GameDataService.SetKeyData("ActiveGames", PrivateServerId, DateTime.now().UnixTimestamp) end)() end
 	
 	warn(teamData)
 	if length(teamData) <= 1 then module.TerminateGame() return end
@@ -206,8 +210,8 @@ module.TerminateGame = function()
 	disconnectTracking()
 	
 	--if not RunService:IsStudio() then coroutine.wrap(function()
-	--	local startTime = GameDataService.RemoveKeyFromDataStore("ActiveGames", game.PrivateServerId)
-	--	GameDataService.SetKeyFromDataStore("TerminatedGames", game.PrivateServerId, startTime)
+	--	local startTime = GameDataService.RemoveKeyFromDataStore("ActiveGames", PrivateServerId)
+	--	GameDataService.SetKeyFromDataStore("TerminatedGames", PrivateServerId, startTime)
 	--end)() end
 	
 	local winningTeam = nil

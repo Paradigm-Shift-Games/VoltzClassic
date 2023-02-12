@@ -1,4 +1,6 @@
-local Events = game.ReplicatedStorage:WaitForChild("Events")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local Events = ReplicatedStorage:WaitForChild("Events")
 local ErrorRemote = Events:WaitForChild("MessageRemote")
 local function OnError(ErrorCode, StackTrace, Script)
 	ErrorRemote:FireServer(ErrorCode, StackTrace)

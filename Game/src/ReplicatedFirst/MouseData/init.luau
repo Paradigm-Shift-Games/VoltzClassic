@@ -1,9 +1,12 @@
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
 local module = {}
-local LocalPlayer = game.Players.LocalPlayer
+local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local Camera = workspace.CurrentCamera
 local SelectedEvent = game:GetService("RunService").RenderStepped
-local Events = game.ReplicatedStorage:WaitForChild("Events")
+local Events = ReplicatedStorage:WaitForChild("Events")
 local MouseDataRemote = Events:WaitForChild("MouseData")
 local ActionRemote = Events:WaitForChild("Action")
 local TargetedNames = {"RefillConsole", "CrystalApproximator"}

@@ -1,5 +1,7 @@
 -- Author: 4812571
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
 local Welder = require(script.Weld)
 local Matrix = require(script.Matrix)
 local Picker = require(script.Picker)
@@ -8,6 +10,8 @@ local Renderer = require(script.Render)
 local Replacer = require(script.Replace)
 local StarterIsland = require(script.StarterIsland)
 local Settings = require(script.Settings.selectedSettings.Value)
+
+
 
 
 local module = {}
@@ -42,7 +46,7 @@ module.Generate = function() -- will take a datastore at some point
 	Renderer.Initialize()
 	Picker.Initialize()
 	Welder.Initialize()
-	workspace.MapCells.Parent = game.ReplicatedStorage
+	workspace.MapCells.Parent = ReplicatedStorage
 	print("Generating Map!")
 	for x = -Settings.Size, Settings.Size do
 		for z = -Settings.Size, Settings.Size do

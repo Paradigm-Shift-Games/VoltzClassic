@@ -13,6 +13,9 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
 
 
+
+
+
 local InteractRange = 30
 local Multiplier = 30 *(RunService:IsStudio() and 1000 or 1) --n0pa
 local beams = {} 

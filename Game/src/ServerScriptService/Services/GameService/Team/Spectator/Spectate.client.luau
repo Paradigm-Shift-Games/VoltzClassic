@@ -5,6 +5,7 @@ local StarterGui = game:GetService("StarterGui")
 local UserInputService = game:GetService("UserInputService")
 local ContextActionService = game:GetService("ContextActionService")
 
+
 ------------------------------------------------------------------------
 -- Freecam
 -- Cinematic free camera for spectating and video production.

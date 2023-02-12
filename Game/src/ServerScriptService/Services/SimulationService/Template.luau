@@ -6,6 +6,9 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Stats = require(ReplicatedStorage.Stats.Structure)
 
 
+
+
+
 local module = {}
 
 local objectStats = Stats[script.Name]

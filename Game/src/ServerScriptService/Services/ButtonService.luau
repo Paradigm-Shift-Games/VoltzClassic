@@ -7,7 +7,10 @@ local StructureUtil = require(ReplicatedStorage.StructureUtility)
 local CleanupService = require(game:GetService("ServerScriptService"):WaitForChild("Services"):WaitForChild("CleanupService"))
 
 
-local Events = game.ReplicatedStorage:WaitForChild("Events")
+
+
+
+local Events = ReplicatedStorage:WaitForChild("Events")
 local ButtonRemote = Events:WaitForChild("ButtonRemote")
 local ButtonService = {}
 local objectData = {}

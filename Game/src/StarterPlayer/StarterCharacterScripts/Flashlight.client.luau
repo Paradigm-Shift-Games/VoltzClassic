@@ -1,9 +1,12 @@
 -- Author: Accedo
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ContextActionService = game:GetService("ContextActionService")
 
 
-local ReplicatedStorage = game.ReplicatedStorage
+
+
+local ReplicatedStorage = ReplicatedStorage
 local FlashlightRemote = ReplicatedStorage.Events.Flashlight
 local enabled = false
 

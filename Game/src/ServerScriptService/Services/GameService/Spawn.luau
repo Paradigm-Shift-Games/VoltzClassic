@@ -1,21 +1,25 @@
+local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
 local Colorizer = require(ServerScriptService.Services.Colorizer)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local StarterIsland = require(ServerScriptService.ServerBootLoader.Map.StarterIsland)
 
+
+
 local module = {}
-local SpawnStats = require(game.ReplicatedStorage.Stats.Structure).Spawn
-local RespawnRemote = game.ReplicatedStorage.Events.RequestSpawn
+local SpawnStats = require(ReplicatedStorage.Stats.Structure).Spawn
+local RespawnRemote = ReplicatedStorage.Events.RequestSpawn
 
 --Variables
 local spawnOffset = CFrame.new(0, 2.5, 0)
 
 local StarterTools = {
-	game.ReplicatedStorage.Guns.Builder;
-	game.ReplicatedStorage.Guns["Pistol"];
+	ReplicatedStorage.Guns.Builder;
+	ReplicatedStorage.Guns["Pistol"];
 }
 
 local function RequestSpawn(player, spawnpad)
@@ -44,7 +48,7 @@ end
 
 RespawnRemote.OnServerEvent:Connect(RequestSpawn)
 
-coroutine.wrap(function() for _, player in ipairs(game.Players:GetPlayers()) do OnPlayerAdded(player) end end)()
-game.Players.PlayerAdded:Connect(OnPlayerAdded)
+coroutine.wrap(function() for _, player in ipairs(Players:GetPlayers()) do OnPlayerAdded(player) end end)()
+Players.PlayerAdded:Connect(OnPlayerAdded)
 
 return module

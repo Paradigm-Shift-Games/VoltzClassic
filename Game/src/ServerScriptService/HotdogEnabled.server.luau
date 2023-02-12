@@ -1,16 +1,21 @@
 -- Author: dead memes
 
+local Players = game:GetService("Players")
+local StarterPlayer = game:GetService("StarterPlayer")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+
 
 superfunkyhotdogmantime = false
-local currentStarter = game.StarterPlayer.StarterCharacter
-local hotdogStarter = game.ReplicatedStorage.HotdogMan
+local currentStarter = StarterPlayer.StarterCharacter
+local hotdogStarter = ReplicatedStorage.HotdogMan
 
-game.Players.PlayerAdded:Connect(function()
+Players.PlayerAdded:Connect(function()
 	if superfunkyhotdogmantime then
 		print("It's superfunkyhotdogmantime!")
 		
-		currentStarter.Parent = game.ReplicatedStorage
+		currentStarter.Parent = ReplicatedStorage
 		hotdogStarter.Name = "StarterCharacter"
-		hotdogStarter.Parent = game.StarterPlayer
+		hotdogStarter.Parent = StarterPlayer
 	end
 end)

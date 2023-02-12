@@ -1,9 +1,11 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
 local module = {}
 
 UpgradeData = {}
 
 module.Generate = function()
-	for _, v in ipairs(game.ReplicatedStorage.Objects:GetChildren()) do
+	for _, v in ipairs(ReplicatedStorage.Objects:GetChildren()) do
 		local upgradeFolder = v:FindFirstChild("Upgrades")
 		if upgradeFolder then
 			UpgradeData[v.Name] = {}
@@ -20,7 +22,7 @@ module.Generate = function()
 				UpgradeData[v.Name][tonumber(g.Name)] = {model = g, offset = offset}
 			end
 			upgradeFolder.Name = v.Name
-			upgradeFolder.Parent = game.ReplicatedStorage.Upgrades
+			upgradeFolder.Parent = ReplicatedStorage.Upgrades
 		end
 	end
 end

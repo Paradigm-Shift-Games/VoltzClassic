@@ -1,4 +1,6 @@
-local Events = game.ReplicatedStorage:WaitForChild("Events")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local Events = ReplicatedStorage:WaitForChild("Events")
 local EffectRemote = Events:WaitForChild("Effect")
 local RegisteredEffects = {}
 for _, module in ipairs(script:GetChildren()) do

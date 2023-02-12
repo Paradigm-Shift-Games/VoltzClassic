@@ -1,4 +1,6 @@
-local ButtonRemote = game.ReplicatedStorage:WaitForChild("Events"):WaitForChild("ArsenalButton")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local ButtonRemote = ReplicatedStorage:WaitForChild("Events"):WaitForChild("ArsenalButton")
 local container = script.Parent:WaitForChild("container")
 local CategoryContainer = container:WaitForChild("CategoryContainer")
 local WeaponContainer = container:WaitForChild("WeaponContainer")

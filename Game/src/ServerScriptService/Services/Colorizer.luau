@@ -1,5 +1,8 @@
 -- Author: 4812571
 
+local Players = game:GetService("Players")
+
+
 
 --[[Code Audit: 1/1/2021, 4812571
 
@@ -106,7 +109,7 @@ module.RevertColors = function(Structure)
 end
 
 module.ColorCharacter = function(character)
-	local player = game.Players:GetPlayerFromCharacter(character)
+	local player = Players:GetPlayerFromCharacter(character)
 	local teamColor = player.Team.TeamColor
 	for _, v in pairs(character:GetChildren()) do
 		if v:IsA("BasePart") and v.Name ~= "Light" and v.Name ~= "Nozzle" then v.BrickColor = teamColor end

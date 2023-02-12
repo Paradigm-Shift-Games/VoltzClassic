@@ -1,6 +1,7 @@
 -- Author: Accedo
 
 
+
 script.Parent.MouseButton1Click:Connect(function()
 	
 	for _, v in pairs(workspace.Map:GetDescendants()) do

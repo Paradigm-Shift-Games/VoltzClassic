@@ -9,6 +9,9 @@ local StructureUtil = require(ReplicatedStorage.StructureUtility)
 local Destruction = require(ServerScriptService.Services.DamageService)
 
 
+
+
+
 local oceanHeight = -118.185 --workspace.Ocean.OceanPart.Position.Y
 local gradientHeight = 20
 local baseDamage = 7

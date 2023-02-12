@@ -7,14 +7,16 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ContextActionService = game:GetService("ContextActionService")
 
 
+
+
 local Events = ReplicatedStorage:WaitForChild("Events")
 local thrusterRemote = Events:WaitForChild("thruster")
-local localPlayer = game.Players.LocalPlayer
+local localPlayer = Players.LocalPlayer
 local character = localPlayer.Character or script.Parent
 local jetpack = character:WaitForChild("Backpack")
 local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 local humanoid = character:WaitForChild("Humanoid")
-local JetpackEvent = game.ReplicatedStorage.Events.Jetpack
+local JetpackEvent = ReplicatedStorage.Events.Jetpack
 local localPlayer = Players.LocalPlayer
 local maxThrustTime = 1.3
 local currentThrustTime = 0

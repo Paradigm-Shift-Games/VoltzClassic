@@ -7,6 +7,9 @@ local GameDataService = require(ServerScriptService.Services.GameDataService)
 
 
 
+
+
+
 local RatingService = {}
 
 local Mag = 6
@@ -24,7 +27,7 @@ RatingService.SetRating = function(userID, rating)
 	local player = Players:GetPlayerByUserId(userID)
 	if not player then return newRating end
 
-	local leaderStats = game.Players:WaitForChild(player.Name):WaitForChild("leaderstats")
+	local leaderStats = Players:WaitForChild(player.Name):WaitForChild("leaderstats")
 	if not leaderStats then return newRating end
 
 	local ratingStat = leaderStats:WaitForChild("Rating")
@@ -39,7 +42,7 @@ RatingService.AddRating = function(userID, ratingDelta) --USE THIS AS OFTEN AS P
 	local player = Players:GetPlayerByUserId(userID)
 	if not player then return newRating end
 
-	local leaderStats = game.Players:WaitForChild(player.Name):WaitForChild("leaderstats")
+	local leaderStats = Players:WaitForChild(player.Name):WaitForChild("leaderstats")
 	if not leaderStats then return newRating end
 
 	local ratingStat = leaderStats:WaitForChild("Rating")

@@ -2,6 +2,8 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local CleanupService = require(ServerScriptService.Services.CleanupService)
 
+
+
 local DamageLevels = {0.75, 0.50, 0.30}
 
 local EffectTypes = {"Cracks", "Sparks", "Fire"}

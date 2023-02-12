@@ -1,5 +1,8 @@
 -- Author: Styx
 
+local Players = game:GetService("Players")
+
+
 local Humanoid = script.Parent:WaitForChild("Humanoid")
 Humanoid.Died:Connect(function()
 	for _,v in ipairs(script.Parent:GetChildren()) do
@@ -7,7 +10,7 @@ Humanoid.Died:Connect(function()
 			v:Destroy()
 		end
 	end
-	for _,v in ipairs(game.Players:GetPlayerFromCharacter(script.Parent).Backpack:GetChildren()) do
+	for _,v in ipairs(Players:GetPlayerFromCharacter(script.Parent).Backpack:GetChildren()) do
 		v:Destroy()
 	end
 end)

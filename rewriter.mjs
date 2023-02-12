@@ -129,6 +129,20 @@ function rewriteSource(memoryFile) {
         return `-- Author${authorSignature}`;
     });
 
+    // Replace all instances of game.Service with Service in the cleansed content
+    const gameRegex = /game\.(\w+)/g;
+
+    const gameMatches = [...cleansedContent.matchAll(gameRegex)];
+
+    // add all of the game.Service calls to the service set
+    for (const gameMatch of gameMatches) {
+        const [, serviceName] = gameMatch;
+        serviceSet.add(serviceName);
+    }
+
+    // Replace all of the game.Service calls with Service
+    let newCleansedContent = cleansedContent.replace(gameRegex, '$1');
+
     // Create a list of all of the local service statements
     const serviceStatements = [...serviceSet].map(serviceName => {
         return `local ${serviceName} = game:GetService("${serviceName}")`;
@@ -164,7 +178,7 @@ function rewriteSource(memoryFile) {
         newContent += `${requireBlock}\n\n`;
     }
 
-    newContent += cleansedContent;
+    newContent += newCleansedContent;
 
     // Write the new file content
     fs.writeFile(path, newContent);

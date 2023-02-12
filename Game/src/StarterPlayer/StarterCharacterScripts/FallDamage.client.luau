@@ -1,7 +1,10 @@
 -- Author: Styx
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local DamageEvent = game.ReplicatedStorage.Events.Damage
+
+
+local DamageEvent = ReplicatedStorage.Events.Damage
 local Character = script.Parent
 local Humanoid = Character:WaitForChild("Humanoid")
 local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")

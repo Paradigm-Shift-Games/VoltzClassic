@@ -1,6 +1,9 @@
+local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
 local tips = require(script:WaitForChild("Tips"))
+
+
 
 local loadingScreenData = workspace:WaitForChild("loadingScreenData")
 local messageValue = loadingScreenData:WaitForChild("Message")
@@ -9,7 +12,7 @@ local loadingUi = script:WaitForChild("loadingScreen")
 local text = loadingUi:WaitForChild("text")
 local tip = loadingUi:WaitForChild("tip")
 local bar = loadingUi:WaitForChild("loadingBar"):WaitForChild("percentBar")
-local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+local PlayerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
 local tipUpdateTime = 3--How often the tip is switched.
 local currentTip = tips[math.random(1, #tips)]
 local count = 0

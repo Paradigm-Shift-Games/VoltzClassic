@@ -13,6 +13,9 @@ local AssemblyService = require(ServerScriptService.Services.AssemblyService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
 
+
+
+
 local module = {}
 local objectData = {}
 local objectStats = Stats[script.Name]
@@ -53,7 +56,7 @@ function ChangeShieldState(object, state)
 end
 
 function GenerateShield(object)
-	local shield = game.ReplicatedStorage.Extras.Shield:Clone()
+	local shield = ReplicatedStorage.Extras.Shield:Clone()
 	local size = objectData[object].Size
 	shield.Team.Value = object.Team.Value
 	shield.ShieldDome.Size = Vector3.new(size, size, size)

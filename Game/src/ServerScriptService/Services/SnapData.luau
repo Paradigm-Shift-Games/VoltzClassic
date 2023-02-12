@@ -1,9 +1,12 @@
 -- Author: 4812571
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+
 
 local module = {}
 Data = {}
-local event = game.ReplicatedStorage.Events.SnapData
+local event = ReplicatedStorage.Events.SnapData
 local generated = false
 local toRecurse = {
 	workspace.Objects;

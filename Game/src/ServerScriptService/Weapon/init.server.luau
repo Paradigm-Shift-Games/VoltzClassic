@@ -1,5 +1,6 @@
 -- Author: 4812571
 
+local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
@@ -7,6 +8,9 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local WeaponStats = require(ReplicatedStorage.Stats.Weapon)
 local WeldServcice = require(ServerScriptService.Services.WeldService)
 local ActionService = require(ServerScriptService.Services.ActionService)
+
+
+
 
 
 local EquippedWeapon = {}
@@ -74,7 +78,7 @@ local function OnChildAdded(player, child)
 end
 
 local function OnCharacterAdded(Char)
-	local player = game.Players:GetPlayerFromCharacter(Char)
+	local player = Players:GetPlayerFromCharacter(Char)
 	Char.ChildAdded:Connect(function(child)
 		OnChildAdded(player, child)
 	end)
@@ -92,10 +96,10 @@ end
 
 for _, v in ipairs(script:GetChildren()) do FiringModes[v.Name] = require(v) end
 
-for _, v in ipairs(game.ReplicatedStorage.Guns:GetChildren()) do WeldServcice.Unanchor(v) WeldServcice.WeldTool(v) end
+for _, v in ipairs(ReplicatedStorage.Guns:GetChildren()) do WeldServcice.Unanchor(v) WeldServcice.WeldTool(v) end
 
-for _, player in ipairs(game.Players:GetPlayers()) do OnPlayerAdded(player) end
-game.Players.PlayerAdded:Connect(OnPlayerAdded)
+for _, player in ipairs(Players:GetPlayers()) do OnPlayerAdded(player) end
+Players.PlayerAdded:Connect(OnPlayerAdded)
 	
 RunService.Heartbeat:Connect(Run)
 ActionService.Bind("GunFire", OnGunFire)

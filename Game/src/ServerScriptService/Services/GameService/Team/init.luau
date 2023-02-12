@@ -1,10 +1,15 @@
 -- Author: 4812571
 
+local Teams = game:GetService("Teams")
+local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local TeleportService = game:GetService("TeleportService")
 local ServerScriptService = game:GetService("ServerScriptService")
 
 local StarterIsland = require(ServerScriptService.ServerBootLoader.Map.StarterIsland)
+
+
+
 
 
 local module = {}
@@ -18,7 +23,7 @@ local function DumpData()
 	print("TeleportData:Dump():\n")
 	for teamName, data in pairs(teamData) do
 		print(teamName..":")
-		for _, v in pairs(data.UserIds) do print("\t"..v, game.Players:GetPlayerByUserId(v)) end
+		for _, v in pairs(data.UserIds) do print("\t"..v, Players:GetPlayerByUserId(v)) end
 	end
 end
 
@@ -30,7 +35,7 @@ local function BuildTeams()
 		newTeam.Name = teamName
 		newTeam.AutoAssignable = false
 		newTeam.TeamColor = BrickColor.new(Color3.new(data.teamColor.R, data.teamColor.G, data.teamColor.B))
-		newTeam.Parent = game.Teams
+		newTeam.Parent = Teams
 		
 		--Data Formatting
 		print("Creating Team Entry", data.teamColor, data.pos)
@@ -93,7 +98,7 @@ module.GetTeamData = function()
 	return teamData
 end
 
-coroutine.wrap(function() for _, player in ipairs(game.Players:GetPlayers()) do OnPlayerAdded(player) end end)()
-game.Players.PlayerAdded:Connect(OnPlayerAdded)
+coroutine.wrap(function() for _, player in ipairs(Players:GetPlayers()) do OnPlayerAdded(player) end end)()
+Players.PlayerAdded:Connect(OnPlayerAdded)
 
 return module

@@ -1,8 +1,11 @@
 -- Author: 4812571
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+
 
 local module = {}
-local ActionRemote = game.ReplicatedStorage.Events.Action
+local ActionRemote = ReplicatedStorage.Events.Action
 local bound = {}
 
 module.Bind = function(action, func)

@@ -12,11 +12,14 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local NetworkHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
 
 
+
+
+
 --Roblox Services
 
 --Imports
-local Stats = require(game.ReplicatedStorage.Stats.Structure)["Turret"]
-local Effect = require(game.ReplicatedStorage.Stats.Weapon).Effects["Physical_l"]
+local Stats = require(ReplicatedStorage.Stats.Structure)["Turret"]
+local Effect = require(ReplicatedStorage.Stats.Weapon).Effects["Physical_l"]
 
 --Data
 local TurretData = {}

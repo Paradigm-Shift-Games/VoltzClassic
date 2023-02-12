@@ -2,6 +2,7 @@
 
 local Players = game:GetService("Players")
 local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
 local EffectService = require(ServerScriptService.Services.EffectService)
@@ -10,10 +11,13 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local NetworkHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
 
 
+
+
+
 --Roblox Services
 
 --Imports
-local Stats = require(game.ReplicatedStorage.Stats.Structure)["Tesla Turret"]
+local Stats = require(ReplicatedStorage.Stats.Structure)["Tesla Turret"]
 
 --Data
 local TurretData = {}

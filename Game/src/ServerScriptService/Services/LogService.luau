@@ -1,11 +1,15 @@
 -- Author: Styx
 
 local ScriptContext = game:GetService("ScriptContext")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local DiscordService = require(game:WaitForChild("ServerScriptService"):WaitForChild("Services"):WaitForChild("DiscordService"))
 
 
-local Events = game.ReplicatedStorage:WaitForChild("Events")
+
+
+
+local Events = ReplicatedStorage:WaitForChild("Events")
 local MessageRemote = Events:WaitForChild("MessageRemote")
 
 function GetStackTraceName(stackTrace)

@@ -1,7 +1,10 @@
+local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local ServerScriptService = game:GetService("ServerScriptService")
 
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+
+
 
 
 local Charging = {}
@@ -15,7 +18,7 @@ end)
 
 local function Command(player, parameters, target)
 	if not target then print("Cannot add to charge list: No target player specified!") return end
-	local targetPlayer = game.Players:WaitForChild(tostring(target))
+	local targetPlayer = Players:WaitForChild(tostring(target))
 	if not targetPlayer then print("Cannot add to charge list: Target player specified not present!") return end
 	
 	Charging[targetPlayer] = Charging[targetPlayer] and nil or true

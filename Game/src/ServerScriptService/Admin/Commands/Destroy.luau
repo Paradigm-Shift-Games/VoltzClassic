@@ -1,8 +1,11 @@
+local Teams = game:GetService("Teams")
 local CollectionService = game:GetService("CollectionService")
 local ServerScriptService = game:GetService("ServerScriptService")
 
 local ChatService = require(ServerScriptService.Services.ChatService)
 local DamageService = require(ServerScriptService.Services.DamageService)
+
+
 
 --
 local function Command(player, parameters)
@@ -12,7 +15,7 @@ local function Command(player, parameters)
 			DamageService.Destroy(v)
 		end		
 	elseif #parameters == 2 then
-		local team = game.Teams:FindFirstChild(parameters[2])
+		local team = Teams:FindFirstChild(parameters[2])
 		if not team then 
 			--ChatService.BroadcastToPlayer(player, "System", "Invalid team "..parameters[2]) 
 			return

@@ -1,5 +1,7 @@
+local Players = game:GetService("Players")
+
 local parent = script.Parent
-local backpack = game.Players.LocalPlayer.Character:WaitForChild("Backpack")
+local backpack = Players.LocalPlayer.Character:WaitForChild("Backpack")
 local chargeValue = backpack:WaitForChild("Charge")
 local storageValue = backpack:WaitForChild("Storage")
 local percentText = script.Parent.Parent:WaitForChild("Percent")

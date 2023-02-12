@@ -1,10 +1,13 @@
+local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ContextActionService = game:GetService("ContextActionService")
 
-local Remotes = game.ReplicatedStorage:WaitForChild("Events")
+
+local Remotes = ReplicatedStorage:WaitForChild("Events")
 local BargeRemote = Remotes:WaitForChild("Barge")
-local LocalPlayer = game.Players.LocalPlayer
+local LocalPlayer = Players.LocalPlayer
 local localCharacter, localHumanoid
 local currentBargePart, bodyPosition, driverSeat
 local BargeSpeed = 48
@@ -22,7 +25,7 @@ local function onQKey(_, InputState, _)
 	end
 end
 local function onOccupantChange(bargeModel, newOccupant)
-	if newOccupant ~= nil and game.Players:GetPlayerFromCharacter(newOccupant.Parent) == LocalPlayer then
+	if newOccupant ~= nil and Players:GetPlayerFromCharacter(newOccupant.Parent) == LocalPlayer then
 		ContextActionService:BindAction("bargeUp", onEKey, false, Enum.KeyCode.E)
 		ContextActionService:BindAction("bargeDown", onQKey, false, Enum.KeyCode.Q)
 		currentBargePart = bargeModel.PrimaryPart

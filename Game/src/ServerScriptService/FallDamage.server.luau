@@ -1,7 +1,10 @@
 -- Author: Styx
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local FallEvent = game.ReplicatedStorage.Events.Damage
+
+
+local FallEvent = ReplicatedStorage.Events.Damage
 
 function DamagePlayer(Player, amount)
 	local humanoid = Player.Character:FindFirstChild("Humanoid")

@@ -1,6 +1,9 @@
+local Players = game:GetService("Players")
 local ServerScriptService = game:GetService("ServerScriptService")
 
 local CommunicationService = require(ServerScriptService.Services.CommunicationService)
+
+
 
 
 local function HandleCommands(commandString)
@@ -10,7 +13,7 @@ local function HandleCommands(commandString)
 	if command == "kick" then
 		local userId = arguments[1]
 		if not userId then return "No user ID provided with kick command!" end
-		local player = game.Players:GetPlayerByUserId(userId)
+		local player = Players:GetPlayerByUserId(userId)
 		if player then player:Kick("You have been banned.") end
 	end
 end

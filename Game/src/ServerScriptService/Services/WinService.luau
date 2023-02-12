@@ -1,5 +1,6 @@
 -- Author: n0pa, Styx
 
+local Teams = game:GetService("Teams")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local CollectionService = game:GetService("CollectionService")
@@ -7,6 +8,9 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local RatingService = require(ServerScriptService.Services.RatingService)
 local DiscordService = require(ServerScriptService.Services.DiscordService)
+
+
+
 
 
 
@@ -27,7 +31,7 @@ local WinService = {}
 
 local function getTeamLifeCounts() --Finds all teams and stores them and how many players are still alive in teams
 	local teams = {}
-	for _, team in ipairs(game.Teams:GetTeams()) do
+	for _, team in ipairs(Teams:GetTeams()) do
 		teams[team] = 0 --0 initial players
 
 		for _, player in ipairs(team:GetPlayers()) do --Adds 1 to teams[team] per living player
@@ -70,7 +74,7 @@ local function writePlayerTexts(team, ratings, intendedSign, text)
 end
 
 WinService.sendMatchResultAndUpdateRatings = function(livingTeamCount, lastTeam, remainingTeams)
-	--if #Players:GetPlayers() <= 1 and #game.Teams:GetTeams() <= 1 then return end
+	--if #Players:GetPlayers() <= 1 and #Teams:GetTeams() <= 1 then return end
 
 	remainingTeams[lastTeam] = true
 	
@@ -177,9 +181,9 @@ local function onPlayerAdded(player)
 	onCharacterAdded(player.Character)
 end
 
-game.Players.PlayerAdded:Connect(onPlayerAdded)
+Players.PlayerAdded:Connect(onPlayerAdded)
 
-for _, player in pairs(game.Players:GetPlayers()) do
+for _, player in pairs(Players:GetPlayers()) do
 	onPlayerAdded(player)
 end
 

@@ -1,10 +1,12 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
 local Weapons = {}
 
 function parseString(str)
 	return (str:lower()):gsub(" ", "")
 end
 
-for _, v in pairs(game.ReplicatedStorage.Guns:GetChildren()) do
+for _, v in pairs(ReplicatedStorage.Guns:GetChildren()) do
 	Weapons[parseString(v.Name)] = v
 end
 

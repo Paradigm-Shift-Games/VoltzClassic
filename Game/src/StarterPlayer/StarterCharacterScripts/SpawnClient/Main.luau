@@ -1,13 +1,17 @@
+local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local ReplicatedFirst = game:GetService("ReplicatedFirst")
 local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Stats = require(ReplicatedStorage.Stats.Structure)
 
+
+
 local module = {}
-local SpawnGuiAssets = game.ReplicatedFirst.RespawnGui
-local SpawnRemote = game.ReplicatedStorage.Events.RequestSpawn
-local LocalPlayer = game.Players.LocalPlayer
+local SpawnGuiAssets = ReplicatedFirst.RespawnGui
+local SpawnRemote = ReplicatedStorage.Events.RequestSpawn
+local LocalPlayer = Players.LocalPlayer
 local camera = workspace.CurrentCamera
 local teleporting = false
 local selectedSpawn

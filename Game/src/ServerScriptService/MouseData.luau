@@ -1,8 +1,11 @@
 -- Author: 4812571
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 
-local MouseRemote = game.ReplicatedStorage.Events.MouseData
+
+
+local MouseRemote = ReplicatedStorage.Events.MouseData
 local module = {}
 local MouseData = {}
 

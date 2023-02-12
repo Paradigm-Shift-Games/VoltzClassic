@@ -19,9 +19,12 @@ local ElectricNode = require(ServerScriptService.Packages.Electricity.Classes.No
 local ElectricHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
 
 
+
+
+
 local module = {}
-local BuildEvent = game.ReplicatedStorage.Events.Builder
-local UpgradeEvent = game.ReplicatedStorage.Events.Upgrade
+local BuildEvent = ReplicatedStorage.Events.Builder
+local UpgradeEvent = ReplicatedStorage.Events.Upgrade
 
 local attachNames = {"Distributor Cap", "Cap"}
 
@@ -62,11 +65,11 @@ end
 
 function GetWire(attachment1, attachment2)
 	local model = Instance.new("Model")
-	local wire1 = game.ReplicatedStorage.Objects["Wire"]:Clone()
-	local wire2 = game.ReplicatedStorage.Objects["Wire"]:Clone()
+	local wire1 = ReplicatedStorage.Objects["Wire"]:Clone()
+	local wire2 = ReplicatedStorage.Objects["Wire"]:Clone()
 	wire1.Name = "Wire1"
 	wire2.Name = "Wire2"
-	local wireCylinder = game.ReplicatedStorage.Extras.WireCylinder:Clone()
+	local wireCylinder = ReplicatedStorage.Extras.WireCylinder:Clone()
 	wire1:SetPrimaryPartCFrame(attachment1.part.CFrame * attachment1.offsetCF)
 	wire2:SetPrimaryPartCFrame(attachment2.part.CFrame * attachment2.offsetCF)
 	ConnectCylinder(wireCylinder, wire1.Ball, wire2.Ball)
@@ -79,7 +82,7 @@ function GetWire(attachment1, attachment2)
 end
 
 function GetStructure(modelName, attachment, snapState)
-	local model = game.ReplicatedStorage.Objects[modelName]:Clone()
+	local model = ReplicatedStorage.Objects[modelName]:Clone()
 	model:SetPrimaryPartCFrame(attachment.part.CFrame * attachment.offsetCF)
 	local attachedModel = StructureUtil.IsDetector(attachment.part) and StructureUtil.GetModel(attachment.part)
 	local snapped = attachedModel and StructureUtil.CanSnap(modelName, attachedModel)

@@ -1,8 +1,11 @@
 -- Author n0pa
 
+local Players = game:GetService("Players")
 local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ContextActionService = game:GetService("ContextActionService")
+
+
 
 
 local Events = ReplicatedStorage:WaitForChild("Events")
@@ -99,8 +102,8 @@ local function onArtilleryTagAdded(artillery)
 		local Humanoid = Seat.Occupant
 		if not Humanoid then return end
 			
-		local player = game.Players:GetPlayerFromCharacter(Humanoid.Parent)
-		if player ~= game.Players.LocalPlayer then return end
+		local player = Players:GetPlayerFromCharacter(Humanoid.Parent)
+		if player ~= Players.LocalPlayer then return end
 				
 		currentArtillery = artillery
 		bindControlKeys()	

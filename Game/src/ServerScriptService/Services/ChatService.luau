@@ -1,7 +1,10 @@
 -- Author: n0pa
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local ServerChatRemote = game.ReplicatedStorage.Events.ServerChat
+
+
+local ServerChatRemote = ReplicatedStorage.Events.ServerChat
 
 local DefaultChatConfig = {
 	["Color"] = Color3.fromRGB(255, 255, 243);

@@ -1,6 +1,7 @@
 local Teams = game:GetService("Teams")
 local Players = game:GetService("Players")
 
+
 warn("Admin Initializing")
 
 local Commands = {}
@@ -9,13 +10,13 @@ local GroupID = 5444195
 local AdminRank = 253
 
 local function findPlayerFromPartialName(partial)
-	if game.Players:FindFirstChild(partial) then return game.Players[partial] end
+	if Players:FindFirstChild(partial) then return Players[partial] end
 	
-	for _, player in ipairs(game.Players:GetPlayers()) do
+	for _, player in ipairs(Players:GetPlayers()) do
 		if player.Name:match("^" .. partial) then return player end
 	end
 	
-	for _, player in ipairs(game.Players:GetPlayers()) do
+	for _, player in ipairs(Players:GetPlayers()) do
 		if player.Name:lower():match("^" .. partial:lower()) then return player end
 	end
 end

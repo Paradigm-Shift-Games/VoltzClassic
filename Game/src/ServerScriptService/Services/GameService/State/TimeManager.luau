@@ -4,6 +4,8 @@ local Players = game:GetService("Players")
 
 
 
+
+
 local DeathTimeData = {}
 local TotalTimeData = {}
 local GameDate = DateTime.now()
@@ -30,8 +32,8 @@ end
 
 local function connectTracking()
 	print("GameService.State.TimeManager - connectTracking")
-	game.Players.PlayerAdded:Connect(onPlayerAdded)
-	for _, player in ipairs(game.Players:GetPlayers()) do onPlayerAdded(player) end
+	Players.PlayerAdded:Connect(onPlayerAdded)
+	for _, player in ipairs(Players:GetPlayers()) do onPlayerAdded(player) end
 end
 
 local function timeDifferenceMillis(dateTime1, dateTime2)	
