@@ -8,11 +8,6 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local ChatService = require(ServerScriptService.Services.ChatService)
 local DiscordService = require(ServerScriptService.Services.DiscordService)
 
-
-
-
-
-
 local module = {}
 
 local function maxElement(tab)

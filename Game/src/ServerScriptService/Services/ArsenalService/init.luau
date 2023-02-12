@@ -11,9 +11,6 @@ local StructureUtil = require(ReplicatedStorage.StructureUtility)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ButtonService = require(ServerScriptService:WaitForChild("Services"):WaitForChild("ButtonService"))
 
-
-
-
 --This code is going to be changed -Styx
 local Events = ReplicatedStorage:WaitForChild("Events")
 local uiMain = script:WaitForChild("uiMain")

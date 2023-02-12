@@ -1,7 +1,6 @@
 local module = {}
 local camera = workspace.CurrentCamera
 
-
 function AxisLocked(axis)
 	local upVector = axis
 	local charVector = -camera.CFrame.LookVector
@@ -29,7 +28,6 @@ end
 
 local SnapEvent = game.ReplicatedStorage.Events.SnapData
 local SnapData = SnapEvent:InvokeServer()
-
 
 module.Rotation = 0
 
@@ -72,6 +70,5 @@ module.Wire = function(primary, rootSnap, targetSnap)
 	local SnapOffset = rootSnap.CFrame:ToObjectSpace(primary.CFrame)
 	return targetSnap.CFrame:ToObjectSpace(ModelCF * SnapOffset)
 end
-
 
 return module

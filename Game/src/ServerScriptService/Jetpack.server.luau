@@ -5,10 +5,6 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
-
-
-
-
 local JetpackEvent = ReplicatedStorage.Events.Jetpack
 
 function JetpackConsume(Player, amount)

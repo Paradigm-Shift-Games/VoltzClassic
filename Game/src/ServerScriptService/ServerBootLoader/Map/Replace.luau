@@ -4,9 +4,6 @@ local Matrix = require(script.Parent.Matrix)
 local Picker = require(script.Parent.Picker)
 local Settings = require(script.Parent.Settings.selectedSettings.Value)
 
-
-
-
 local module = {}
 local Masks = {}
 local LargeTypes = {}
@@ -106,40 +103,5 @@ module.Replace = function()
 		PlaceCell(GetRandomCellType())
 	end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 return module

@@ -11,9 +11,6 @@ local Replacer = require(script.Replace)
 local StarterIsland = require(script.StarterIsland)
 local Settings = require(script.Settings.selectedSettings.Value)
 
-
-
-
 local module = {}
 local NoiseKeys = {}
 local generated = false

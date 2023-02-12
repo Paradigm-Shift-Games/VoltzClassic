@@ -3,8 +3,6 @@ local RunService = game:GetService("RunService")
 
 local tips = require(script:WaitForChild("Tips"))
 
-
-
 local loadingScreenData = workspace:WaitForChild("loadingScreenData")
 local messageValue = loadingScreenData:WaitForChild("Message")
 local percentValue = loadingScreenData:WaitForChild("Percent")

@@ -2,8 +2,6 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local CleanupService = require(ServerScriptService.Services.CleanupService)
 
-
-
 local DamageLevels = {0.75, 0.50, 0.30}
 
 local EffectTypes = {"Cracks", "Sparks", "Fire"}
@@ -11,8 +9,6 @@ local IgnoredNames = {"Snap"}
 local DamageStates = {}
 
 local module = {}
-
-
 
 local function FindPoint(Structure)
 	local function CanHit(part)

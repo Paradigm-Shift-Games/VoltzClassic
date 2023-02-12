@@ -40,6 +40,4 @@ module.InitializePods = function()
 	for _, v in pairs(game.Workspace.Lobby.Pods:GetChildren()) do InitializePod(v) end
 end
 
-
-
 return module

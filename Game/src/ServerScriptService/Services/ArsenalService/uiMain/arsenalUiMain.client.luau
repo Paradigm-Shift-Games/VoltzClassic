@@ -26,4 +26,3 @@ OriginalArsenal.Value.Changed:Connect(function()
 	end
 end)
 
-

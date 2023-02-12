@@ -9,8 +9,6 @@ local ReplicatedFirst:WaitForChild("ContextHint"))--  =  = game:GetService("Repl
 local MouseData = require(ReplicatedFirst.MouseData)
 local contextHint = require(ReplicatedFirst:WaitForChild("ContextHint"))--  = )
 
-
-
 local Events = ReplicatedStorage:WaitForChild("Events")
 local ButtonRemote = Events:WaitForChild("ButtonRemote")
 local LocalPlayer = Players.LocalPlayer

@@ -136,7 +136,6 @@ weaponStats["HPPL"] = {
 	FireRate = 1;
 }
 
-
 --weaponStats["Pistol"] = {}
 --weaponStats["Pistol"].DamageToPlayer = 15
 --weaponStats["Pistol"].Spread = 0
@@ -225,6 +224,5 @@ weaponStats["HPPL"] = {
 --weaponStats["Sniper Rifle"].Sound = {
 --	ShotSound = SFX:WaitForChild("SniperSound");
 --}
-
 
 return weaponStats

@@ -10,9 +10,6 @@ local EffectService = require(ServerScriptService.Services.EffectService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local TransferLine = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.TransferLine)
 
-
-
-
 	
 local module = {}
 
@@ -95,7 +92,6 @@ CollectionService:GetInstanceAddedSignal("Backpack"):Connect(OnCapAdded)
 CollectionService:GetInstanceRemovedSignal("Distributor"):Connect(OnRemoved)
 CollectionService:GetInstanceRemovedSignal("Distributor Cap"):Connect(OnRemoved)
 CollectionService:GetInstanceRemovedSignal("Backpack"):Connect(OnRemoved)
-
 
 --Object Update
 function runObject(Distributor)

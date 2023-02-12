@@ -5,10 +5,6 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local DiscordService = require(game:WaitForChild("ServerScriptService"):WaitForChild("Services"):WaitForChild("DiscordService"))
 
-
-
-
-
 local Events = ReplicatedStorage:WaitForChild("Events")
 local MessageRemote = Events:WaitForChild("MessageRemote")
 

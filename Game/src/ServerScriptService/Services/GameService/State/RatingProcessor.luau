@@ -4,11 +4,6 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local RatingService = require(ServerScriptService.Services.RatingService)
 
-
-
-
-
-
 local WeightData = {}
 local WinningWeightFunctions = {}
 local LosingWeightFunctions = {}

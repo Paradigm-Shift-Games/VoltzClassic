@@ -2,7 +2,6 @@
 
 local Players = game:GetService("Players")
 
-
 local Humanoid = script.Parent:WaitForChild("Humanoid")
 Humanoid.Died:Connect(function()
 	for _,v in ipairs(script.Parent:GetChildren()) do

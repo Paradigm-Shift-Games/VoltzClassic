@@ -6,9 +6,6 @@ local UserInputService = game:GetService("UserInputService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ContextActionService = game:GetService("ContextActionService")
 
-
-
-
 local Events = ReplicatedStorage:WaitForChild("Events")
 local thrusterRemote = Events:WaitForChild("thruster")
 local localPlayer = Players.LocalPlayer
@@ -30,7 +27,6 @@ local timeStarted = 0
 local isInAir = false
 local spacePressed = true 
 local effectState = false
-
 
 local function getData()
 	return maxThrustTime, currentThrustTime

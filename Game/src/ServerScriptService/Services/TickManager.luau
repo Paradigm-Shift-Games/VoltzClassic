@@ -8,12 +8,7 @@ local Simulation = require(ServerScriptService.Services.SimulationService)
 local Projectile = require(ServerScriptService.Services.ProjectileService)
 local Network = require(ServerScriptService.Packages.Electricity.Classes.Network)
 
-
-
-
-
 local module = {}
-
 
 local activated = false
 local connection
@@ -56,6 +51,5 @@ module.Toggle = function()
 	if not activated then warn("TickManager inactive!") return false end
 	if connection then module.Disable() else module.Enable() end
 end
-
 
 return module

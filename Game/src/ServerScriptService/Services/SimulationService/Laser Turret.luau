@@ -11,10 +11,6 @@ local GridInterface = require(ServerScriptService.Packages.Grid.Interface2)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local NetworkHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
 
-
-
-
-
 --Roblox Services
 
 --Imports
@@ -176,6 +172,4 @@ CollectionService:GetInstanceRemovedSignal(script.Name):Connect(function(turret)
 end)
 
 return module
-
-
 

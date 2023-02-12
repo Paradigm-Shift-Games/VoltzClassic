@@ -10,10 +10,6 @@ local StructureUtil = require(ReplicatedStorage.StructureUtility)
 local AssemblyService = require(ServerScriptService.Services.AssemblyService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
-
-
-
-
 local module = {}
 
 function PromoteUpgrade(Object)

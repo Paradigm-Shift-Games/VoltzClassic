@@ -3,9 +3,6 @@
 local Matrix = require(script.Parent.Matrix)
 local Settings = require(script.Parent.Settings.selectedSettings.Value)
 
-
-
-
 local module = {}
 local ColumnCount = 0
 local cellSelection = {items = {}, distribution = {}}
@@ -79,46 +76,5 @@ end
 module.Add = function(x, z, isCircular, size, isStarter)
 	table.insert(module.Supports, {X = x, Z = z, isCircular = isCircular, size = size, isStarter = isStarter})
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 return module

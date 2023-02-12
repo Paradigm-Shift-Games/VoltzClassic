@@ -8,10 +8,6 @@ local Stats = require(ReplicatedStorage.Stats.Structure)
 local DamageService = require(ServerScriptService.Services.DamageService)
 local ExplosionService = require(ServerScriptService.Services.ExplosionService)
 
-
-
-
-
 local module = {}
 local objectStats = Stats[script.Name]
 objectData = {}

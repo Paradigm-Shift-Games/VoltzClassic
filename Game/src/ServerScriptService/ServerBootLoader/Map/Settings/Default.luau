@@ -1,6 +1,5 @@
 local RunService = game:GetService("RunService")
 
-
 local Settings = {}
 -- Map Size
 Settings.Size = (RunService:IsStudio() and 45) or 45
@@ -36,6 +35,5 @@ Settings.StarterSize = 5
 Settings.StarterWell = true
 -- TeamCount
 Settings.TeamCount = 5
-
 
 return Settings

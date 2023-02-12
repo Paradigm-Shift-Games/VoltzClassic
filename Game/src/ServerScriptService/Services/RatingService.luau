@@ -5,11 +5,6 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local GameDataService = require(ServerScriptService.Services.GameDataService)
 
-
-
-
-
-
 local RatingService = {}
 
 local Mag = 6

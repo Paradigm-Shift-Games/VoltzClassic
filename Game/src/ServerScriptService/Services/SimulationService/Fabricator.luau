@@ -11,12 +11,7 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ArrayGraph = require(ServerScriptService.Classes.Datastructure.ArrayGraph)
 local TransferLine = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.TransferLine)
 
-
-
-
-
 local module = {}
-
 
 --Graphs
 local beamGraph = 		Graph.New()
@@ -35,8 +30,6 @@ local Ungrounded = {}
 local TransferFlux = 0
 local ConnectedPlayers = {}
 local FabricatorData = {}
-
-
 
 --Settings
 local Debug = false
@@ -170,7 +163,6 @@ CollectionService:GetInstanceAddedSignal("Fabricator"):Connect(OnFabricatorAdded
 CollectionService:GetInstanceAddedSignal("Blueprint"):Connect(OnBlueprintAdded)
 CollectionService:GetInstanceRemovedSignal("Fabricator"):Connect(OnRemoved)
 CollectionService:GetInstanceRemovedSignal("Blueprint"):Connect(OnRemoved)
-
 
 --Object Update
 function getCount(hashtab) 

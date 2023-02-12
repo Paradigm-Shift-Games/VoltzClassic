@@ -2,11 +2,7 @@
 
 local Main = require(script:WaitForChild("Main"))
 
-
-
-
 local Humanoid = script.Parent:WaitForChild("Humanoid")
-
 
 local function OnDeath()
 	Main.Enable()

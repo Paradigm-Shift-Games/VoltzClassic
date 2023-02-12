@@ -5,10 +5,6 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local Matrix = require(script.Parent.Matrix)
 local WeldService = require(ServerScriptService.Services.WeldService)
 
-
-
-
-
 local module = {}
 local CellFolder = workspace.MapCells
 

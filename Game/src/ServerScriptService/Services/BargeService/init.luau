@@ -5,9 +5,6 @@ local RunService = game:GetService("RunService")
 local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-
-
-
 local Events = ReplicatedStorage:WaitForChild("Events")
 local bargeEvent = Events:WaitForChild("Barge")
 local HeightPerLevel = 10

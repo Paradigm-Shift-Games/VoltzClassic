@@ -5,7 +5,6 @@ local StarterGui = game:GetService("StarterGui")
 local UserInputService = game:GetService("UserInputService")
 local ContextActionService = game:GetService("ContextActionService")
 
-
 ------------------------------------------------------------------------
 -- Freecam
 -- Cinematic free camera for spectating and video production.
@@ -19,7 +18,6 @@ local rad   = math.rad
 local sign  = math.sign
 local sqrt  = math.sqrt
 local tan   = math.tan
-
 
 local whitelistedGuis = {["Chat"] = true, ["PlayerList"] = true, ["AdminGui"] = true}
 

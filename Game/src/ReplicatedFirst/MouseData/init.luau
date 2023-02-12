@@ -13,7 +13,6 @@ local TargetedNames = {"RefillConsole", "CrystalApproximator"}
 local IgnoredNames = {}
 local Hit, HitPosition, Normal
 
-
 local function CanHit(HitPart)
 	if HitPart == nil then return true end --Nil 
 	if table.find(TargetedNames, HitPart.Name) then return true end --Filter 
@@ -46,6 +45,5 @@ module.GetMouseData = function()
 end
 
 SelectedEvent:Connect(OnRun)
-
 
 return module

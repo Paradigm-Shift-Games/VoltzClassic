@@ -9,11 +9,6 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local RatingService = require(ServerScriptService.Services.RatingService)
 local DiscordService = require(ServerScriptService.Services.DiscordService)
 
-
-
-
-
-
 local Enabled = true --Just for future stuff.
 local Debounce = false
 

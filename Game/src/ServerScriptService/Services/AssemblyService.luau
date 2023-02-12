@@ -1,7 +1,5 @@
 -- Author: 4812571
 
-
-
 local module = {}
 local Assemblies = {}
 local ObjectData = {}
@@ -42,7 +40,6 @@ module.SetAttachmentType = function(Object, AttachmentType)
 	ObjectData[Object].attachmentType = AttachmentType
 end
 
-
 module.Clean = function(Object)
 	if module.isRoot(Object) then
 		Assemblies[Object] = nil
@@ -51,6 +48,5 @@ module.Clean = function(Object)
 		ObjectData[Object] = nil
 	end
 end
-
 
 return module

@@ -7,10 +7,6 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local Stats = require(ReplicatedStorage.Stats.Structure)
 local ElectricityDisplay = require(ServerScriptService.Packages.Electricity.Display)
 
-
-
-
-
 local module = {}
 
 local objectStats = Stats[script.Name]

@@ -8,8 +8,6 @@ local Colorizer = require(ServerScriptService.Services.Colorizer)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local StarterIsland = require(ServerScriptService.ServerBootLoader.Map.StarterIsland)
 
-
-
 local module = {}
 local SpawnStats = require(ReplicatedStorage.Stats.Structure).Spawn
 local RespawnRemote = ReplicatedStorage.Events.RequestSpawn

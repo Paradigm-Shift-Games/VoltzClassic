@@ -13,5 +13,4 @@ module["Four-Way"] = {"Connector"}
 module["Cap"] = {"Connector"}
 module["Distributor Cap"] = {"Connector"}
 
-
 return module

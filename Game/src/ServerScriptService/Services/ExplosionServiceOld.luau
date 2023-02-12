@@ -6,10 +6,6 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local StructureUtil = require(ReplicatedStorage.StructureUtility)
 local Destruction = require(ServerScriptService.Services.DamageService)
 
-
-
-
-
 local module = {}
 
 local raycastParams = RaycastParams.new() -- Create a RaycastParams object

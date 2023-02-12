@@ -2,8 +2,6 @@
 
 local Players = game:GetService("Players")
 
-
-
 --[[Code Audit: 1/1/2021, 4812571
 
 Storing PartData is done in many places. Perhaps a LogPartData(part) function
@@ -39,7 +37,6 @@ for part, partData in pairs(data[Structure]) do
 end
 
 ]]
-
 
 local module = {}
 

@@ -12,11 +12,6 @@ local RatingProcessor = require(script.RatingProcessor)
 local RatingService = require(ServerScriptService.Services.RatingService)
 local GameDataService = require(ServerScriptService.Services.GameDataService)
 
-
-
-
-
-
 local State = "Booting"
 local EliminationTime = 3 * 60 --seconds
 

@@ -48,5 +48,4 @@ module.Toggle = function()
 	if connection then module.Disable() else module.Enable() end
 end
 
-
 return module

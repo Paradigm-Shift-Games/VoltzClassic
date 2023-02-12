@@ -8,10 +8,6 @@ local Stats = require(ReplicatedStorage.Stats.Structure)
 local buttonService = require(ServerScriptService.Services.ButtonService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
-
-
-
-
 local module = {}
 local objectData = {}
 local objectStats = Stats[script.Name]

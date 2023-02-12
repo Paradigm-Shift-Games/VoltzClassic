@@ -8,10 +8,6 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local StarterIsland = require(ServerScriptService.ServerBootLoader.Map.StarterIsland)
 
-
-
-
-
 local module = {}
 local teamData = {}
 local loaded = false

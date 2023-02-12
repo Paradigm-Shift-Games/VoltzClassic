@@ -21,6 +21,4 @@ module.Create = function(attachment, part)
 	return effect
 end
 
-
-
 return module

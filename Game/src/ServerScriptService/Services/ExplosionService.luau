@@ -8,10 +8,6 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local StructureUtil = require(ReplicatedStorage.StructureUtility)
 local Destruction = require(ServerScriptService.Services.DamageService)
 
-
-
-
-
 local module = {}
 
 local collider = Instance.new("Part")

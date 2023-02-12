@@ -11,10 +11,6 @@ local GridInterface = require(ServerScriptService.Packages.Grid.Interface2)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local NetworkHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
 
-
-
-
-
 --Roblox Services
 
 --Imports
@@ -77,7 +73,6 @@ local function getClosestCharacterInRange(turret, ignoreTeam)
 	-- Build Raycast Parameters
 	local barrelPos = turret.Barrel.Nozzle2.Position
 	raycastParameters.FilterDescendantsInstances = {workspace.Effects, turret}
-
 
 	while(characters.Length > 0) do
 		local character = characters:Shift()
@@ -169,6 +164,4 @@ CollectionService:GetInstanceRemovedSignal(script.Name):Connect(function(turret)
 end)
 
 return module
-
-
 

@@ -73,7 +73,4 @@ module.Run = function(delta)
 	end
 end
 
-
-
-
 return module

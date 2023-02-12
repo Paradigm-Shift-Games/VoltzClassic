@@ -2,8 +2,6 @@
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-
-
 local DamageEvent = ReplicatedStorage.Events.Damage
 local Character = script.Parent
 local Humanoid = Character:WaitForChild("Humanoid")

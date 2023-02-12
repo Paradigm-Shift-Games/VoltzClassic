@@ -11,10 +11,6 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ElectricNode = require(ServerScriptService.Packages.Electricity.Classes.Node)
 local ValueReplicator = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.ValueReplicator)
 
-
-
-
-
 local jetpackModel = script:WaitForChild("Backpack")
 local ChargeAnimator = 	require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.ChargeAnimator)
 local Events = ReplicatedStorage:WaitForChild("Events")
@@ -79,7 +75,6 @@ local function onPlayerAdded(player)
 	if player.Character then AddJetpack(player) end
 	player.CharacterAdded:Connect(function() AddJetpack(player) end)
 end
-
 
 module.GetBackpack = function(player)
 	return jetpacks[player]

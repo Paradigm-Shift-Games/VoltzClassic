@@ -1,7 +1,5 @@
 -- Author: 4812571
 
-
-
 local module = {}
 Matrix = {}
 module.LargeCells = {}

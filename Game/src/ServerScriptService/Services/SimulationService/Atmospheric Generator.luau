@@ -9,10 +9,6 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ElectricityDisplay = require(ServerScriptService.Packages.Electricity.Display)
 local Influencer = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Influencer)
 
-
-
-
-
 local module = {}
 
 --Roblox Services

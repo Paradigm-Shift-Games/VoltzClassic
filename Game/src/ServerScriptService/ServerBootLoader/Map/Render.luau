@@ -12,10 +12,6 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ElectricNode = require(ServerScriptService.Packages.Electricity.Classes.Node)
 local ElectricHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
 
-
-
-
-
 local module = {}
 local Map = workspace.Map
 local MapCells = workspace.MapCells

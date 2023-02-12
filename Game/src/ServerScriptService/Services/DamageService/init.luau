@@ -12,10 +12,6 @@ local CleanupService = require(ServerScriptService.Services.CleanupService)
 local AssemblyService = require(ServerScriptService.Services.AssemblyService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
-
-
-
-
 local module = {}
 
 local DamageFactorsByBodyPart = {
@@ -42,7 +38,6 @@ function GetHealthValue(Object)
 		if Object:FindFirstChild(v) then return Object[v] end
 	end
 end
-
 
 local function GetHumanoidFromPart(part)
   if part == nil then return nil end

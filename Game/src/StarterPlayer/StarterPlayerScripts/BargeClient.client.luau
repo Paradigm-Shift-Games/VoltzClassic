@@ -4,7 +4,6 @@ local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ContextActionService = game:GetService("ContextActionService")
 
-
 local Remotes = ReplicatedStorage:WaitForChild("Events")
 local BargeRemote = Remotes:WaitForChild("Barge")
 local LocalPlayer = Players.LocalPlayer

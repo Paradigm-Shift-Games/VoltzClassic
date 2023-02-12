@@ -8,10 +8,6 @@ local Stats = require(ReplicatedStorage.Stats.Structure)
 local ButtonService = require(ServerScriptService.Services.ButtonService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
-
-
-
-
 local module = {}
 
 local objectStats = Stats[script.Name]
@@ -29,7 +25,6 @@ function onRemoved(object)
 	objectData[object] = nil
 end
 
-
 function spawnBarge(object)
 	if not Electricity.Pull(object, objectStats.Consumption) then return end
 	
@@ -39,8 +34,6 @@ function spawnBarge(object)
 	
 	CollectionService:AddTag(newBarge, "Barge")
 end
-
-
 
 CollectionService:GetInstanceAddedSignal(script.Name):Connect(onAdded)
 CollectionService:GetInstanceRemovedSignal(script.Name):Connect(onRemoved)

@@ -10,6 +10,5 @@ local function OnServerMessage(Sender, Message)
 	print("[SERVER]", Sender..":", Message)
 end
 
-
 ErrorRemote.OnClientEvent:Connect(OnServerMessage)
 game:GetService("ScriptContext").Error:Connect(OnError)

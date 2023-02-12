@@ -41,5 +41,4 @@ local function Command(player, parameter, target)
 	end)		
 end
 
-
 return Command

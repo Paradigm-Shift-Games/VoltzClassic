@@ -1,6 +1,5 @@
 local Debris = game:GetService("Debris")
 
-
 local module = {}
 
 module.Fire = function(attachment0, attachment1) 

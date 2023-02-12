@@ -1,7 +1,6 @@
 local Teams = game:GetService("Teams")
 local Players = game:GetService("Players")
 
-
 warn("Admin Initializing")
 
 local Commands = {}

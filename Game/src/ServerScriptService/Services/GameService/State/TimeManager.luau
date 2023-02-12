@@ -2,10 +2,6 @@
 
 local Players = game:GetService("Players")
 
-
-
-
-
 local DeathTimeData = {}
 local TotalTimeData = {}
 local GameDate = DateTime.now()

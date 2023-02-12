@@ -10,10 +10,6 @@ local ExplosionService = require(ServerScriptService.Services.ExplosionService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ProjectileService = require(ServerScriptService.Services.ProjectileService)
 
-
-
-
-
 local module = {}
 
 local ArtilleryStats = Stats.Artillery

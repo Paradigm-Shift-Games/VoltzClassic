@@ -4,8 +4,6 @@ local Players = game:GetService("Players")
 local StarterPlayer = game:GetService("StarterPlayer")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-
-
 superfunkyhotdogmantime = false
 local currentStarter = StarterPlayer.StarterCharacter
 local hotdogStarter = ReplicatedStorage.HotdogMan

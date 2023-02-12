@@ -4,9 +4,6 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
-
-
-
 local Charging = {}
 
 RunService.Heartbeat:Connect(function(dt)

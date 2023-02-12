@@ -18,10 +18,6 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ElectricNode = require(ServerScriptService.Packages.Electricity.Classes.Node)
 local ElectricHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
 
-
-
-
-
 local module = {}
 local BuildEvent = ReplicatedStorage.Events.Builder
 local UpgradeEvent = ReplicatedStorage.Events.Upgrade
@@ -97,7 +93,6 @@ function GetModel(modelName, attachment1, attachment2, snapState)
 		return GetStructure(modelName, attachment1, snapState)
 	end
 end
-
 
 function Place(player, team, modelName, buildType, snapState, instantStructure, attachment1, attachment2)
 	
@@ -224,8 +219,6 @@ function Place(player, team, modelName, buildType, snapState, instantStructure, 
 	CollectionService:RemoveTag(model, "BlueprintLoading")
 	return model
 end
-
-
 
 function Upgrade(model, instantStructure)
 	if CollectionService:HasTag(model, "Blueprint") then return false end

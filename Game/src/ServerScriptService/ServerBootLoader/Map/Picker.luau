@@ -1,7 +1,5 @@
 -- Author: 4812571
 
-
-
 local module = {}
 local Weights = {}
 local Tree = {}
@@ -74,6 +72,5 @@ module.GetLargeCell = function(cellType)
 	local chosen = WeightedChoice(Weights[cellType].large)
 	return chosen, CellSizes[chosen]
 end
-
 
 return module

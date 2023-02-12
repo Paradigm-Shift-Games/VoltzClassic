@@ -1,7 +1,6 @@
 local Players = game:GetService("Players")
 local CollectionService = game:GetService("CollectionService")
 
-
 local function onArsenalTagAdded(Arsenal)
 	local mainPart = Arsenal:WaitForChild("mainPart")
 	local ScreenPart = mainPart:WaitForChild("screenPart")

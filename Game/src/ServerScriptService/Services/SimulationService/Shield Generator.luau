@@ -12,10 +12,6 @@ local CleanupService = require(ServerScriptService.Services.CleanupService)
 local AssemblyService = require(ServerScriptService.Services.AssemblyService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
-
-
-
-
 local module = {}
 local objectData = {}
 local objectStats = Stats[script.Name]

@@ -4,18 +4,12 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local TimerService = require(ServerScriptService.Services.TimerService)
 
-
-
-
-
 local module = {}
 local Modules = {}
-
 
 for _, v in pairs(script:GetChildren()) do
 	Modules[v.Name] = require(v)
 end
-
 
 module.Run = function(delta)
 	for name, mod in pairs(Modules) do

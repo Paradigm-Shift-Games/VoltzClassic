@@ -6,9 +6,6 @@ local DamageService = require(ServerScriptService.Services.DamageService)
 local EffectService = require(ServerScriptService.Services.EffectService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
-
-
-
 local function Raycast(player, bulletRay)
 	local ignore = {player.Character, workspace.Ocean}
 	local part, position, normal
@@ -50,6 +47,5 @@ local function Bullet(weapon, weaponStats, weaponData)
 	DamageService.Damage(hitPart, weaponStats.Damage, weaponStats.DamageType)
 	return true
 end
-
 
 return Bullet

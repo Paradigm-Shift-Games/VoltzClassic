@@ -70,5 +70,4 @@ module.DetectorType = function(snapPart)
 	return module.DetectorParent(snapPart).Name
 end
 
-
 return module

@@ -27,7 +27,6 @@ local isInAir = false
 local spacePressed = true 
 local effectState = false
 
-
 local function getData()
 	return maxThrustTime, currentThrustTime
 end

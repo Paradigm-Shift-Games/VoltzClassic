@@ -5,8 +5,6 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local ChatService = require(ServerScriptService.Services.ChatService)
 local DamageService = require(ServerScriptService.Services.DamageService)
 
-
-
 --
 local function Command(player, parameters)
 	parameters = string.split(table.concat(parameters, " "), " ")

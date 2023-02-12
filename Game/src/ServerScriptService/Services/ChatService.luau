@@ -2,8 +2,6 @@
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-
-
 local ServerChatRemote = ReplicatedStorage.Events.ServerChat
 
 local DefaultChatConfig = {

@@ -50,7 +50,6 @@ for _, object in ipairs(workspace:GetDescendants()) do
 	smartPause()
 end
 
-
 local MatchMakingService = {}
 MatchMakingService.Enabled = true
 

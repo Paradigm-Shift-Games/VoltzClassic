@@ -8,10 +8,6 @@ local Blueprint = require(ServerScriptService.Blueprint)
 local Settings = require(script.Parent.Settings.selectedSettings.Value)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
-
-
-
-
 local module = {}
 local TeamIslands = {}
 local Islands = {}
@@ -101,7 +97,6 @@ module.AssignIsland = function(island, team)
 	Electricity.Push(spawnPad, math.huge, true)
 end
 
-
 module.GetSafePosition = function(player) 
 	while not TeamIslands[player.Team] do wait() end
 	local part, position = GetSafePart(TeamIslands[player.Team])
@@ -111,6 +106,5 @@ end
 module.EnableIslands = function()
 	generated = true
 end
-
 
 return module

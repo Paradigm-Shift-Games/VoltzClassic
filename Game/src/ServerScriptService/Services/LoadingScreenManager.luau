@@ -1,7 +1,5 @@
 -- Author: Styx
 
-
-
 local loadingScreenData = workspace:WaitForChild("loadingScreenData")
 local messageValue = loadingScreenData:WaitForChild("Message")
 local percentValue = loadingScreenData:WaitForChild("Percent")

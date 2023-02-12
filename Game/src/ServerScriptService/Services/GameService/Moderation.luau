@@ -3,9 +3,6 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local CommunicationService = require(ServerScriptService.Services.CommunicationService)
 
-
-
-
 local function HandleCommands(commandString)
 	local arguments = commandString:split(":")
 	local command = table.remove(arguments, 1):lower()

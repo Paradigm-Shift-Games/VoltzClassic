@@ -2,8 +2,6 @@
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-
-
 local module = {}
 Data = {}
 local event = ReplicatedStorage.Events.SnapData
@@ -29,7 +27,6 @@ function Recurse(obj, root)
         return Offset(obj, root)
     end
 end
-
 
 module.Generate = function()
 	for _, v in pairs(toRecurse) do

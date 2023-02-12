@@ -9,10 +9,6 @@ local WeaponStats = require(ReplicatedStorage.Stats.Weapon)
 local WeldServcice = require(ServerScriptService.Services.WeldService)
 local ActionService = require(ServerScriptService.Services.ActionService)
 
-
-
-
-
 local EquippedWeapon = {}
 local FiringWeapons = {}
 local WeaponData = {}

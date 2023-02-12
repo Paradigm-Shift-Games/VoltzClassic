@@ -2,8 +2,6 @@
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-
-
 local module = {}
 local ActionRemote = ReplicatedStorage.Events.Action
 local bound = {}

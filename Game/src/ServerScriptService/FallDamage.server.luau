@@ -2,8 +2,6 @@
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-
-
 local FallEvent = ReplicatedStorage.Events.Damage
 
 function DamagePlayer(Player, amount)
