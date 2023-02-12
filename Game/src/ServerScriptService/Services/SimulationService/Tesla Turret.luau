@@ -1,23 +1,18 @@
 -- Author: 4812571 and n0pa
 
 local Players = game:GetService("Players")
-local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
 local EffectService = require(ServerScriptService.Services.EffectService)
 local GridInterface = require(ServerScriptService.Packages.Grid.Interface2)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
-local NetworkHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
-
---Roblox Services
 
 --Imports
 local Stats = require(ReplicatedStorage.Stats.Structure)["Tesla Turret"]
 
 --Data
 local TurretData = {}
-local module = {}
 
 --Helper Functions
 local function getCharactersInRange(position, teamToIgnore)
@@ -68,28 +63,47 @@ local function track(delta, turret, targets)
 	data.Targets = newTargets
 end
 
---Exports
-module.Run = function(delta)
-	for turret, data in pairs(TurretData) do	
-		--data.Cooldown -= delta
-		--if data.Cooldown > 0 then continue end
-
-		local characters = getCharactersInRange(turret.PrimaryPart.Position, turret.Team.Value)
-		--if character then shoot(turret, character) end
-		track(delta, turret, characters)
-	end
-end
-
---Event Connections
-CollectionService:GetInstanceAddedSignal(script.Name):Connect(function(turret)
+local function onAdded(turret)
 	TurretData[turret] = {
 		--["Cooldown"] = Stats.ReloadTime;
 		["Targets"] = {};
 	}
-end)
+end
 
-CollectionService:GetInstanceRemovedSignal(script.Name):Connect(function(turret)
+local function onRemoved(turret)
 	TurretData[turret] = nil
-end)
+end
 
-return module
+local function runObject(turret, deltaTime)
+	--data.Cooldown -= delta
+	--if data.Cooldown > 0 then continue end
+
+	local characters = getCharactersInRange(turret.PrimaryPart.Position, turret.Team.Value)
+	--if character then shoot(turret, character) end
+	track(deltaTime, turret, characters)
+end
+
+local TeslaTurretServer = {}
+TeslaTurretServer.__index = TeslaTurretServer
+
+function TeslaTurretServer.new(instance)
+	local self = setmetatable({}, TeslaTurretServer)
+	self.instance = instance
+
+	-- Shim
+	onAdded(instance)
+
+	return self
+end
+
+function TeslaTurretServer:Update(deltaTime)
+	-- Shim
+	runObject(self.instance, deltaTime)
+end
+
+function TeslaTurretServer:Destroy()
+	-- Shim
+	onRemoved(self.instance)
+end
+
+return TeslaTurretServer

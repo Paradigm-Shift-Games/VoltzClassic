@@ -85,11 +85,9 @@ function OnRemoved(Structure)
 end
 
 --Connections
-CollectionService:GetInstanceAddedSignal("Distributor"):Connect(OnDistributorAdded)
 CollectionService:GetInstanceAddedSignal("Distributor Cap"):Connect(OnCapAdded)
 CollectionService:GetInstanceAddedSignal("Backpack"):Connect(OnCapAdded)
 
-CollectionService:GetInstanceRemovedSignal("Distributor"):Connect(OnRemoved)
 CollectionService:GetInstanceRemovedSignal("Distributor Cap"):Connect(OnRemoved)
 CollectionService:GetInstanceRemovedSignal("Backpack"):Connect(OnRemoved)
 
@@ -157,7 +155,34 @@ module.Run = function(delta)
 	
 	--Run All Distributors
 	TransferFlux = DistributorStats.TransferRate * delta
-	for _, v in pairs(CollectionService:GetTagged("Distributor")) do runObject(v) end
 end
 
-return module
+local DistributorServer = {}
+DistributorServer.__index = DistributorServer
+
+function DistributorServer.new(instance)
+	local self = setmetatable({}, DistributorServer)
+	self.Instance = instance
+
+	-- Shim
+	OnDistributorAdded(instance)
+
+	return self
+end
+
+function DistributorServer:Update(deltaTime)
+	-- Shim
+	runObject(self.Instance)
+end
+
+function DistributorServer:Destroy()
+	-- Shim
+	OnRemoved(self.Instance)
+end
+
+function DistributorServer.StaticUpdate(deltaTime)
+	-- Shim
+	module.Run(deltaTime)
+end
+
+return DistributorServer

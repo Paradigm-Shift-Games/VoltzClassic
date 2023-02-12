@@ -9,9 +9,6 @@ local StructureUtility = require(ReplicatedStorage.StructureUtility)
 local EffectService = require(ServerScriptService.Services.EffectService)
 local GridInterface = require(ServerScriptService.Packages.Grid.Interface2)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
-local NetworkHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
-
---Roblox Services
 
 --Imports
 local Stats = require(ReplicatedStorage.Stats.Structure)["Turret"]
@@ -19,19 +16,10 @@ local Effect = require(ReplicatedStorage.Stats.Weapon).Effects["Physical_l"]
 
 --Data
 local TurretData = {}
-local module = {}
 
 local raycastParameters = RaycastParams.new()
 raycastParameters.FilterType = Enum.RaycastFilterType.Blacklist
 raycastParameters.IgnoreWater = true
-
---Helper Functions
-local function updateOriginModel(cFrame, model)
-	local pos = cFrame.Position
-	cFrame += model.PrimaryPart.Position - cFrame.Position
-	model:SetPrimaryPartCFrame(cFrame)
-	cFrame += pos - cFrame.Position
-end
 
 local function getHumanoid(instance)
 	return instance and instance.Parent and (instance.Parent:FindFirstChild("Humanoid") or instance.Parent.Parent:FindFirstChild("Humanoid"))
@@ -91,7 +79,6 @@ local function aim(turret, targetPos)
 	local dirCF = CFrame.lookAt(barrelPos, targetPos)
 	
 	local baseCF = turret.Base.PrimaryPart.CFrame
-	local hingePos = turret.Barrel.Hinge1.Position
 	local motorCF = baseCF:ToObjectSpace(dirCF)
 		
 	local x, y, z = motorCF:ToEulerAnglesYXZ()
@@ -137,31 +124,49 @@ local function shoot(turret, targetPos)
 	Electricity.Pull(model, Stats.Damage, true)
 end
 
---Exports
-module.Run = function(delta)
-	for turret, data in pairs(TurretData) do
-		data.Cooldown -= delta
-		
-		local character = getClosestCharacterInRange(turret, turret.Team.Value)
-		if not character or not character.PrimaryPart then continue end
-		
-		aim(turret, character.PrimaryPart.Position)
-		if data.Cooldown > 0 then continue end
-		
-		shoot(turret, character.PrimaryPart.Position)
-	end
-end
-
---Event Connections
-CollectionService:GetInstanceAddedSignal(script.Name):Connect(function(turret)
-	TurretData[turret] = {
+local function onAdded(instance)
+	TurretData[instance] = {
 		["Cooldown"] = Stats.ReloadTime
 	}
-end)
+end
 
-CollectionService:GetInstanceRemovedSignal(script.Name):Connect(function(turret)
-	TurretData[turret] = nil
-end)
+local function onRemoved(instance)
+	TurretData[instance] = nil
+end
 
-return module
+local function runObject(instance, deltaTime)
+	TurretData[instance].Cooldown -= deltaTime
+		
+	local character = getClosestCharacterInRange(instance, instance.Team.Value)
+	if not character or not character.PrimaryPart then return end
+	
+	aim(instance, character.PrimaryPart.Position)
+	if TurretData[instance].Cooldown > 0 then return end
+	
+	shoot(instance, character.PrimaryPart.Position)
+end
 
+local TurretServer = {}
+TurretServer.__index = TurretServer
+
+function TurretServer.new(instance)
+	local self = setmetatable({}, TurretServer)
+	self.Instance = instance
+
+	-- Shim
+	onAdded(instance)
+
+	return self
+end
+
+function TurretServer:Update(deltaTime)
+	-- Shim
+	runObject(self.Instance, deltaTime)
+end
+
+function TurretServer:Destroy()
+	-- Shim
+	onRemoved(self.Instance)
+end
+
+return TurretServer

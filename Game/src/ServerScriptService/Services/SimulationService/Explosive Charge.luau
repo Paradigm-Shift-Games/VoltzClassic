@@ -1,15 +1,10 @@
 -- Author: 4812571
 
-local CollectionService = game:GetService("CollectionService")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
-local Stats = require(ReplicatedStorage.Stats.Structure)
 local DamageService = require(ServerScriptService.Services.DamageService)
 local ExplosionService = require(ServerScriptService.Services.ExplosionService)
 
-local module = {}
-local objectStats = Stats[script.Name]
 objectData = {}
 
 function onAdded(object)
@@ -34,13 +29,27 @@ function runObject(object, delta)
 	end
 end
 
-module.Run = function(delta)
-	for v, s in pairs(objectData) do
-		runObject(v, delta)
-	end
+local ExplosiveChargeServer = {}
+ExplosiveChargeServer.__index = ExplosiveChargeServer
+
+function ExplosiveChargeServer.new(instance)
+	local self = setmetatable({}, ExplosiveChargeServer)
+	self.Instance = instance
+
+	-- Shim
+	onAdded(instance)
+
+	return self
 end
 
-CollectionService:GetInstanceAddedSignal(script.Name):Connect(onAdded)
-CollectionService:GetInstanceRemovedSignal(script.Name):Connect(onRemoved)
+function ExplosiveChargeServer:Update(deltaTime)
+	-- Shim
+	runObject(self.Instance, deltaTime)
+end
 
-return module
+function ExplosiveChargeServer:Destroy()
+	-- Shim
+	onRemoved(self.Instance)
+end
+
+return ExplosiveChargeServer

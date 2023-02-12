@@ -8,8 +8,6 @@ local Stats = require(ReplicatedStorage.Stats.Structure)
 local ButtonService = require(ServerScriptService.Services.ButtonService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
-local module = {}
-
 local objectStats = Stats[script.Name]
 local bargeRoot = workspace.Extras:WaitForChild("barge")
 local spawnHeight = 7
@@ -35,7 +33,20 @@ function spawnBarge(object)
 	CollectionService:AddTag(newBarge, "Barge")
 end
 
-CollectionService:GetInstanceAddedSignal(script.Name):Connect(onAdded)
-CollectionService:GetInstanceRemovedSignal(script.Name):Connect(onRemoved)
+local GarageServer = {}
+GarageServer.__index = GarageServer
 
-return module
+function GarageServer.new(instance)
+	local self = setmetatable({}, GarageServer)
+	self.Instance = instance
+
+	-- Shim
+	onAdded(instance)
+end
+
+function GarageServer:Destroy()
+	-- Shim
+	onRemoved(self.Instance)
+end
+
+return GarageServer

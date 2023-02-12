@@ -1,18 +1,14 @@
 -- Author: 4812571
 
-local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
 local Stats = require(ReplicatedStorage.Stats.Structure)
-local StructureUtility = require(ReplicatedStorage.StructureUtility)
-local Destruction = require(ServerScriptService.Services.DamageService)
 local buttonService = require(ServerScriptService.Services.ButtonService)
 local CleanupService = require(ServerScriptService.Services.CleanupService)
 local AssemblyService = require(ServerScriptService.Services.AssemblyService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
-local module = {}
 local objectData = {}
 local objectStats = Stats[script.Name]
 
@@ -102,16 +98,30 @@ function ShieldDestroyed(shield)
 	AddCooldown(shield.Generator.Value, 3)
 end
 
-module.Run = function(delta)
-	for _, v in pairs(CollectionService:GetTagged(script.Name)) do
-		runObject(v, delta)
-	end
-end
-
-CollectionService:GetInstanceAddedSignal(script.Name):Connect(onAdded)
-CollectionService:GetInstanceRemovedSignal(script.Name):Connect(onRemoved)
-
 CleanupService.Bind("Shield", ShieldDestroyed)
 
-return module
+local ShieldGeneratorServer = {}
+ShieldGeneratorServer.__index = ShieldGeneratorServer
+
+function ShieldGeneratorServer.new(instance)
+	local self = setmetatable({}, ShieldGeneratorServer)
+	self.Instance = instance
+
+	-- Shim
+	onAdded(instance)
+
+	return self
+end
+
+function ShieldGeneratorServer:Update(deltaTime)
+	-- Shim
+	runObject(self.Instance, deltaTime)
+end
+
+function ShieldGeneratorServer:Destroy()
+	-- Shim
+	onRemoved(self.Instance)
+end
+
+return ShieldGeneratorServer
 

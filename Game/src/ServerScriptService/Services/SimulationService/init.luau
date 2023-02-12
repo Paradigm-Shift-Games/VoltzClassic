@@ -1,24 +1,84 @@
 -- Author: 4812571
 
+local CollectionService = game:GetService("CollectionService")
 local ServerScriptService = game:GetService("ServerScriptService")
 
-local TimerService = require(ServerScriptService.Services.TimerService)
+local MicroBinder = {}
+MicroBinder.__index = MicroBinder
 
-local module = {}
-local Modules = {}
-
-for _, v in pairs(script:GetChildren()) do
-	Modules[v.Name] = require(v)
+function MicroBinder.new(tagName, class)
+	local self = setmetatable({}, MicroBinder)
+	self._bound = {}
+	self.TagName = tagName
+	self.Class = class
+	return self
 end
 
-module.Run = function(delta)
-	for name, mod in pairs(Modules) do
-		if mod.Run then
-			TimerService.Start("Simulation "..name)
-			mod.Run(delta)
-			TimerService.Record("Simulation "..name)
-		end
+function MicroBinder:_bind(instance)
+	self._bound[instance] = self.Class.new(instance)
+end
+
+function MicroBinder:_unbind(instance)
+	if self._bound[instance] then
+		self._bound[instance]:Destroy()
+	end
+
+	self._bound[instance] = nil
+end
+
+function MicroBinder:Start()
+	for _, instance in CollectionService:GetTagged(self.TagName) do
+		self:_bind(instance)
+	end
+
+	CollectionService:GetInstanceAddedSignal(self.TagName):Connect(function(instance)
+		self:_bind(instance)
+	end)
+
+	CollectionService:GetInstanceRemovedSignal(self.TagName):Connect(function(instance)
+		self:_unbind(instance)
+	end)
+end
+
+function MicroBinder:GetAll()
+	return self._bound
+end
+
+local SimulationService = {}
+
+local simulationClasses = {}
+local binders = {}
+
+function SimulationService.Init()
+	for _, v in script:GetChildren() do
+		simulationClasses[v.Name] = require(v)
+	end
+
+	for className, class in simulationClasses do
+		binders[className] = MicroBinder.new(className, class)
+	end
+
+	for _, binder in binders do
+		binder:Start()
 	end
 end
 
-return module
+SimulationService.Init()
+
+function SimulationService.Run(deltaTime)
+	for _, binder in binders do
+		for _, object in binder:GetAll() do
+			object:Update(deltaTime)
+		end
+	end
+
+	for _, class in simulationClasses do
+		if not class.StaticUpdate then
+			continue
+		end
+
+		class.StaticUpdate(deltaTime)
+	end
+end
+
+return SimulationService

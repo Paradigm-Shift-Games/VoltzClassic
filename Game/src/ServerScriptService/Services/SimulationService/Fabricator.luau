@@ -21,14 +21,11 @@ local softGraph = 		ArrayGraph.New()
 
 --Stats
 local FabricatorStats = StructureStats["Fabricator"]
-local BlueprintStats = StructureStats["Fabricator Blueprint"]
 local range = FabricatorStats.Range
 
 --Data
 local Grounded = {}
 local Ungrounded = {}
-local TransferFlux = 0
-local ConnectedPlayers = {}
 local FabricatorData = {}
 
 --Settings
@@ -159,9 +156,7 @@ function OnRemoved(Structure)
 end
 
 --Connections
-CollectionService:GetInstanceAddedSignal("Fabricator"):Connect(OnFabricatorAdded)
 CollectionService:GetInstanceAddedSignal("Blueprint"):Connect(OnBlueprintAdded)
-CollectionService:GetInstanceRemovedSignal("Fabricator"):Connect(OnRemoved)
 CollectionService:GetInstanceRemovedSignal("Blueprint"):Connect(OnRemoved)
 
 --Object Update
@@ -188,8 +183,6 @@ function GetBlueprint(Fabricator)
 end
 
 function runObject(Fabricator)
-	local team = Fabricator.Team.Value
-	local hardConnected = hardGraph:GetConnections(Fabricator)
 	local softConnected = softGraph:GetConnections(Fabricator)
 	
 	--Scan New Soft Connections
@@ -204,7 +197,7 @@ function runObject(Fabricator)
 	for i = softConnected:GetSize(), 1 , -1 do
 		local Blueprint = softConnected[i]
 		if (Fabricator.Point.Position - Blueprint.PrimaryPart.Position).Magnitude < range then continue end
-		Disconnect(softGraph, Fabricator, Blueprint)
+		Disconnect(Fabricator, Blueprint)
 	end
 	
 	if getCount(beamGraph:GetConnections(Fabricator)) < FabricatorStats.BeamCount then
@@ -247,9 +240,34 @@ module.Run = function(delta)
 		end
 		Grounded[Object], Ungrounded[Object] = true, nil
 	end
-	
-	--Run All Fabricators
-	for _, v in pairs(CollectionService:GetTagged("Fabricator")) do runObject(v) end
 end
 
-return module
+local FabricatorServer = {}
+FabricatorServer.__index = FabricatorServer
+
+function FabricatorServer.new(instance)
+	local self = setmetatable({}, FabricatorServer)
+	self.Instance = instance
+
+	-- Shim
+	OnFabricatorAdded(instance)
+
+	return self
+end
+
+function FabricatorServer:Update(deltaTime)
+	-- Shim
+	runObject(self.Instance)
+end
+
+function FabricatorServer:Destroy()
+	-- Shim
+	OnRemoved(self.Instance)
+end
+
+function FabricatorServer.StaticUpdate(deltaTime)
+	-- Shim
+	module.Run(deltaTime)
+end
+
+return FabricatorServer

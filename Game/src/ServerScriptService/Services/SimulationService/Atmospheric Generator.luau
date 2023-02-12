@@ -1,6 +1,5 @@
 -- Author: 4812571
 
-local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
@@ -10,10 +9,6 @@ local ElectricityDisplay = require(ServerScriptService.Packages.Electricity.Disp
 local Influencer = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Influencer)
 
 local module = {}
-
---Roblox Services
-
---Import
 
 --Data
 local Grounded = {}
@@ -66,7 +61,6 @@ function onRemoved(object)
 end
 
 module.Run = function(delta)
-	
 	for v, _ in pairs(Ungrounded) do
 		if v.PrimaryPart:IsGrounded() then
 			Ungrounded[v], Grounded[v]  = nil, true
@@ -86,10 +80,29 @@ module.Run = function(delta)
 		end
 	end
 	
-	tickCount = (tickCount + 1) % updateFrequency 
+	tickCount = (tickCount + 1) % updateFrequency
 end
 
-CollectionService:GetInstanceAddedSignal(script.Name):Connect(onAdded)
-CollectionService:GetInstanceRemovedSignal(script.Name):Connect(onRemoved)
+local AtmosphericGeneratorServer = {}
+AtmosphericGeneratorServer.__index = AtmosphericGeneratorServer
 
-return module
+function AtmosphericGeneratorServer.new(instance)
+	local self = setmetatable({}, AtmosphericGeneratorServer)
+	self.Instance = instance
+
+	-- Shim
+	onAdded(instance)
+
+	return self
+end
+
+function AtmosphericGeneratorServer:Destroy()
+	-- Shim
+	onRemoved(self.instance)
+end
+
+function AtmosphericGeneratorServer.StaticUpdate(deltaTime)
+	module.Run(deltaTime)
+end
+
+return AtmosphericGeneratorServer

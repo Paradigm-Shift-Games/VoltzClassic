@@ -1,6 +1,5 @@
 -- Author: 4812571
 
-local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Stats = require(ReplicatedStorage.Stats.Structure)
@@ -22,13 +21,25 @@ function runObject(object, delta)
 	
 end
 
-module.Run = function(delta)
-	for _, v in pairs(CollectionService:GetTagged(script.Name)) do
-		runObject(v, delta)
-	end
+local TemplateServer = {}
+TemplateServer.__index = TemplateServer
+
+function TemplateServer.new(instance)
+	local self = setmetatable({}, TemplateServer)
+	self.Instance = instance
+
+	-- Shim
+	onAdded(instance)
 end
 
-CollectionService:GetInstanceAddedSignal(script.Name):Connect(onAdded)
-CollectionService:GetInstanceRemovedSignal(script.Name):Connect(onRemoved)
+function TemplateServer:Update(deltaTime)
+	-- Shim
+	runObject(self.Instance, deltaTime)
+end
+
+function TemplateServer:Destroy()
+	-- Shim
+	onRemoved(self.Instance)
+end
 
 return module
