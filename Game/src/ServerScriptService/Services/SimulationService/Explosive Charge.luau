@@ -1,15 +1,10 @@
 -- Author: 4812571
 
-local CollectionService = game:GetService("CollectionService")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
-local Stats = require(ReplicatedStorage.Stats.Structure)
 local DamageService = require(ServerScriptService.Services.DamageService)
 local ExplosionService = require(ServerScriptService.Services.ExplosionService)
 
-local module = {}
-local objectStats = Stats[script.Name]
 objectData = {}
 
 function onAdded(object)

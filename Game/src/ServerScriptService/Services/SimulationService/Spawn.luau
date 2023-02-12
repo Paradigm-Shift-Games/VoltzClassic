@@ -1,12 +1,9 @@
 -- Author: 4812571
 
-local CollectionService = game:GetService("CollectionService")
 local ServerScriptService = game:GetService("ServerScriptService")
 
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ValueReplicator = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.ValueReplicator)
-
-local module = {}
 
 local SpawnNumbers = {}
 

@@ -1,7 +1,6 @@
 -- Author: n0pa
 
 local Players = game:GetService("Players")
-local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
@@ -9,8 +8,6 @@ local Stats = require(ReplicatedStorage.Stats.Structure)
 local ExplosionService = require(ServerScriptService.Services.ExplosionService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ProjectileService = require(ServerScriptService.Services.ProjectileService)
-
-local module = {}
 
 local ArtilleryStats = Stats.Artillery
 local Events = ReplicatedStorage:WaitForChild("Events")

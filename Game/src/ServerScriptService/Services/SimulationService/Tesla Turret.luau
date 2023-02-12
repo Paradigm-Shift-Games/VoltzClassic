@@ -1,23 +1,18 @@
 -- Author: 4812571 and n0pa
 
 local Players = game:GetService("Players")
-local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
 local EffectService = require(ServerScriptService.Services.EffectService)
 local GridInterface = require(ServerScriptService.Packages.Grid.Interface2)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
-local NetworkHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
-
---Roblox Services
 
 --Imports
 local Stats = require(ReplicatedStorage.Stats.Structure)["Tesla Turret"]
 
 --Data
 local TurretData = {}
-local module = {}
 
 --Helper Functions
 local function getCharactersInRange(position, teamToIgnore)

@@ -9,9 +9,6 @@ local StructureUtility = require(ReplicatedStorage.StructureUtility)
 local EffectService = require(ServerScriptService.Services.EffectService)
 local GridInterface = require(ServerScriptService.Packages.Grid.Interface2)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
-local NetworkHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
-
---Roblox Services
 
 --Imports
 local Stats = require(ReplicatedStorage.Stats.Structure)["Turret"]
@@ -19,19 +16,10 @@ local Effect = require(ReplicatedStorage.Stats.Weapon).Effects["Physical_l"]
 
 --Data
 local TurretData = {}
-local module = {}
 
 local raycastParameters = RaycastParams.new()
 raycastParameters.FilterType = Enum.RaycastFilterType.Blacklist
 raycastParameters.IgnoreWater = true
-
---Helper Functions
-local function updateOriginModel(cFrame, model)
-	local pos = cFrame.Position
-	cFrame += model.PrimaryPart.Position - cFrame.Position
-	model:SetPrimaryPartCFrame(cFrame)
-	cFrame += pos - cFrame.Position
-end
 
 local function getHumanoid(instance)
 	return instance and instance.Parent and (instance.Parent:FindFirstChild("Humanoid") or instance.Parent.Parent:FindFirstChild("Humanoid"))
@@ -99,7 +87,6 @@ local function aim(turret, targetPos)
 	local dirCF = CFrame.lookAt(barrelPos, targetPos)
 	
 	local baseCF = turret.Base.PrimaryPart.CFrame
-	local hingePos = turret.Barrel.Hinge1.Position
 	local motorCF = baseCF:ToObjectSpace(dirCF)
 		
 	local x, y, z = motorCF:ToEulerAnglesYXZ()

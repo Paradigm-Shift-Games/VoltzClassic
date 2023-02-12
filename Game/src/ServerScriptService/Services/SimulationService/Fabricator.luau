@@ -21,14 +21,11 @@ local softGraph = 		ArrayGraph.New()
 
 --Stats
 local FabricatorStats = StructureStats["Fabricator"]
-local BlueprintStats = StructureStats["Fabricator Blueprint"]
 local range = FabricatorStats.Range
 
 --Data
 local Grounded = {}
 local Ungrounded = {}
-local TransferFlux = 0
-local ConnectedPlayers = {}
 local FabricatorData = {}
 
 --Settings
@@ -186,8 +183,6 @@ function GetBlueprint(Fabricator)
 end
 
 function runObject(Fabricator)
-	local team = Fabricator.Team.Value
-	local hardConnected = hardGraph:GetConnections(Fabricator)
 	local softConnected = softGraph:GetConnections(Fabricator)
 	
 	--Scan New Soft Connections

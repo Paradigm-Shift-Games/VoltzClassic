@@ -1,6 +1,5 @@
 -- Author: 4812571
 
-local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Stats = require(ReplicatedStorage.Stats.Structure)
