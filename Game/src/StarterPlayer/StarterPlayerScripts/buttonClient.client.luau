@@ -1,8 +1,12 @@
 local RunService = game:GetService("RunService")
-local ContextActionService = game:GetService("ContextActionService")
+local ReplicatedFirst = game:GetService("ReplicatedFirst")
 local CollectionService = game:GetService("CollectionService")
-local contextHint = require(game.ReplicatedFirst:WaitForChild("ContextHint"))--  = )
-local MouseData = require(game.ReplicatedFirst.MouseData)
+local ContextActionService = game:GetService("ContextActionService")
+local ReplicatedFirst:WaitForChild("ContextHint"))--  =  = game:GetService("ReplicatedFirst:WaitForChild("ContextHint"))--  = ")
+
+local MouseData = require(ReplicatedFirst.MouseData)
+local contextHint = require(ReplicatedFirst:WaitForChild("ContextHint"))--  = )
+
 local Events = game.ReplicatedStorage:WaitForChild("Events")
 local ButtonRemote = Events:WaitForChild("ButtonRemote")
 local LocalPlayer = game.Players.LocalPlayer

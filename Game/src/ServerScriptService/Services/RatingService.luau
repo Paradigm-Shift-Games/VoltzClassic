@@ -1,7 +1,11 @@
---Author: n0pa
+-- Author: n0pa
 
 local Players = game:GetService("Players")
-local GameDataService = require(game.ServerScriptService.Services.GameDataService)
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local GameDataService = require(ServerScriptService.Services.GameDataService)
+
+
 
 local RatingService = {}
 

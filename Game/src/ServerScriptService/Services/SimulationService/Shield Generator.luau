@@ -1,14 +1,19 @@
---Author: 4812571
+-- Author: 4812571
+
+local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local Stats = require(ReplicatedStorage.Stats.Structure)
+local StructureUtility = require(ReplicatedStorage.StructureUtility)
+local Destruction = require(ServerScriptService.Services.DamageService)
+local buttonService = require(ServerScriptService.Services.ButtonService)
+local CleanupService = require(ServerScriptService.Services.CleanupService)
+local AssemblyService = require(ServerScriptService.Services.AssemblyService)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+
 
 local module = {}
-local CollectionService = game:GetService("CollectionService")
-local buttonService = require(game.ServerScriptService.Services.ButtonService)
-local StructureUtility = require(game.ReplicatedStorage.StructureUtility)
-local Destruction = require(game.ServerScriptService.Services.DamageService)
-local AssemblyService = require(game.ServerScriptService.Services.AssemblyService)
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local CleanupService = require(game.ServerScriptService.Services.CleanupService)
-local Stats = require(game.ReplicatedStorage.Stats.Structure)
 local objectData = {}
 local objectStats = Stats[script.Name]
 

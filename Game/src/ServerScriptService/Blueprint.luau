@@ -1,22 +1,27 @@
---Author: 4812571
+-- Author: 4812571
+
+local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local Stats = require(ReplicatedStorage.Stats.Structure)
+local Colorizer = require(ServerScriptService.Services.Colorizer)
+local StructureUtil = require(ReplicatedStorage.StructureUtility)
+local Structure = require(ServerScriptService.Services.Structure)
+local UpgradeData = require(ServerScriptService.Services.UpgradeData)
+local WeldService = require(ServerScriptService.Services.WeldService)
+local DamageService = require(ServerScriptService.Services.DamageService)
+local BuildingConstraints = require(ReplicatedStorage.BuildingConstraints)
+local SnapData = require(ServerScriptService.Services.SnapData).GetSnaps()
+local AssemblyService = require(ServerScriptService.Services.AssemblyService)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+local ElectricNode = require(ServerScriptService.Packages.Electricity.Classes.Node)
+local ElectricHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
+
 
 local module = {}
 local BuildEvent = game.ReplicatedStorage.Events.Builder
 local UpgradeEvent = game.ReplicatedStorage.Events.Upgrade
-local Stats = require(game.ReplicatedStorage.Stats.Structure)
-local CollectionService = game:GetService("CollectionService")
-local Colorizer = require(game.ServerScriptService.Services.Colorizer)
-local BuildingConstraints = require(game.ReplicatedStorage.BuildingConstraints)
-local StructureUtil = require(game.ReplicatedStorage.StructureUtility)
-local DamageService = require(game.ServerScriptService.Services.DamageService)
-local AssemblyService = require(game.ServerScriptService.Services.AssemblyService)
-local UpgradeData = require(game.ServerScriptService.Services.UpgradeData)
-local WeldService = require(game.ServerScriptService.Services.WeldService)
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local ElectricNode = require(game.ServerScriptService.Packages.Electricity.Classes.Node)
-local ElectricHook = require(game.ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
-local Structure = require(game.ServerScriptService.Services.Structure)
-local SnapData = require(game.ServerScriptService.Services.SnapData).GetSnaps()
 
 local attachNames = {"Distributor Cap", "Cap"}
 

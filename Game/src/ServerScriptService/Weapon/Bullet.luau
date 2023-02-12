@@ -1,8 +1,11 @@
-local DamageService = require(game.ServerScriptService.Services.DamageService)
-local EffectService = require(game.ServerScriptService.Services.EffectService)
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local MouseData = require(game.ServerScriptService.MouseData)
 local RunService = game:GetService("RunService")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local MouseData = require(ServerScriptService.MouseData)
+local DamageService = require(ServerScriptService.Services.DamageService)
+local EffectService = require(ServerScriptService.Services.EffectService)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+
 
 local function Raycast(player, bulletRay)
 	local ignore = {player.Character, workspace.Ocean}

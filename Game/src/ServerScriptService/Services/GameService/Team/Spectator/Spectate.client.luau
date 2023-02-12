@@ -1,3 +1,10 @@
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local RunService = game:GetService("RunService")
+local StarterGui = game:GetService("StarterGui")
+local UserInputService = game:GetService("UserInputService")
+local ContextActionService = game:GetService("ContextActionService")
+
 ------------------------------------------------------------------------
 -- Freecam
 -- Cinematic free camera for spectating and video production.
@@ -12,12 +19,6 @@ local sign  = math.sign
 local sqrt  = math.sqrt
 local tan   = math.tan
 
-local ContextActionService = game:GetService("ContextActionService")
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local StarterGui = game:GetService("StarterGui")
-local UserInputService = game:GetService("UserInputService")
-local Workspace = game:GetService("Workspace")
 
 local whitelistedGuis = {["Chat"] = true, ["PlayerList"] = true, ["AdminGui"] = true}
 

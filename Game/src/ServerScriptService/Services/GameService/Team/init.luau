@@ -1,9 +1,13 @@
---Author: 4812571
+-- Author: 4812571
+
+local RunService = game:GetService("RunService")
+local TeleportService = game:GetService("TeleportService")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local StarterIsland = require(ServerScriptService.ServerBootLoader.Map.StarterIsland)
+
 
 local module = {}
-local TeleportService = game:GetService("TeleportService")
-local RunService = game:GetService("RunService")
-local StarterIsland = require(game.ServerScriptService.ServerBootLoader.Map.StarterIsland)
 local teamData = {}
 local loaded = false
 local matchData

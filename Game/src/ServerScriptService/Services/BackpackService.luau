@@ -1,17 +1,21 @@
---Author: Styx
+-- Author: Styx
 
-local CleanupService = require(game.ServerScriptService.Services.CleanupService)
-local WeldService = require(game.ServerScriptService.Services.WeldService)
-local jetpackModel = script:WaitForChild("Backpack")
+local Players = game:GetService("Players")
 local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local ElectricNode = require(game.ServerScriptService.Packages.Electricity.Classes.Node)
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local WeldService = require(ServerScriptService.Services.WeldService)
+local CleanupService = require(ServerScriptService.Services.CleanupService)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+local ElectricNode = require(ServerScriptService.Packages.Electricity.Classes.Node)
+local ValueReplicator = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.ValueReplicator)
+
+
+local jetpackModel = script:WaitForChild("Backpack")
 local ChargeAnimator = 	require(game.ServerScriptService.Packages.Electricity.Classes.NetworkObjects.ChargeAnimator)
-local ValueReplicator = require(game.ServerScriptService.Packages.Electricity.Classes.NetworkObjects.ValueReplicator)
 local Events = ReplicatedStorage:WaitForChild("Events")
 local ThrusterEvent = Events:WaitForChild("thruster")
-local Players = game:GetService("Players")
 local jetpacks = {}
 local module = {}
 

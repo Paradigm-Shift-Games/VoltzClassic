@@ -1,14 +1,19 @@
---Author: 4812571
+-- Author: 4812571
 
-local module = {}
 local CollectionService = game:GetService("CollectionService")
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local CleanupService = require(game.ServerScriptService.Services.CleanupService)
-local AssemblyService = require(game.ServerScriptService.Services.AssemblyService)
-local Stats = require(game.ReplicatedStorage.Stats.Structure)
-local StructureUtil = require(game.ReplicatedStorage.StructureUtility)
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
 local DamageTypes = require(script.DamageTypes)
 local DamageEffects = require(script.DamageEffects)
+local Stats = require(ReplicatedStorage.Stats.Structure)
+local StructureUtil = require(ReplicatedStorage.StructureUtility)
+local CleanupService = require(ServerScriptService.Services.CleanupService)
+local AssemblyService = require(ServerScriptService.Services.AssemblyService)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+
+
+local module = {}
 
 local DamageFactorsByBodyPart = {
     Head = 2, 

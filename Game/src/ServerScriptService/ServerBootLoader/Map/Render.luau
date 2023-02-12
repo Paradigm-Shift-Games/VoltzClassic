@@ -1,14 +1,19 @@
---Author: 4812571
+-- Author: 4812571
 
-local module = {}
 local CollectionService = game:GetService("CollectionService")
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local ElectricNode = require(game.ServerScriptService.Packages.Electricity.Classes.Node)
-local ElectricHook = require(game.ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
-local DamageService = require(game.ServerScriptService.Services.DamageService)
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
 local Matrix = require(script.Parent.Matrix)
 local Picker = require(script.Parent.Picker)
-local GameStats = require(game.ReplicatedStorage.Stats.Game)
+local GameStats = require(ReplicatedStorage.Stats.Game)
+local DamageService = require(ServerScriptService.Services.DamageService)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+local ElectricNode = require(ServerScriptService.Packages.Electricity.Classes.Node)
+local ElectricHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
+
+
+local module = {}
 local Map = workspace.Map
 local MapCells = workspace.MapCells
 local CellOffsets = {}

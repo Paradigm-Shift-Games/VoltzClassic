@@ -1,7 +1,10 @@
---Author: Styx
+-- Author: Styx
 
 local ScriptContext = game:GetService("ScriptContext")
+
 local DiscordService = require(game:WaitForChild("ServerScriptService"):WaitForChild("Services"):WaitForChild("DiscordService"))
+
+
 local Events = game.ReplicatedStorage:WaitForChild("Events")
 local MessageRemote = Events:WaitForChild("MessageRemote")
 

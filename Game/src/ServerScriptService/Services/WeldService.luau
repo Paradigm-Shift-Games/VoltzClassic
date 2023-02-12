@@ -1,8 +1,12 @@
---Author: 4812571
+-- Author: 4812571
+
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local CleanupService = require(ServerScriptService.Services.CleanupService)
+
 
 local module = {}
 local WeldGraph = {}
-local CleanupService = require(game.ServerScriptService.Services.CleanupService)
 local Welds = workspace.Welds
 local WeldIgnore = {WeldPad = true}
 

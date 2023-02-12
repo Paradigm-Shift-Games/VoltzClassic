@@ -1,11 +1,15 @@
---Author: 4812571
+-- Author: 4812571
 
-local module = {}
-local Settings = require(script.Parent.Settings.selectedSettings.Value)
-local Blueprint = require(game.ServerScriptService.Blueprint)
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
+local ServerScriptService = game:GetService("ServerScriptService")
+
 local Matrix = require(script.Parent.Matrix)
 local Supports = require(script.Parent.Support)
+local Blueprint = require(ServerScriptService.Blueprint)
+local Settings = require(script.Parent.Settings.selectedSettings.Value)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+
+
+local module = {}
 local TeamIslands = {}
 local Islands = {}
 local generated = false

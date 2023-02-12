@@ -1,14 +1,18 @@
---Author: 4812571 and n0pa
+-- Author: 4812571 and n0pa
+
+local Players = game:GetService("Players")
+local CollectionService = game:GetService("CollectionService")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local EffectService = require(ServerScriptService.Services.EffectService)
+local GridInterface = require(ServerScriptService.Packages.Grid.Interface2)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+local NetworkHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
+
 
 --Roblox Services
-local CollectionService = game:GetService("CollectionService")
-local Players = game:GetService("Players")
 
 --Imports
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local NetworkHook = require(game.ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
-local EffectService = require(game.ServerScriptService.Services.EffectService)
-local GridInterface = require(game.ServerScriptService.Packages.Grid.Interface2)
 local Stats = require(game.ReplicatedStorage.Stats.Structure)["Tesla Turret"]
 
 --Data

@@ -1,6 +1,8 @@
---Author: n0pa
+-- Author: n0pa
 
 local Players = game:GetService("Players")
+
+
 
 local DeathTimeData = {}
 local TotalTimeData = {}

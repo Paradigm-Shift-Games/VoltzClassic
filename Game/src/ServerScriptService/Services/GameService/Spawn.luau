@@ -1,10 +1,13 @@
-local module = {}
 local RunService = game:GetService("RunService")
 local CollectionService = game:GetService("CollectionService")
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local StarterIsland = require(game.ServerScriptService.ServerBootLoader.Map.StarterIsland)
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local Colorizer = require(ServerScriptService.Services.Colorizer)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+local StarterIsland = require(ServerScriptService.ServerBootLoader.Map.StarterIsland)
+
+local module = {}
 local SpawnStats = require(game.ReplicatedStorage.Stats.Structure).Spawn
-local Colorizer = require(game.ServerScriptService.Services.Colorizer)
 local RespawnRemote = game.ReplicatedStorage.Events.RequestSpawn
 
 --Variables

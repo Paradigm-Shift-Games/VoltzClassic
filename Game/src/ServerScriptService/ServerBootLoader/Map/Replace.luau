@@ -1,4 +1,9 @@
---Author: 4812571
+-- Author: 4812571
+
+local Matrix = require(script.Parent.Matrix)
+local Picker = require(script.Parent.Picker)
+local Settings = require(script.Parent.Settings.selectedSettings.Value)
+
 
 local module = {}
 local Masks = {}
@@ -6,9 +11,6 @@ local LargeTypes = {}
 local MatrixContents = {}
 local CellSize = 12
 local CellFolder = workspace.MapCells
-local Matrix = require(script.Parent.Matrix)
-local Picker = require(script.Parent.Picker)
-local Settings = require(script.Parent.Settings.selectedSettings.Value)
 
 function roundVector(vector)
 	return Vector3.new(math.floor(vector.X + 0.5), math.floor(vector.Y + 0.5), math.floor(vector.Z + 0.5))

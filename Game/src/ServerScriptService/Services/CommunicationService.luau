@@ -1,7 +1,9 @@
---Author: Sheikh
--- Script for cross-server communication in an ordered fashion
+-- Author: Sheikh
 
 local MessagingService = game:GetService("MessagingService")
+
+-- Script for cross-server communication in an ordered fashion
+
 
 local module = {}
 

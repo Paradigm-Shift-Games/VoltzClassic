@@ -1,4 +1,5 @@
---Author: n0pa
+-- Author: n0pa
+
 
 local ServerChatRemote = game.ReplicatedStorage.Events.ServerChat
 

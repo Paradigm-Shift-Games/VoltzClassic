@@ -1,4 +1,7 @@
-local CommunicationService = require(game.ServerScriptService.Services.CommunicationService)
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local CommunicationService = require(ServerScriptService.Services.CommunicationService)
+
 
 local function HandleCommands(commandString)
 	local arguments = commandString:split(":")

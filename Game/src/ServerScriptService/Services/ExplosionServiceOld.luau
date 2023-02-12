@@ -1,8 +1,13 @@
---Author: Hexcede
+-- Author: Hexcede
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local StructureUtil = require(ReplicatedStorage.StructureUtility)
+local Destruction = require(ServerScriptService.Services.DamageService)
+
 
 local module = {}
-local StructureUtil = require(game.ReplicatedStorage.StructureUtility)
-local Destruction = require(game.ServerScriptService.Services.DamageService)
 
 local raycastParams = RaycastParams.new() -- Create a RaycastParams object
 raycastParams.FilterType = Enum.RaycastFilterType.Whitelist -- Set the filter mode to whitelist

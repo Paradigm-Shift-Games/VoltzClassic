@@ -1,12 +1,16 @@
---Author: 4812571
+-- Author: 4812571
+
+local RunService = game:GetService("RunService")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local TimerService = require(ServerScriptService.Services.TimerService)
+local Simulation = require(ServerScriptService.Services.SimulationService)
+local Projectile = require(ServerScriptService.Services.ProjectileService)
+local Network = require(ServerScriptService.Packages.Electricity.Classes.Network)
+
 
 local module = {}
 
-local RunService = game:GetService("RunService")
-local Network = require(game.ServerScriptService.Packages.Electricity.Classes.Network)
-local TimerService = require(game.ServerScriptService.Services.TimerService)
-local Simulation = require(game.ServerScriptService.Services.SimulationService)
-local Projectile = require(game.ServerScriptService.Services.ProjectileService)
 
 local activated = false
 local connection

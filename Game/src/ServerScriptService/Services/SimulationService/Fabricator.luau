@@ -1,13 +1,19 @@
---Author: 4812571
+-- Author: 4812571
+
+local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local StructureStats = require(ReplicatedStorage.Stats.Structure)
+local Graph = require(ServerScriptService.Classes.Datastructure.Graph)
+local EffectService = require(ServerScriptService.Services.EffectService)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+local ArrayGraph = require(ServerScriptService.Classes.Datastructure.ArrayGraph)
+local TransferLine = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.TransferLine)
+
 
 local module = {}
 
-local CollectionService = game:GetService("CollectionService")
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local TransferLine = require(game.ServerScriptService.Packages.Electricity.Classes.NetworkObjects.TransferLine)
-local EffectService = require(game.ServerScriptService.Services.EffectService)
-local Graph = require(game.ServerScriptService.Classes.Datastructure.Graph)
-local ArrayGraph = require(game.ServerScriptService.Classes.Datastructure.ArrayGraph)
 
 --Graphs
 local beamGraph = 		Graph.New()
@@ -16,7 +22,6 @@ local hardGraph = 		ArrayGraph.New()
 local softGraph = 		ArrayGraph.New()
 
 --Stats
-local StructureStats = require(game.ReplicatedStorage.Stats.Structure)
 local FabricatorStats = StructureStats["Fabricator"]
 local BlueprintStats = StructureStats["Fabricator Blueprint"]
 local range = FabricatorStats.Range

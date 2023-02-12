@@ -1,9 +1,12 @@
-local ProjectileService = require(game.ServerScriptService.Services.ProjectileService)
-local ExplosionService = require(game.ServerScriptService.Services.ExplosionService)
-local DamageService = require(game.ServerScriptService.Services.DamageService)
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local MouseData = require(game.ServerScriptService.MouseData)
 local RunService = game:GetService("RunService")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local MouseData = require(ServerScriptService.MouseData)
+local DamageService = require(ServerScriptService.Services.DamageService)
+local ExplosionService = require(ServerScriptService.Services.ExplosionService)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+local ProjectileService = require(ServerScriptService.Services.ProjectileService)
+
 
 local function Explode(projectileData)
 	local hit = projectileData.Hit

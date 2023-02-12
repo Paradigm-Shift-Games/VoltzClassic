@@ -1,4 +1,5 @@
---Author: Styx
+-- Author: Styx
+
 
 local loadingScreenData = workspace:WaitForChild("loadingScreenData")
 local messageValue = loadingScreenData:WaitForChild("Message")

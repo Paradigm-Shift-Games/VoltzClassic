@@ -1,15 +1,21 @@
---Author: n0pa
+-- Author: n0pa
+
+local TweenService = game:GetService("TweenService")
+local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+local ServerScriptService:WaitForChild("Services"):WaitForChild("ButtonService") = game:GetService("ServerScriptService:WaitForChild("Services"):WaitForChild("ButtonService")")
+
+local ArsenalHeiarchy = require(ReplicatedStorage.ArsenalWeapons)
+local StructureUtil = require(ReplicatedStorage.StructureUtility)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+local ButtonService = require(ServerScriptService:WaitForChild("Services"):WaitForChild("ButtonService"))
+
 --This code is going to be changed -Styx
 local Events = game.ReplicatedStorage:WaitForChild("Events")
-local ButtonService = require(game.ServerScriptService:WaitForChild("Services"):WaitForChild("ButtonService"))
 local uiMain = script:WaitForChild("uiMain")
-local CollectionService = game:GetService("CollectionService")
 local button = uiMain:WaitForChild("container"):WaitForChild("CategoryContainer"):WaitForChild("1"):Clone()
 local ArsenalButtonRemote = Events:WaitForChild("ArsenalButton")
-local ArsenalHeiarchy = require(game.ReplicatedStorage.ArsenalWeapons)
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local TweenService = game:GetService("TweenService")
-local StructureUtil = require(game.ReplicatedStorage.StructureUtility)
 
 local ArsenalData = {} --Arsenal models as keys, table data as values
 

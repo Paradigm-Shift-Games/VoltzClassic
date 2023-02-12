@@ -1,9 +1,13 @@
---Author: 4812571
+-- Author: 4812571
+
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local Matrix = require(script.Parent.Matrix)
+local WeldService = require(ServerScriptService.Services.WeldService)
+
 
 local module = {}
-local Matrix = require(script.Parent.Matrix)
 local CellFolder = workspace.MapCells
-local WeldService = require(game.ServerScriptService.Services.WeldService)
 
 function WeldNeighbors(cell)
 	local x, z, y = cell.X, cell.Z, cell.Y

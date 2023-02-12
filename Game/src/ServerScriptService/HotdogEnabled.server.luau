@@ -1,5 +1,6 @@
 -- Author: dead memes
 
+
 superfunkyhotdogmantime = false
 local currentStarter = game.StarterPlayer.StarterCharacter
 local hotdogStarter = game.ReplicatedStorage.HotdogMan

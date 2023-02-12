@@ -1,9 +1,14 @@
---Author: NPA
+-- Author: NPA
 
-local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
-local StructureUtil = require(game.ReplicatedStorage.StructureUtility)
-local Destruction = require(game.ServerScriptService.Services.DamageService)
+local RunService = game:GetService("RunService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local StructureUtil = require(ReplicatedStorage.StructureUtility)
+local Destruction = require(ServerScriptService.Services.DamageService)
+
+
 local oceanHeight = -118.185 --workspace.Ocean.OceanPart.Position.Y
 local gradientHeight = 20
 local baseDamage = 7

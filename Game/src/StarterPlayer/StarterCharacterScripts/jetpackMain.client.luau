@@ -1,10 +1,12 @@
---Author: Styx
+-- Author: Styx
 
-local UserInputService = game:GetService("UserInputService")
-local RunService = game:GetService("RunService")
-local ContextActionService = game:GetService("ContextActionService")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ContextActionService = game:GetService("ContextActionService")
+
+
 local Events = ReplicatedStorage:WaitForChild("Events")
 local thrusterRemote = Events:WaitForChild("thruster")
 local localPlayer = game.Players.LocalPlayer

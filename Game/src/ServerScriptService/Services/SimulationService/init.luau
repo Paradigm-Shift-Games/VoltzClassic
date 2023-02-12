@@ -1,8 +1,12 @@
---Author: 4812571
+-- Author: 4812571
+
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local TimerService = require(ServerScriptService.Services.TimerService)
+
 
 local module = {}
 local Modules = {}
-local TimerService = require(game.ServerScriptService.Services.TimerService)
 
 
 for _, v in pairs(script:GetChildren()) do

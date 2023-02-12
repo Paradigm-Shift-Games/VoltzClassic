@@ -1,5 +1,8 @@
 local RunService = game:GetService("RunService")
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+
 
 local Charging = {}
 

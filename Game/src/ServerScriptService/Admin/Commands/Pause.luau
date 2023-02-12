@@ -1,4 +1,7 @@
-local TickManager = require(game.ServerScriptService.Services.TickManager)
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local TickManager = require(ServerScriptService.Services.TickManager)
+
 
 local function Command(player, parameter)
 	TickManager.Toggle()

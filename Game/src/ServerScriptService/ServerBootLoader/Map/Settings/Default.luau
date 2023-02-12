@@ -1,5 +1,6 @@
-local Settings = {}
 local RunService = game:GetService("RunService")
+
+local Settings = {}
 -- Map Size
 Settings.Size = (RunService:IsStudio() and 45) or 45
 -- Support Spacing 

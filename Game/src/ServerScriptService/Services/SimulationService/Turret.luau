@@ -1,15 +1,20 @@
---Author: 4812571 and n0pa
+-- Author: 4812571 and n0pa
+
+local Players = game:GetService("Players")
+local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local StructureUtility = require(ReplicatedStorage.StructureUtility)
+local EffectService = require(ServerScriptService.Services.EffectService)
+local GridInterface = require(ServerScriptService.Packages.Grid.Interface2)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+local NetworkHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
+
 
 --Roblox Services
-local CollectionService = game:GetService("CollectionService")
-local Players = game:GetService("Players")
 
 --Imports
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local NetworkHook = require(game.ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
-local EffectService = require(game.ServerScriptService.Services.EffectService)
-local GridInterface = require(game.ServerScriptService.Packages.Grid.Interface2)
-local StructureUtility = require(game.ReplicatedStorage.StructureUtility)
 local Stats = require(game.ReplicatedStorage.Stats.Structure)["Turret"]
 local Effect = require(game.ReplicatedStorage.Stats.Weapon).Effects["Physical_l"]
 

@@ -1,10 +1,14 @@
---Author: 4812571, Styx
+-- Author: 4812571, Styx
 
 local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local StructureUtil = require(ReplicatedStorage.StructureUtility)
+local CleanupService = require(game:GetService("ServerScriptService"):WaitForChild("Services"):WaitForChild("CleanupService"))
+
+
 local Events = game.ReplicatedStorage:WaitForChild("Events")
 local ButtonRemote = Events:WaitForChild("ButtonRemote")
-local CleanupService = require(game:GetService("ServerScriptService"):WaitForChild("Services"):WaitForChild("CleanupService"))
-local StructureUtil = require(game.ReplicatedStorage.StructureUtility)
 local ButtonService = {}
 local objectData = {}
 local buttonData = {}

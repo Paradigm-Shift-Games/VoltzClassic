@@ -1,7 +1,10 @@
---Author: n0pa
+-- Author: n0pa
 
 local DataStoreService = game:GetService("DataStoreService")
+
 local GameData = require(script:WaitForChild("GameData"))
+
+
 
 local GameDataService = {}
 

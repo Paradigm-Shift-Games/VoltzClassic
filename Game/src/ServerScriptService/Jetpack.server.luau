@@ -1,7 +1,11 @@
---Author: Styx
+-- Author: Styx
+
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+
 
 local JetpackEvent = game.ReplicatedStorage.Events.Jetpack
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
 
 function JetpackConsume(Player, amount)
 	if not (amount > 0) then return end --Exploit

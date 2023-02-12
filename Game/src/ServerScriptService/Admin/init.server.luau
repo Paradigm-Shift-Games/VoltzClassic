@@ -1,7 +1,8 @@
+local Teams = game:GetService("Teams")
+local Players = game:GetService("Players")
+
 warn("Admin Initializing")
 
-local Players = game:GetService("Players")
-local Teams = game:GetService("Teams")
 local Commands = {}
 local commandString = "!"
 local GroupID = 5444195

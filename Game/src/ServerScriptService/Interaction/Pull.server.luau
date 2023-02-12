@@ -1,13 +1,18 @@
---Author: 4812571
-
+-- Author: 4812571
 
 local RunService = game:GetService("RunService")
 local CollectionService = game:GetService("CollectionService")
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local EffectService = require(game.ServerScriptService.Services.EffectService)
-local ActionService = require(game.ServerScriptService.Services.ActionService)
-local StructureUtil = require(game.ReplicatedStorage.StructureUtility)
-local MouseData = require(game.ServerScriptService.MouseData)
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local MouseData = require(ServerScriptService.MouseData)
+local StructureUtil = require(ReplicatedStorage.StructureUtility)
+local EffectService = require(ServerScriptService.Services.EffectService)
+local ActionService = require(ServerScriptService.Services.ActionService)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+
+
+
 local InteractRange = 30
 local Multiplier = 30 * (RunService:IsStudio() and 1000 or 1) --n0pa
 local beams = {}

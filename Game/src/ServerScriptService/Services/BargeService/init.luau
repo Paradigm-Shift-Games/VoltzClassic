@@ -1,8 +1,10 @@
---Author: Styx
+-- Author: Styx
 
 local Players = game:GetService("Players")
-local CollectionService = game:GetService("CollectionService")
 local RunService = game:GetService("RunService")
+local CollectionService = game:GetService("CollectionService")
+
+
 local Events = game.ReplicatedStorage:WaitForChild("Events")
 local bargeEvent = Events:WaitForChild("Barge")
 local HeightPerLevel = 10

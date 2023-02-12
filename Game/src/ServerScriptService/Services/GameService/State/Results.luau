@@ -1,10 +1,14 @@
---Author: n0pa
+-- Author: n0pa
 
-local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
 local StarterGui = game:GetService("StarterGui")
-local DiscordService = require(game.ServerScriptService.Services.DiscordService)
-local ChatService = require(game.ServerScriptService.Services.ChatService)
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local ChatService = require(ServerScriptService.Services.ChatService)
+local DiscordService = require(ServerScriptService.Services.DiscordService)
+
+
 
 local module = {}
 

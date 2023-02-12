@@ -1,8 +1,10 @@
---Author n0pa
+-- Author n0pa
 
 local CollectionService = game:GetService("CollectionService")
-local ContextActionService = game:GetService("ContextActionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ContextActionService = game:GetService("ContextActionService")
+
+
 local Events = ReplicatedStorage:WaitForChild("Events")
 local AATurretRemote = Events:WaitForChild("AATurretRemote")
 

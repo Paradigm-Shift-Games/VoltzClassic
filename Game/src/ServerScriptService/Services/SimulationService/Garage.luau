@@ -1,11 +1,16 @@
---Author: NPA
+-- Author: NPA
+
+local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local Stats = require(ReplicatedStorage.Stats.Structure)
+local ButtonService = require(ServerScriptService.Services.ButtonService)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+
 
 local module = {}
 
-local CollectionService = game:GetService("CollectionService")
-local ButtonService = require(game.ServerScriptService.Services.ButtonService)
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local Stats = require(game.ReplicatedStorage.Stats.Structure)
 local objectStats = Stats[script.Name]
 local bargeRoot = workspace.Extras:WaitForChild("barge")
 local spawnHeight = 7

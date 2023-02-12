@@ -1,10 +1,15 @@
---Author: 4812571
+-- Author: 4812571
+
+local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local Stats = require(ReplicatedStorage.Stats.Structure)
+local buttonService = require(ServerScriptService.Services.ButtonService)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+
 
 local module = {}
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local buttonService = require(game.ServerScriptService.Services.ButtonService)
-local CollectionService = game:GetService("CollectionService")
-local Stats = require(game.ReplicatedStorage.Stats.Structure)
 local objectData = {}
 local objectStats = Stats[script.Name]
 

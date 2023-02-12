@@ -1,6 +1,8 @@
---Author: Accedo
+-- Author: Accedo
 
 local ContextActionService = game:GetService("ContextActionService")
+
+
 
 local sprinting = false
 local sprintMultiplier = 1.5

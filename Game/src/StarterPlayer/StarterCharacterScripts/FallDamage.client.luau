@@ -1,4 +1,5 @@
---Author: Styx
+-- Author: Styx
+
 
 local DamageEvent = game.ReplicatedStorage.Events.Damage
 local Character = script.Parent

@@ -1,14 +1,16 @@
---Author: 4812571
+-- Author: 4812571
 
-local module = {}
-local Settings = require(script.Settings.selectedSettings.Value)
+local Welder = require(script.Weld)
 local Matrix = require(script.Matrix)
+local Picker = require(script.Picker)
 local Support = require(script.Support)
 local Renderer = require(script.Render)
 local Replacer = require(script.Replace)
-local Picker = require(script.Picker)
-local Welder = require(script.Weld)
 local StarterIsland = require(script.StarterIsland)
+local Settings = require(script.Settings.selectedSettings.Value)
+
+
+local module = {}
 local NoiseKeys = {}
 local generated = false
 

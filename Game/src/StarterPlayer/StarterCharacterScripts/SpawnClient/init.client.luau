@@ -1,6 +1,8 @@
---Author: 4812571
+-- Author: 4812571
 
 local Main = require(script:WaitForChild("Main"))
+
+
 local Humanoid = script.Parent:WaitForChild("Humanoid")
 
 

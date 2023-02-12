@@ -1,15 +1,20 @@
---Author: n0pa
+-- Author: n0pa
+
+local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local Stats = require(ReplicatedStorage.Stats.Structure)
+local ExplosionService = require(ServerScriptService.Services.ExplosionService)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+local ProjectileService = require(ServerScriptService.Services.ProjectileService)
+
 
 local module = {}
 
-local Stats = require(game.ReplicatedStorage.Stats.Structure)
 local ArtilleryStats = Stats.Artillery
-local ExplosionService = require(game.ServerScriptService.Services.ExplosionService)
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local ProjectileService = require(game.ServerScriptService.Services.ProjectileService)
 local Events = game.ReplicatedStorage:WaitForChild("Events")
 local ArtilleryRemote = Events:WaitForChild("ArtilleryRemote")
-local CollectionService = game:GetService("CollectionService")
 local RocketTemplate = workspace.Extras.Projectiles.Rocket
 
 --Constants

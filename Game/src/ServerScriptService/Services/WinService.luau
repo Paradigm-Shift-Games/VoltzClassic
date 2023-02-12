@@ -1,10 +1,14 @@
---Author: n0pa, Styx
+-- Author: n0pa, Styx
 
-local CollectionService = game:GetService("CollectionService")
-local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
-local DiscordService = require(game.ServerScriptService.Services.DiscordService)
-local RatingService = require(game.ServerScriptService.Services.RatingService)
+local RunService = game:GetService("RunService")
+local CollectionService = game:GetService("CollectionService")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local RatingService = require(ServerScriptService.Services.RatingService)
+local DiscordService = require(ServerScriptService.Services.DiscordService)
+
+
 
 local Enabled = true --Just for future stuff.
 local Debounce = false

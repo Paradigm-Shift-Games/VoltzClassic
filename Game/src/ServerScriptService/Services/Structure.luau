@@ -1,12 +1,17 @@
---Author: 4812571
+-- Author: 4812571
+
+local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local Stats = require(ReplicatedStorage.Stats.Structure)
+local Colorizer = require(ServerScriptService.Services.Colorizer)
+local StructureUtil = require(ReplicatedStorage.StructureUtility)
+local AssemblyService = require(ServerScriptService.Services.AssemblyService)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+
 
 local module = {}
-local Colorizer = require(game.ServerScriptService.Services.Colorizer)
-local CollectionService = game:GetService("CollectionService")
-local Stats = require(game.ReplicatedStorage.Stats.Structure)
-local AssemblyService = require(game.ServerScriptService.Services.AssemblyService)
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local StructureUtil = require(game.ReplicatedStorage.StructureUtility)
 
 function PromoteUpgrade(Object)
 	--Clear Blueprint Data

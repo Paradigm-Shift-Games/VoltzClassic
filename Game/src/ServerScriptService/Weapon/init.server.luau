@@ -1,9 +1,14 @@
---Author: 4812571
+-- Author: 4812571
 
 local RunService = game:GetService("RunService")
-local WeldServcice = require(game.ServerScriptService.Services.WeldService)
-local ActionService = require(game.ServerScriptService.Services.ActionService)
-local WeaponStats = require(game.ReplicatedStorage.Stats.Weapon)
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local WeaponStats = require(ReplicatedStorage.Stats.Weapon)
+local WeldServcice = require(ServerScriptService.Services.WeldService)
+local ActionService = require(ServerScriptService.Services.ActionService)
+
+
 local EquippedWeapon = {}
 local FiringWeapons = {}
 local WeaponData = {}

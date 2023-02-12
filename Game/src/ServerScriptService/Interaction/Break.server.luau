@@ -1,11 +1,16 @@
---Author: 4812571
+-- Author: 4812571
 
 local RunService = game:GetService("RunService")
 local CollectionService = game:GetService("CollectionService")
-local ActionService = require(game.ServerScriptService.Services.ActionService)
-local DamageService = require(game.ServerScriptService.Services.DamageService)
-local StructureUtil = require(game.ReplicatedStorage.StructureUtility)
-local MouseData = require(game.ServerScriptService.MouseData)
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local MouseData = require(ServerScriptService.MouseData)
+local StructureUtil = require(ReplicatedStorage.StructureUtility)
+local ActionService = require(ServerScriptService.Services.ActionService)
+local DamageService = require(ServerScriptService.Services.DamageService)
+
+
 local InteractRange = 30
 local Multiplier = 400
 local players = {}

@@ -1,7 +1,10 @@
 local CollectionService = game:GetService("CollectionService")
-local DamageService = require(game.ServerScriptService.Services.DamageService)
---local ChatService = require(game.ServerScriptService.Services.ChatService)
+local ServerScriptService = game:GetService("ServerScriptService")
 
+local ChatService = require(ServerScriptService.Services.ChatService)
+local DamageService = require(ServerScriptService.Services.DamageService)
+
+--
 local function Command(player, parameters)
 	parameters = string.split(table.concat(parameters, " "), " ")
 	if #parameters == 1 then

@@ -1,13 +1,17 @@
---Author: n0pa
+-- Author: n0pa
 
+local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local CollectionService = game:GetService("CollectionService")
-local Players = game:GetService("Players")
-local GameDataService = require(game.ServerScriptService.Services.GameDataService)
-local RatingService = require(game.ServerScriptService.Services.RatingService)
-local RatingProcessor = require(script.RatingProcessor)
-local TimeManager = require(script.TimeManager)
+local ServerScriptService = game:GetService("ServerScriptService")
+
 local Results = require(script.Results)
+local TimeManager = require(script.TimeManager)
+local RatingProcessor = require(script.RatingProcessor)
+local RatingService = require(ServerScriptService.Services.RatingService)
+local GameDataService = require(ServerScriptService.Services.GameDataService)
+
+
 
 local State = "Booting"
 local EliminationTime = 3 * 60 --seconds

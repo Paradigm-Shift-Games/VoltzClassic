@@ -1,15 +1,20 @@
---Author: 4812571
+-- Author: 4812571
+
+local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local Stats = require(ReplicatedStorage.Stats.Structure)
+local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
+local ElectricityDisplay = require(ServerScriptService.Packages.Electricity.Display)
+local Influencer = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Influencer)
+
 
 local module = {}
 
 --Roblox Services
-local CollectionService = game:GetService("CollectionService")
 
 --Import
-local Stats = require(game.ReplicatedStorage.Stats.Structure)
-local Influencer = require(game.ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Influencer)
-local Electricity = require(game.ServerScriptService.Packages.Electricity.Interface)
-local ElectricityDisplay = require(game.ServerScriptService.Packages.Electricity.Display)
 
 --Data
 local Grounded = {}

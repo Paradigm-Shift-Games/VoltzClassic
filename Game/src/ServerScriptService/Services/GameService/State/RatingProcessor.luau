@@ -1,6 +1,10 @@
---Author: n0pa
+-- Author: n0pa
 
-local RatingService = require(game.ServerScriptService.Services.RatingService)
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local RatingService = require(ServerScriptService.Services.RatingService)
+
+
 
 local WeightData = {}
 local WinningWeightFunctions = {}

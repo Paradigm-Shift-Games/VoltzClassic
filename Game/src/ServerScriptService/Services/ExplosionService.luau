@@ -1,9 +1,14 @@
---Author: 4812571, Hexcede
+-- Author: 4812571, Hexcede
+
+local Debris = game:GetService("Debris")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local StructureUtil = require(ReplicatedStorage.StructureUtility)
+local Destruction = require(ServerScriptService.Services.DamageService)
+
 
 local module = {}
-local Debris = game:GetService("Debris")
-local StructureUtil = require(game.ReplicatedStorage.StructureUtility)
-local Destruction = require(game.ServerScriptService.Services.DamageService)
 
 local collider = Instance.new("Part")
 collider.Shape = Enum.PartType.Ball
