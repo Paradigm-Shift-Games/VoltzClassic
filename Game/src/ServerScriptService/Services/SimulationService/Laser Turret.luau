@@ -145,31 +145,48 @@ local function shoot(turret, targetPos)
 	Electricity.Pull(model, Stats.Damage, true)
 end
 
---Exports
-module.Run = function(delta)
-	for turret, data in pairs(TurretData) do
-		data.Cooldown -= delta
+local function runObject(laserTurret, deltaTime)
+	TurretData[laserTurret].Cooldown -= deltaTime
 		
-		local character = getClosestCharacterInRange(turret, turret.Team.Value)
-		if not character or not character.PrimaryPart then continue end
-		
-		aim(turret, character.PrimaryPart.Position)
-		if data.Cooldown > 0 then continue end
-		
-		shoot(turret, character.PrimaryPart.Position)
-	end
+	local character = getClosestCharacterInRange(laserTurret, laserTurret.Team.Value)
+	if not character or not character.PrimaryPart then return end
+	
+	aim(laserTurret, character.PrimaryPart.Position)
+	if TurretData[laserTurret].Cooldown > 0 then return end
+	
+	shoot(laserTurret, character.PrimaryPart.Position)
 end
 
---Event Connections
-CollectionService:GetInstanceAddedSignal(script.Name):Connect(function(turret)
-	TurretData[turret] = {
+local function onAdded(laserTurret)
+	TurretData[laserTurret] = {
 		["Cooldown"] = Stats.ReloadTime
 	}
-end)
+end
 
-CollectionService:GetInstanceRemovedSignal(script.Name):Connect(function(turret)
-	TurretData[turret] = nil
-end)
+local function onRemoved(laserTurret)
+	TurretData[laserTurret] = nil
+end
 
-return module
+local LaserTurretServer = {}
+LaserTurretServer.__index = LaserTurretServer
 
+function LaserTurretServer.new(instance)
+	local self = setmetatable({}, LaserTurretServer)
+	self.Instance = instance
+
+	-- Shim
+	onAdded(instance)
+
+	return self
+end
+
+function LaserTurretServer:Update(deltaTime)
+	runObject(self.Instance, deltaTime)
+end
+
+function LaserTurretServer:Destroy()
+	-- Shim
+	onRemoved(self.Instance)
+end
+
+return LaserTurretServer

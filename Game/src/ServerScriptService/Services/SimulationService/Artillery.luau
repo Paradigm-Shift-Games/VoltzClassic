@@ -120,15 +120,29 @@ local function runObject(delta, artillery) --Not named to "runArtillery" for the
 	headHingeMotor.C0 = CFrame.Angles(0, yaw, 0)
 end
 
-module.Run = function(delta)
-	for _, v in pairs(CollectionService:GetTagged(script.Name)) do
-		runObject(delta, v)
-	end
-end
-
-CollectionService:GetInstanceAddedSignal(script.Name):Connect(onAdded)
-CollectionService:GetInstanceRemovedSignal(script.Name):Connect(onRemoved)
-
 ArtilleryRemote.OnServerEvent:Connect(onServerEvent)
 
-return module
+local ArtilleryServer = {}
+ArtilleryServer.__index = ArtilleryServer
+
+function ArtilleryServer.new(instance)
+	local self = setmetatable({}, ArtilleryServer)
+	self.Instance = instance
+
+	-- Shim
+	onAdded(instance)
+
+	return self
+end
+
+function ArtilleryServer:Update(deltaTime)
+	-- Shim
+	runObject(deltaTime, self.instance)
+end
+
+function ArtilleryServer:Destroy()
+	-- Shim
+	onRemoved(self.instance)
+end
+
+return ArtilleryServer

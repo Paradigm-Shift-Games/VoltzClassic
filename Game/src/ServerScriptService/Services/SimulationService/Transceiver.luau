@@ -53,13 +53,27 @@ function runObject(object, delta)
 	end
 end
 
-module.Run = function(delta)
-	for _, v in pairs(CollectionService:GetTagged(script.Name)) do
-		runObject(v, delta)
-	end
+local TransceiverServer = {}
+TransceiverServer.__index = TransceiverServer
+
+function TransceiverServer.new(instance)
+	local self = setmetatable({}, TransceiverServer)
+	self.Instance = instance
+
+	-- Shim
+	onAdded(self.Instance)
+
+	return self
 end
 
-CollectionService:GetInstanceAddedSignal(script.Name):Connect(onAdded)
-CollectionService:GetInstanceRemovedSignal(script.Name):Connect(onRemoved)
+function TransceiverServer:Update(deltaTime)
+	-- Shim
+	runObject(self.Instance, deltaTime)
+end
 
-return module
+function TransceiverServer:Destroy()
+	-- Shim
+	onRemoved(self.Instance)
+end
+
+return TransceiverServer

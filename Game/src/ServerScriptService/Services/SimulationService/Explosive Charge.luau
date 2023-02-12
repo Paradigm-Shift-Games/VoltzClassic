@@ -34,13 +34,27 @@ function runObject(object, delta)
 	end
 end
 
-module.Run = function(delta)
-	for v, s in pairs(objectData) do
-		runObject(v, delta)
-	end
+local ExplosiveChargeServer = {}
+ExplosiveChargeServer.__index = ExplosiveChargeServer
+
+function ExplosiveChargeServer.new(instance)
+	local self = setmetatable({}, ExplosiveChargeServer)
+	self.Instance = instance
+
+	-- Shim
+	onAdded(instance)
+
+	return self
 end
 
-CollectionService:GetInstanceAddedSignal(script.Name):Connect(onAdded)
-CollectionService:GetInstanceRemovedSignal(script.Name):Connect(onRemoved)
+function ExplosiveChargeServer:Update(deltaTime)
+	-- Shim
+	runObject(self.Instance, deltaTime)
+end
 
-return module
+function ExplosiveChargeServer:Destroy()
+	-- Shim
+	onRemoved(self.Instance)
+end
+
+return ExplosiveChargeServer

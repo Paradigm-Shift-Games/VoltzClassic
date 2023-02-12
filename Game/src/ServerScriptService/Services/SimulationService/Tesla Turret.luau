@@ -68,28 +68,47 @@ local function track(delta, turret, targets)
 	data.Targets = newTargets
 end
 
---Exports
-module.Run = function(delta)
-	for turret, data in pairs(TurretData) do	
-		--data.Cooldown -= delta
-		--if data.Cooldown > 0 then continue end
-
-		local characters = getCharactersInRange(turret.PrimaryPart.Position, turret.Team.Value)
-		--if character then shoot(turret, character) end
-		track(delta, turret, characters)
-	end
-end
-
---Event Connections
-CollectionService:GetInstanceAddedSignal(script.Name):Connect(function(turret)
+local function onAdded(turret)
 	TurretData[turret] = {
 		--["Cooldown"] = Stats.ReloadTime;
 		["Targets"] = {};
 	}
-end)
+end
 
-CollectionService:GetInstanceRemovedSignal(script.Name):Connect(function(turret)
+local function onRemoved(turret)
 	TurretData[turret] = nil
-end)
+end
 
-return module
+local function runObject(turret, deltaTime)
+	--data.Cooldown -= delta
+	--if data.Cooldown > 0 then continue end
+
+	local characters = getCharactersInRange(turret.PrimaryPart.Position, turret.Team.Value)
+	--if character then shoot(turret, character) end
+	track(deltaTime, turret, characters)
+end
+
+local TeslaTurretServer = {}
+TeslaTurretServer.__index = TeslaTurretServer
+
+function TeslaTurretServer.new(instance)
+	local self = setmetatable({}, TeslaTurretServer)
+	self.instance = instance
+
+	-- Shim
+	onAdded(instance)
+
+	return self
+end
+
+function TeslaTurretServer:Update(deltaTime)
+	-- Shim
+	runObject(self.instance, deltaTime)
+end
+
+function TeslaTurretServer:Destroy()
+	-- Shim
+	onRemoved(self.instance)
+end
+
+return TeslaTurretServer
