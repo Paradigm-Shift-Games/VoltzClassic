@@ -35,7 +35,7 @@ function PromoteUpgrade(Object)
 	if Stats[Object.Name].Tags then for _, v in pairs(Stats[Object.Name].Tags) do CollectionService:AddTag(Object, v) end end
 end
 
-module.Promote = function(Object)	
+function module.Promote(Object)	
 	--Offload Upgrades
 	if CollectionService:HasTag(Object, "Upgrade") then PromoteUpgrade(Object) return end
 	

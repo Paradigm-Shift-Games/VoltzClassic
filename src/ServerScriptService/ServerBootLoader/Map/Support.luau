@@ -22,7 +22,7 @@ function WeightedChoice(weight)
 	end
 end
 
-module.CanGenerate = function(x, z)
+function module.CanGenerate(x, z)
 	local minDistance = Settings.SupportSpacing
 	for _, support in pairs(module.Supports) do
 		local distance = math.sqrt((support.X-x)^2 + (support.Z-z)^2)
@@ -73,7 +73,7 @@ module.Generate = function()
 	end
 end
 
-module.Add = function(x, z, isCircular, size, isStarter)
+function module.Add(x, z, isCircular, size, isStarter)
 	table.insert(module.Supports, {X = x, Z = z, isCircular = isCircular, size = size, isStarter = isStarter})
 end
 

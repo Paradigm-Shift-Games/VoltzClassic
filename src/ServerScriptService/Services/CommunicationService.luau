@@ -13,11 +13,11 @@ module.MessageChannels = {
 
 module.BoundToCommunication = {}
 
-module.CreateChannel = function(key, channel)
+function module.CreateChannel(key, channel)
 	module.MessageChannels[key] = channel
 end
 
-module.BindToCommunication = function(channel, name, callback)
+function module.BindToCommunication(channel, name, callback)
 	local success, connection = pcall(function()
 		return MessagingService:SubscribeAsync(channel, function(message) callback(message.Data) end)
 	end)
@@ -30,13 +30,13 @@ module.BindToCommunication = function(channel, name, callback)
 	end
 end
 
-module.UnbindFromCommunication = function(name)
+function module.UnbindFromCommunication(name)
 	if not module.BoundToCommunication[name] then print("Unsuccessfully attempted to unbind " .. name .. " from cross-server communication as no bound callbacks exist under specified name.") return end
 	module.BoundToCommunication[name]:Disconnect()
 	print("Successfully unbound " .. name .. " from cross-server communication!")
 end
 
-module.Communicate = function(channel, content)
+function module.Communicate(channel, content)
 	if not channel then print("Unsuccessfully published message as channel key does not exist (" .. channel .. ")") return end
 	
 	local success, result = pcall(function()

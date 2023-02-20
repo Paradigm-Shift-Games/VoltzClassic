@@ -42,7 +42,7 @@ local module = {}
 
 data = {}
 
-module.ColorAsBlueprint = function(Structure)
+function module.ColorAsBlueprint(Structure)
 	data[Structure] = {}
 	local teamColor = Structure:FindFirstChild("Team") and Structure.Team.Value.TeamColor.Color
 	for _, v in pairs(Structure:GetDescendants()) do
@@ -61,7 +61,7 @@ module.ColorAsBlueprint = function(Structure)
 	end
 end
 
-module.DebugColor = function(Structure, debugColor)
+function module.DebugColor(Structure, debugColor)
 	if typeof(debugColor) == "BrickColor" then debugColor = debugColor.Color end
 	data[Structure] = {}
 	for _, v in pairs(Structure:GetDescendants()) do
@@ -76,7 +76,7 @@ module.DebugColor = function(Structure, debugColor)
 	end
 end
 
-module.UpdateBlueprintColor = function(Structure, charge, cost)
+function module.UpdateBlueprintColor(Structure, charge, cost)
 	local completion = charge / cost
 	if not data[Structure] then warn("Attempt to color invalid structure!") return end
 	for part, partData in pairs(data[Structure]) do
@@ -84,7 +84,7 @@ module.UpdateBlueprintColor = function(Structure, charge, cost)
 	end
 end
 
-module.ColorAsStructure = function(Structure)
+function module.ColorAsStructure(Structure)
 	module.RevertColors(Structure)
 	local teamColor = Structure:FindFirstChild("Team") and Structure.Team.Value.TeamColor.Color
 	if not teamColor then return end
@@ -95,7 +95,7 @@ module.ColorAsStructure = function(Structure)
 	end
 end
 
-module.RevertColors = function(Structure)
+function module.RevertColors(Structure)
 	if not data[Structure] then return nil end
 	for part, partData in pairs(data[Structure]) do
 		part.Color = partData.Color
@@ -105,7 +105,7 @@ module.RevertColors = function(Structure)
 	module.Clean(Structure)
 end
 
-module.ColorCharacter = function(character)
+function module.ColorCharacter(character)
 	local player = Players:GetPlayerFromCharacter(character)
 	local teamColor = player.Team.TeamColor
 	for _, v in pairs(character:GetChildren()) do
@@ -113,7 +113,7 @@ module.ColorCharacter = function(character)
 	end
 end
 
-module.Clean = function(Structure)
+function module.Clean(Structure)
 	data[Structure] = nil
 end
 

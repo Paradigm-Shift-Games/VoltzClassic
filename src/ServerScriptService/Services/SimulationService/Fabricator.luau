@@ -209,7 +209,7 @@ function runObject(Fabricator)
 end
 
 --Service Update
-module.Run = function(delta)
+function module.Run(delta)
 	--Swap Grounded -> Ungrounded
 	for Object, _ in pairs(Grounded) do
 		if Object.PrimaryPart:IsGrounded() then continue end

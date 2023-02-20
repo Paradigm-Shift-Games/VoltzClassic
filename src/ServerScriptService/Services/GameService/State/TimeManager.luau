@@ -37,7 +37,7 @@ local function timeDifferenceMillis(dateTime1, dateTime2)
 	return dateTime1.UnixTimestampMillis - dateTime2.UnixTimestampMillis
 end
 
-module.UpdateTotalTimeData = function(stringUserID)
+function module.UpdateTotalTimeData(stringUserID)
 	local timeNow = DateTime.now()
 
 	if not TotalTimeData[stringUserID] then
@@ -58,7 +58,7 @@ module.UpdateTotalTimeData = function(stringUserID)
 	print("GameService.State.TimeManager - UpdateTotalTimeData", timeNow, GameDate, TotalTimeData[stringUserID])
 end
 
-module.UpdateDeathTimeData = function(stringUserID, optionalTime)
+function module.UpdateDeathTimeData(stringUserID, optionalTime)
 	DeathTimeData[stringUserID] = optionalTime or timeDifferenceMillis(DateTime.now(), GameDate)
 	print("GameService.State.TimeManager - UpdateDeathTimeData", optionalTime, DeathTimeData[stringUserID])
 end

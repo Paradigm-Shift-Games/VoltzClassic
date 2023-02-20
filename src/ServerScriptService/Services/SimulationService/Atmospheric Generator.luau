@@ -60,7 +60,7 @@ function onRemoved(object)
 	objectData[object] = nil
 end
 
-module.Run = function(delta)
+function module.Run(delta)
 	for v, _ in pairs(Ungrounded) do
 		if v.PrimaryPart:IsGrounded() then
 			Ungrounded[v], Grounded[v]  = nil, true

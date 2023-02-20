@@ -53,7 +53,7 @@ local function addPlayerResult(stringUserID, ratingStringUserIDs, ratingDelta, d
 	return "\n"..name.." [ "..formatTime(playerTime).." ]: "..rating..sign..math.floor(ratingDelta)
 end
 
-module.SendWinMessage = function(winningTeam, ratingDeltas)	
+function module.SendWinMessage(winningTeam, ratingDeltas)	
 	local color = winningTeam.TeamColor.Color--Color3.fromRGB(9, 137, 207)
 	local font = Enum.Font.Sarpanch
 	local textSize = 25
@@ -70,7 +70,7 @@ module.SendWinMessage = function(winningTeam, ratingDeltas)
 	end
 end
 
-module.SendMatchResult = function(winningTeam, dataTable, returnTable, deathTimeData, totalTime)
+function module.SendMatchResult(winningTeam, dataTable, returnTable, deathTimeData, totalTime)
 	local newMessage = DiscordService.Content.New()
 	local newEmbed = DiscordService.Embed.New()
 	newEmbed:SetTitle("Match Results")

@@ -42,7 +42,7 @@ module.AutoReport = true
 
 module.ReportedErrors = {}
 
-module.ReportError = function(ErrorCode, StackTrace, ScriptObject, IsClient)
+function module.ReportError(ErrorCode, StackTrace, ScriptObject, IsClient)
 	if ScriptObject == script then return end
 	
 	if module.ReportedErrors[ErrorCode] then
@@ -61,7 +61,7 @@ module.ReportError = function(ErrorCode, StackTrace, ScriptObject, IsClient)
 	DiscordService.SendContent("errorHook", NewMessage)
 end
 
-module.MessageClient = function(Player, sender, message)
+function module.MessageClient(Player, sender, message)
 	MessageRemote:FireClient(Player, sender, message)
 end
 
@@ -72,7 +72,7 @@ end
 MessageRemote.OnServerEvent:Connect(ClientReport)
 
 local meta = {}
-meta.__newindex = function(tab, index, value)
+function meta.__newindex(tab, index, value)
 	if index == "AutoReport" then
 		if value then
 			connection = ScriptContext.Error:Connect(module.ReportError)

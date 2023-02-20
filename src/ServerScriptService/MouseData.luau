@@ -11,7 +11,7 @@ function OnRecieved(player, part, position, normal)
 	MouseData[player] = {part, position, normal}
 end
 
-module.GetMouse = function(player)
+function module.GetMouse(player)
 	if not MouseData[player] then return nil, nil, nil end
 	return MouseData[player][1], MouseData[player][2], MouseData[player][3] 
 end

@@ -6,11 +6,11 @@ local GameData = {}
 
 local module = {}
 
-module.GetGameData = function(name)
+function module.GetGameData(name)
 	return GameData[name]
 end
 
-module.SetGameData = function(name, iteration, defaultValue, allowedTypes, isOrdered)
+function module.SetGameData(name, iteration, defaultValue, allowedTypes, isOrdered)
 	local types = {}
 	for _, v in pairs(allowedTypes) do types[v] = true end
 

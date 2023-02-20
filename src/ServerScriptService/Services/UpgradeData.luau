@@ -27,7 +27,7 @@ module.Generate = function()
 	end
 end
 
-module.GetUpgrade = function(model, upgradeNumber)
+function module.GetUpgrade(model, upgradeNumber)
 	return UpgradeData[model.Name][upgradeNumber]
 end
 

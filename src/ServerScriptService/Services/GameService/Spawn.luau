@@ -36,7 +36,7 @@ local function OnPlayerAdded(player)
 	module.SpawnPlayer(player, CFrame.new(position))
 end
 
-module.SpawnPlayer = function(player, cframe)
+function module.SpawnPlayer(player, cframe)
 	player:LoadCharacter()
 	local character = player.Character or player.CharacterAdded:Wait()
 	for _, v in ipairs(StarterTools) do v:Clone().Parent = player.Backpack end

@@ -6,7 +6,7 @@ local module = {}
 local ActionRemote = ReplicatedStorage.Events.Action
 local bound = {}
 
-module.Bind = function(action, func)
+function module.Bind(action, func)
 	if not bound[action] then bound[action] = {} end
 	table.insert(bound[action], func)
 end

@@ -87,7 +87,7 @@ module.Generate = function()
 	print("generated")
 end
 
-module.AssignIsland = function(island, team)
+function module.AssignIsland(island, team)
 	while not generated do wait() end
 	TeamIslands[team] = island
 	local part, position = GetSafePart(island)
@@ -97,7 +97,7 @@ module.AssignIsland = function(island, team)
 	Electricity.Push(spawnPad, math.huge, true)
 end
 
-module.GetSafePosition = function(player) 
+function module.GetSafePosition(player) 
 	while not TeamIslands[player.Team] do wait() end
 	local part, position = GetSafePart(TeamIslands[player.Team])
 	return position

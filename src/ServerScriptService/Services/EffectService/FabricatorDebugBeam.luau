@@ -1,6 +1,6 @@
 local module = {}
 
-module.Create = function(attachment, part)
+function module.Create(attachment, part)
 	local effect = {}
 	--Attachment
 	effect.attachment = Instance.new("Attachment")
@@ -14,7 +14,7 @@ module.Create = function(attachment, part)
 	effect.beam.Parent = workspace.Effects
 
 	--Change Color
-	effect.SetColor = function(colorSequence)
+	function effect.SetColor(colorSequence)
 		effect.beam.Color = colorSequence
 	end
 

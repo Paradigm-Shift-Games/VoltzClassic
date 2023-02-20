@@ -14,7 +14,7 @@ module.CreateEffect = function(effectName, ...)
 	return ID
 end
 
-module.EndEffect = function(effectID)
+function module.EndEffect(effectID)
 	if not effectID then return end
 	if not ActiveEffects[effectID] then return end
 	ActiveEffects[effectID].End()
@@ -29,7 +29,7 @@ module.SignalEffect = function(effectID, signal, ...)
 	ActiveEffects[effectID][signal](...)
 end
 
-module.Update = function(delta)
+function module.Update(delta)
 	for _, v in pairs(ActiveEffects) do 
 		if v.Update then v.Update(delta) end
 	end

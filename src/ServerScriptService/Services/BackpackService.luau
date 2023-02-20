@@ -76,7 +76,7 @@ local function onPlayerAdded(player)
 	player.CharacterAdded:Connect(function() AddJetpack(player) end)
 end
 
-module.GetBackpack = function(player)
+function module.GetBackpack(player)
 	return jetpacks[player]
 end
 

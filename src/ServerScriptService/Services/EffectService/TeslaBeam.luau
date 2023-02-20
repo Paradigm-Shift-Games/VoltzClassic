@@ -1,6 +1,6 @@
 local module = {}
 
-module.Create = function(attachment, part)
+function module.Create(attachment, part)
 	local effect = {}
 	--Attachment
 	effect.attachment = Instance.new("Attachment")

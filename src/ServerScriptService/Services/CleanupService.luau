@@ -5,24 +5,24 @@ local Reserved = {}
 
 local CleanupFunctions = {}
 
-module.Bind = function(key, func)
+function module.Bind(key, func)
 	CleanupFunctions[key] = func
 end
 
-module.Reserve = function(Object, key)
+function module.Reserve(Object, key)
 	if not Reserved[Object] then Reserved[Object] = {} end
 	Reserved[Object][key] = true
 end
 
-module.Unreserve = function(Object, key)
+function module.Unreserve(Object, key)
 	Reserved[Object][key] = nil
 end
 
-module.Free = function(Object)
+function module.Free(Object)
 	Reserved[Object] = nil
 end
 
-module.Clean = function(Object)
+function module.Clean(Object)
 	--print("Cleaning!")
 	if not Reserved[Object] then return end
 	for key, _ in pairs(Reserved[Object]) do

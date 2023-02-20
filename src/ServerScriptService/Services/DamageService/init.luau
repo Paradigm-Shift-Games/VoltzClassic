@@ -61,7 +61,7 @@ function GetDamageFactor(damageType, damagingType)
 	return DamageTypes[damageType][damagingType]
 end
 
-module.Damage = function(instance, damage, damageType)
+function module.Damage(instance, damage, damageType)
 	--print("Damaging", instance, damage, damageType)
 	if not (damage < 0 or damage == 0 or damage > 0) then warn("Illegal damage value") end
 	
@@ -131,7 +131,7 @@ function Destroy(Object)
 	Object:Destroy()
 end
 
-module.Destroy = function(Object)
+function module.Destroy(Object)
 	local isRoot = AssemblyService.isRoot(Object)
 	if isRoot then
 		for v, _ in pairs(AssemblyService.getAttachments(Object)) do Destroy(v) end

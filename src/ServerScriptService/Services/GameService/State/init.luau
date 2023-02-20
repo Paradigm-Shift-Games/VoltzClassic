@@ -180,7 +180,7 @@ local function initializeTeamData(teamData)
 	end
 end
 
-module.StartGame = function(teamData)	
+function module.StartGame(teamData)	
 	if length(teamData) <= 1 then return end
 	
 	warn("The game has been activated")

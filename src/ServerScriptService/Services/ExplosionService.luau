@@ -76,7 +76,7 @@ local function getDistance(model, position)
 	return closestDistance or math.huge
 end
 
-module.Explode = function(position, radius, damage)
+function module.Explode(position, radius, damage)
 	-- Create the explosion
 	local explosion = Instance.new("Explosion")
 	explosion.Position = position

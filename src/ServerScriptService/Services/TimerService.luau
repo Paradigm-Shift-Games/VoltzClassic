@@ -5,7 +5,7 @@ local timers = {}
 
 local enabled = true
 
-module.Start = function(str)
+function module.Start(str)
 	if not enabled then return end
 	if not timersIndex[str] then
 		timersIndex[str] = #timers + 1
@@ -15,7 +15,7 @@ module.Start = function(str)
 	end
 end
 
-module.Record = function(str)
+function module.Record(str)
 	if not enabled then return end
 	local index = timersIndex[str]
 	timers[index].time = os.clock() - timers[index].time

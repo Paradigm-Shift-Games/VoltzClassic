@@ -136,7 +136,7 @@ local function CalculateDamageLevel(health, maxHealth)
 	return damageLevel
 end
 
-module.Update = function(Structure, health, maxHealth)
+function module.Update(Structure, health, maxHealth)
 	local damageLevel = CalculateDamageLevel(health, maxHealth) 
 	if not DamageStates[Structure] then DamageStates[Structure] = {} end
 	
@@ -152,7 +152,7 @@ module.Update = function(Structure, health, maxHealth)
 	if damageLevel == 0 then end
 end
 
-module.Clean = function(Structure)
+function module.Clean(Structure)
 	for i = 1, 3 do if DamageStates[Structure][i] then RemoveEffect[i](Structure) end end
 end
 

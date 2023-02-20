@@ -243,14 +243,14 @@ function calculateRatingDeltas(dataTable)
 	return ReturnTable
 end
 
-module.GetRatingDeltas = function(inputTable, timeTable)
+function module.GetRatingDeltas(inputTable, timeTable)
 	local DataTable = formatData(inputTable, timeTable)
 	local ReturnTable = calculateRatingDeltas(DataTable)
 	
 	return DataTable, ReturnTable
 end
 
-module.ApplyRatings = function(dataTable, returnTable)
+function module.ApplyRatings(dataTable, returnTable)
 	warn("ApplyRatings", dataTable, returnTable)
 	
 	for stringUserID, ratingDelta in pairs(returnTable["WinningRatingDeltas"]) do

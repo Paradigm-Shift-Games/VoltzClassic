@@ -26,7 +26,7 @@ local function invalidDataOrKey(dataStoreName, key)
 	return false, gameData
 end
 
-GameDataService.GetKeyData = function(dataStoreName, key)
+function GameDataService.GetKeyData(dataStoreName, key)
 	local isInvalid, gameData = invalidDataOrKey(dataStoreName, key)
 	if isInvalid then return end
 
@@ -45,7 +45,7 @@ GameDataService.GetKeyData = function(dataStoreName, key)
 	end
 end
 
-GameDataService.AddKeyToDataStore = function(dataStoreName, key, value)
+function GameDataService.AddKeyToDataStore(dataStoreName, key, value)
 	local isInvalid, gameData = invalidDataOrKey(dataStoreName, key)
 	if isInvalid then return end
 
@@ -76,7 +76,7 @@ GameDataService.AddKeyToDataStore = function(dataStoreName, key, value)
 	end
 end
 
-GameDataService.SetKeyData = function(dataStoreName, key, value)
+function GameDataService.SetKeyData(dataStoreName, key, value)
 	local isInvalid, gameData = invalidDataOrKey(dataStoreName, key)
 	if isInvalid then return end
 
@@ -102,7 +102,7 @@ GameDataService.SetKeyData = function(dataStoreName, key, value)
 	end
 end
 
-GameDataService.UpdateKeyData = function(dataStoreName, key, func)
+function GameDataService.UpdateKeyData(dataStoreName, key, func)
 	local isInvalid, gameData = invalidDataOrKey(dataStoreName, key)
 	if isInvalid then return end
 
@@ -121,7 +121,7 @@ GameDataService.UpdateKeyData = function(dataStoreName, key, func)
 	end
 end
 
-GameDataService.IncremenKeyData = function(dataStoreName, key, delta)
+function GameDataService.IncremenKeyData(dataStoreName, key, delta)
 	local isInvalid, gameData = invalidDataOrKey(dataStoreName, key)
 	if isInvalid then return end
 
@@ -146,7 +146,7 @@ GameDataService.IncremenKeyData = function(dataStoreName, key, delta)
 	end
 end
 
-GameDataService.RemoveKeyFromDataStore = function(dataStoreName, key)
+function GameDataService.RemoveKeyFromDataStore(dataStoreName, key)
 	local isInvalid, gameData = invalidDataOrKey(dataStoreName, key)
 	if isInvalid then return end
 

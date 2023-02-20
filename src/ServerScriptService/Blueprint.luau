@@ -290,15 +290,15 @@ function OnBuilderPlace(player, modelName, buildType, snapState,  attachment1, a
 	Place(player, player.Team, modelName, buildType, snapState, false, attachment1, attachment2)
 end
 
-module.Upgrade = function(model)
+function module.Upgrade(model)
 	Upgrade(model)
 end
 
-module.Place = function(team, modelName, attachment1, attachment2, snapState, instantStructure)
+function module.Place(team, modelName, attachment1, attachment2, snapState, instantStructure)
 	return Place("Server", team, modelName, "Placing", snapState, instantStructure, attachment1, attachment2)
 end
 
-module.EasyPlace = function(team, modelName, attachedPart, PlacementCFrame, instantStructure)
+function module.EasyPlace(team, modelName, attachedPart, PlacementCFrame, instantStructure)
 	local cf = PlacementCFrame:ToWorldSpace(SnapData[modelName].Position)
 	local attachment = {part = attachedPart, offsetCF = attachedPart.CFrame:ToObjectSpace(cf)}
 	return module.Place(team, modelName, attachment, nil, 1, instantStructure)

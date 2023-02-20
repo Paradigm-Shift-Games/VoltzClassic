@@ -58,14 +58,14 @@ module.Initialize = function()
 	end
 end
 
-module.GetCell = function(cellType)
+function module.GetCell(cellType)
 	if not Weights[cellType] then
 		warn("Ivalid Cell Type!", cellType)
 	end
 	return WeightedChoice(Weights[cellType].normal)
 end
 
-module.GetLargeCell = function(cellType)
+function module.GetLargeCell(cellType)
 	if not Weights[cellType] then
 		warn("Ivalid Cell Type!", cellType)
 	end
