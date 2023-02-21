@@ -1,4 +1,4 @@
-local module = {}
+local EffectService = {}
 local Effects = {}
 local ActiveEffects = {}
 local m_ID = 0
@@ -8,31 +8,31 @@ for _, v in ipairs(script:GetChildren()) do
 	Effects[v.Name] = require(v)
 end
 
-module.CreateEffect = function(effectName, ...)
+EffectService.CreateEffect = function(effectName, ...)
 	local ID = GetID()
 	ActiveEffects[ID] = Effects[effectName].Create(...)
 	return ID
 end
 
-function module.EndEffect(effectID)
+function EffectService.EndEffect(effectID)
 	if not effectID then return end
 	if not ActiveEffects[effectID] then return end
 	ActiveEffects[effectID].End()
 	ActiveEffects[effectID] = nil
 end
 
-module.FireEffect = function(effectName, ...)
+EffectService.FireEffect = function(effectName, ...)
 	Effects[effectName].Fire(...)
 end
 
-module.SignalEffect = function(effectID, signal, ...)
+EffectService.SignalEffect = function(effectID, signal, ...)
 	ActiveEffects[effectID][signal](...)
 end
 
-function module.Update(delta)
+function EffectService.Update(delta)
 	for _, v in pairs(ActiveEffects) do 
 		if v.Update then v.Update(delta) end
 	end
 end
 
-return module
+return EffectService

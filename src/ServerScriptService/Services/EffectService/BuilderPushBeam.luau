@@ -1,6 +1,6 @@
-local module = {}
+local BuilderPushBeam = {}
 
-function module.Create(attachment0, position)
+function BuilderPushBeam.Create(attachment0, position)
 	local effect = {}
 	--Create Attachment
 	effect.attachment = Instance.new("Attachment")
@@ -26,4 +26,4 @@ function module.Create(attachment0, position)
 	return effect
 end
 
-return module
+return BuilderPushBeam

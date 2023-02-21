@@ -23,7 +23,7 @@ local DeadTeams = {}
 
 local Connection
 
-local module = {}
+local State = {}
 
 local function hasElements(tab)
 	for _, _ in pairs(tab) do return true end
@@ -74,8 +74,8 @@ local function setTeamState(team, state)
 		DeadTeams[team] = true
 		print("GameService.State - setTeamState - Dead", AliveTeams[team], CountingTeams[team], DeadTeams[team], length(AliveTeams), State)
 		
-		if length(AliveTeams) == 1 and State ~= "Terminated" then module.TerminateGame() end
-		--if State ~= "Terminated" then module.TerminateGame() end
+		if length(AliveTeams) == 1 and State ~= "Terminated" then State.TerminateGame() end
+		--if State ~= "Terminated" then State.TerminateGame() end
 		
 	elseif state == "Counting" then
 		AliveTeams[team] = nil
@@ -180,7 +180,7 @@ local function initializeTeamData(teamData)
 	end
 end
 
-function module.StartGame(teamData)	
+function State.StartGame(teamData)	
 	if length(teamData) <= 1 then return end
 	
 	warn("The game has been activated")
@@ -194,10 +194,10 @@ function module.StartGame(teamData)
 	if not RunService:IsStudio() then coroutine.wrap(function() GameDataService.SetKeyData("ActiveGames", PrivateServerId, DateTime.now().UnixTimestamp) end)() end
 	
 	warn(teamData)
-	if length(teamData) <= 1 then module.TerminateGame() return end
+	if length(teamData) <= 1 then State.TerminateGame() return end
 end
 
-module.TerminateGame = function()
+State.TerminateGame = function()
 	warn("The game has been terminated")
 	State = "Terminated"
 	
@@ -234,4 +234,4 @@ end
 CollectionService:GetInstanceAddedSignal("Spawn"):Connect(onSpawnAdded)
 CollectionService:GetInstanceRemovedSignal("Spawn"):Connect(onSpawnRemoved)
 
-return module
+return State

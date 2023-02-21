@@ -7,12 +7,12 @@ local TotalTimeData = {}
 local GameDate = DateTime.now()
 local GameTime = 0
 
-local module = {}
+local TimeManager = {}
 
 local function onPlayerDeath(player)
 	print("GameService.State.TimeManager - onPlayerDeath", player, player.UserId)
 	local stringUserID = tostring(player.UserId)
-	module.UpdateDeathTimeData(stringUserID)
+	TimeManager.UpdateDeathTimeData(stringUserID)
 end
 
 local function onCharacterAdded(player)
@@ -37,7 +37,7 @@ local function timeDifferenceMillis(dateTime1, dateTime2)
 	return dateTime1.UnixTimestampMillis - dateTime2.UnixTimestampMillis
 end
 
-function module.UpdateTotalTimeData(stringUserID)
+function TimeManager.UpdateTotalTimeData(stringUserID)
 	local timeNow = DateTime.now()
 
 	if not TotalTimeData[stringUserID] then
@@ -58,38 +58,38 @@ function module.UpdateTotalTimeData(stringUserID)
 	print("GameService.State.TimeManager - UpdateTotalTimeData", timeNow, GameDate, TotalTimeData[stringUserID])
 end
 
-function module.UpdateDeathTimeData(stringUserID, optionalTime)
+function TimeManager.UpdateDeathTimeData(stringUserID, optionalTime)
 	DeathTimeData[stringUserID] = optionalTime or timeDifferenceMillis(DateTime.now(), GameDate)
 	print("GameService.State.TimeManager - UpdateDeathTimeData", optionalTime, DeathTimeData[stringUserID])
 end
 
-module.ActivateTracking = function()
+TimeManager.ActivateTracking = function()
 	GameDate = DateTime.now()
 	print("GameService.State.TimeManager - ActivateTracking", GameDate, GameTime)
 	
 	connectTracking()
-	for _, player in ipairs(Players:GetPlayers()) do module.UpdateTotalTimeData(tostring(player.UserId)) end
+	for _, player in ipairs(Players:GetPlayers()) do TimeManager.UpdateTotalTimeData(tostring(player.UserId)) end
 	
 	DeathTimeData = {}
 	TotalTimeData = {}
 	print("GameService.State.TimeManager - ActivateTracking", TotalTimeData, DeathTimeData)
 end
 
-module.TerminateTracking = function()
+TimeManager.TerminateTracking = function()
 	GameTime = timeDifferenceMillis(DateTime.now(), GameDate)
 	print("GameService.State.TimeManager - TerminateTracking", GameDate, GameTime)
 	for _, player in ipairs(Players:GetPlayers()) do
 		local stringUserID = tostring(player.UserId)
-		module.UpdateTotalTimeData(stringUserID)
-		module.UpdateDeathTimeData(stringUserID, GameTime)
+		TimeManager.UpdateTotalTimeData(stringUserID)
+		TimeManager.UpdateDeathTimeData(stringUserID, GameTime)
 	end
 	
 	print("GameService.State.TimeManager - TerminateTracking", TotalTimeData, DeathTimeData)
 end
 
-module.GetTimeData = function()
+TimeManager.GetTimeData = function()
 	print("GameService.State.TimeManager - GetTimeData", TotalTimeData, DeathTimeData, GameTime)
 	return TotalTimeData, DeathTimeData, GameTime
 end
 
-return module
+return TimeManager

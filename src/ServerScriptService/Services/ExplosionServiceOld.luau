@@ -6,7 +6,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local StructureUtil = require(ReplicatedStorage.StructureUtility)
 local Destruction = require(ServerScriptService.Services.DamageService)
 
-local module = {}
+local ExplosionServiceOld = {}
 
 local raycastParams = RaycastParams.new() -- Create a RaycastParams object
 raycastParams.FilterType = Enum.RaycastFilterType.Whitelist -- Set the filter mode to whitelist
@@ -18,7 +18,7 @@ collider.CanCollide = false
 collider.Anchored = true
 collider.Touched:Connect(function() end)
 
-module.Explode = function (position, radius, damage)
+ExplosionServiceOld.Explode = function (position, radius, damage)
 	local DEBUG = true
 	local SELF_BLOCK = true -- Will the explosion block parts from getting hit more than once by the same explosion?
 	local explosionTime = 0 -- How long to allow the explosion to "last"? (Before damage is applied) 
@@ -189,4 +189,4 @@ module.Explode = function (position, radius, damage)
 	end
 end
 
-return module
+return ExplosionServiceOld

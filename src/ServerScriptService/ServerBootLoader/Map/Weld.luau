@@ -5,7 +5,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local Matrix = require(script.Parent.Matrix)
 local WeldService = require(ServerScriptService.Services.WeldService)
 
-local module = {}
+local Weld = {}
 local CellFolder = workspace.MapCells
 
 function WeldNeighbors(cell)
@@ -23,12 +23,12 @@ function UnanchorCell(cell)
 	end
 end
 
-module.Weld = function()
+Weld.Weld = function()
 	Matrix.Interate(WeldNeighbors)
 	Matrix.Interate(UnanchorCell)
 end
 
-module.Initialize = function()
+Weld.Initialize = function()
 	for _, v in pairs(CellFolder:GetChildren()) do
 		for _, g in pairs(v:GetChildren()) do
 			for _, j in pairs(g:GetChildren()) do
@@ -50,4 +50,4 @@ module.Initialize = function()
 	end
 end
 
-return module
+return Weld

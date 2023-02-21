@@ -1,8 +1,8 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local EffectRemote = ReplicatedStorage:WaitForChild("Events"):WaitForChild("Effect")
-local module = {}
+local Bullet = {}
 
-module.Fire = function(...) EffectRemote:FireAllClients(script.Name, ...) end
+Bullet.Fire = function(...) EffectRemote:FireAllClients(script.Name, ...) end
 
-return module
+return Bullet

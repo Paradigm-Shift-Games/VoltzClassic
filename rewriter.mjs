@@ -57,16 +57,29 @@ const memoryFiles = await Promise.all(luaSources.map(async file => {
     }
 }))
 
-const fnRegex = /(\w+)\.(\w+) = function\(([\w, \,,\ ]+)\)/g
+const moduleRegex = /local module = {}/g
+
+function getNewName(memoryFile) {
+    const { path } = memoryFile
+
+    const pathSegments = path.split(`/`);
+    const pathName = pathSegments[pathSegments.length - 1];
+
+    const nameSegments = pathName.split(`.`);
+    const name = nameSegments[0];
+
+    if (name == `init`) {
+        return pathSegments[pathSegments.length - 2];
+    }
+    
+    return name
+}
 
 function rewriteSource(memoryFile) {
-    const newContent = memoryFile.content.replaceAll(fnRegex, (...args) => {
-        const [fileContent, moduleName, functionName, argumentList] = args
-        return `function ${moduleName}.${functionName}(${argumentList})`
-    })
+    const newName = getNewName(memoryFile);
+    const newSource = memoryFile.content.replaceAll(`module`, newName)
 
-    // Write the new file content
-    fs.writeFile(memoryFile.path, newContent);
+    fs.writeFile(memoryFile.path, newSource);
 }
 
 for (const memoryFile of memoryFiles) {

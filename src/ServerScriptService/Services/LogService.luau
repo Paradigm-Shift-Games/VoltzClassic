@@ -23,9 +23,9 @@ function GetStackTraceName(stackTrace)
 	return TabToReturn
 end
 
-local module = {}
+local LogService = {}
 --[[
---module--
+--LogService--
 
 bool AutoReport
 --Autoreporter setting
@@ -38,18 +38,18 @@ void function MessageClient(Player player, string sender,string message)
 prints message on client: [Server/sender: message]
 ]]
 local connection = nil
-module.AutoReport = true
+LogService.AutoReport = true
 
-module.ReportedErrors = {}
+LogService.ReportedErrors = {}
 
-function module.ReportError(ErrorCode, StackTrace, ScriptObject, IsClient)
+function LogService.ReportError(ErrorCode, StackTrace, ScriptObject, IsClient)
 	if ScriptObject == script then return end
 	
-	if module.ReportedErrors[ErrorCode] then
-		module.ReportedErrors[ErrorCode] += 1 
+	if LogService.ReportedErrors[ErrorCode] then
+		LogService.ReportedErrors[ErrorCode] += 1 
 		return
 	end
-	module.ReportedErrors[ErrorCode] = 1
+	LogService.ReportedErrors[ErrorCode] = 1
 	
 	local NewMessage = DiscordService.Content.New()
 	local name = StackTrace:split(",")[1]
@@ -61,13 +61,13 @@ function module.ReportError(ErrorCode, StackTrace, ScriptObject, IsClient)
 	DiscordService.SendContent("errorHook", NewMessage)
 end
 
-function module.MessageClient(Player, sender, message)
+function LogService.MessageClient(Player, sender, message)
 	MessageRemote:FireClient(Player, sender, message)
 end
 
 local function ClientReport(Player, ErrorCode, StackTrace)
 	ErrorCode = Player.UserId.."/"..Player.Name.."\n"..ErrorCode
-	module.ReportError(ErrorCode, StackTrace, nil, true)
+	LogService.ReportError(ErrorCode, StackTrace, nil, true)
 end
 MessageRemote.OnServerEvent:Connect(ClientReport)
 
@@ -75,7 +75,7 @@ local meta = {}
 function meta.__newindex(tab, index, value)
 	if index == "AutoReport" then
 		if value then
-			connection = ScriptContext.Error:Connect(module.ReportError)
+			connection = ScriptContext.Error:Connect(LogService.ReportError)
 		elseif connection ~= nil then
 			connection:Disconnect()
 		end
@@ -83,8 +83,8 @@ function meta.__newindex(tab, index, value)
 	rawset(tab, index, value)
 end
 
-if module.AutoReport then
-	connection = ScriptContext.Error:Connect(module.ReportError)
+if LogService.AutoReport then
+	connection = ScriptContext.Error:Connect(LogService.ReportError)
 end
 
-return setmetatable(module, meta)
+return setmetatable(LogService, meta)

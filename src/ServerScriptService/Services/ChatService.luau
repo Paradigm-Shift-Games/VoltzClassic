@@ -10,9 +10,9 @@ local DefaultChatConfig = {
 	["TextSize"] = 18;
 }
 
-local module = {}
+local ChatService = {}
 
-function module.SetDefaultConfig(color, font, textSize)
+function ChatService.SetDefaultConfig(color, font, textSize)
 	local previousDefaultConfig = DefaultChatConfig
 	
 	DefaultChatConfig = {
@@ -22,18 +22,18 @@ function module.SetDefaultConfig(color, font, textSize)
 	}
 end
 
-function module.SendGlobalMessage(text, optionalConfigTable)
+function ChatService.SendGlobalMessage(text, optionalConfigTable)
 	local configTable = optionalConfigTable or DefaultChatConfig
 	configTable["Text"] = text
 	
 	ServerChatRemote:FireAllClients(configTable)
 end
 
-function module.SendMessage(player, text, optionalConfigTable)
+function ChatService.SendMessage(player, text, optionalConfigTable)
 	local configTable = optionalConfigTable or DefaultChatConfig
 	configTable["Text"] = text
 
 	ServerChatRemote:FireClient(player, configTable)
 end
 
-return module
+return ChatService

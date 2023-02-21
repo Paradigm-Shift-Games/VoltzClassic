@@ -1,6 +1,6 @@
-local module = {}
+local FabricatorBeam = {}
 
-function module.Create(attachment, part)
+function FabricatorBeam.Create(attachment, part)
 	local effect = {}
 	--Attachment
 	effect.attachment = Instance.new("Attachment")
@@ -26,4 +26,4 @@ function module.Create(attachment, part)
 	return effect
 end
 
-return module
+return FabricatorBeam

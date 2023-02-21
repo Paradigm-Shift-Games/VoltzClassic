@@ -10,7 +10,7 @@ local LosingWeightFunctions = {}
 
 local RatingConstant = 10
 
-local module = {}
+local RatingProcessor = {}
 
 local M_1_1_PI = 1/math.pi
 
@@ -243,14 +243,14 @@ function calculateRatingDeltas(dataTable)
 	return ReturnTable
 end
 
-function module.GetRatingDeltas(inputTable, timeTable)
+function RatingProcessor.GetRatingDeltas(inputTable, timeTable)
 	local DataTable = formatData(inputTable, timeTable)
 	local ReturnTable = calculateRatingDeltas(DataTable)
 	
 	return DataTable, ReturnTable
 end
 
-function module.ApplyRatings(dataTable, returnTable)
+function RatingProcessor.ApplyRatings(dataTable, returnTable)
 	warn("ApplyRatings", dataTable, returnTable)
 	
 	for stringUserID, ratingDelta in pairs(returnTable["WinningRatingDeltas"]) do
@@ -271,7 +271,7 @@ function module.ApplyRatings(dataTable, returnTable)
 	end
 end
 
-return module
+return RatingProcessor
 
 --[[
 TeamData Template = {

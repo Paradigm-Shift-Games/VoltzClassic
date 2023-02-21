@@ -90,7 +90,7 @@ local function onServerEvent(player, artillery, mode, rotationArray)
 	end
 end
 
-local function runObject(delta, artillery) --Not named to "runArtillery" for the sake of module.Run errors
+local function runObject(delta, artillery) --Not named to "runArtillery" for the sake of Artillery.Run errors
 	local artilleryData = ArtilleryData[artillery]
 	
 	if artilleryData.Consumed then

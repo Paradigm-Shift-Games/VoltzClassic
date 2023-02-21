@@ -8,7 +8,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local StarterIsland = require(ServerScriptService.ServerBootLoader.Map.StarterIsland)
 
-local module = {}
+local Team = {}
 local teamData = {}
 local loaded = false
 local matchData
@@ -89,7 +89,7 @@ if RunService:IsStudio() then
 	coroutine.wrap(BuildTeams)()
 end
 	
-module.GetTeamData = function()
+Team.GetTeamData = function()
 	while not loaded do wait() end
 	return teamData
 end
@@ -97,4 +97,4 @@ end
 coroutine.wrap(function() for _, player in ipairs(Players:GetPlayers()) do OnPlayerAdded(player) end end)()
 Players.PlayerAdded:Connect(OnPlayerAdded)
 
-return module
+return Team

@@ -1,6 +1,6 @@
-local module = {}
+local DistributorBeam = {}
 
-function module.Create(attachment0, attachment1)
+function DistributorBeam.Create(attachment0, attachment1)
 	local effect = {}
 	--Beam
 	effect.beam = script.Beam:Clone()
@@ -21,4 +21,4 @@ function module.Create(attachment0, attachment1)
 	return effect
 end
 
-return module
+return DistributorBeam

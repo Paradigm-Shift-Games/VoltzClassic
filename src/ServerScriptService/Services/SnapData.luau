@@ -2,7 +2,7 @@
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local module = {}
+local SnapData = {}
 Data = {}
 local event = ReplicatedStorage.Events.SnapData
 local generated = false
@@ -28,7 +28,7 @@ function Recurse(obj, root)
     end
 end
 
-module.Generate = function()
+SnapData.Generate = function()
 	for _, v in pairs(toRecurse) do
 		for _, g in pairs(v:GetChildren()) do
 			if g:FindFirstChild("AdvancedAttachment") then
@@ -39,10 +39,10 @@ module.Generate = function()
 	end
 end
 
-module.GetSnaps = function()
+SnapData.GetSnaps = function()
 	return Data
 end
 
-event.OnServerInvoke = module.GetSnaps
+event.OnServerInvoke = SnapData.GetSnaps
 
-return module
+return SnapData

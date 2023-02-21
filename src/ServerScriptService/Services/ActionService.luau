@@ -2,11 +2,11 @@
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local module = {}
+local ActionService = {}
 local ActionRemote = ReplicatedStorage.Events.Action
 local bound = {}
 
-function module.Bind(action, func)
+function ActionService.Bind(action, func)
 	if not bound[action] then bound[action] = {} end
 	table.insert(bound[action], func)
 end
@@ -20,4 +20,4 @@ end
 
 ActionRemote.OnServerEvent:Connect(OnRecieve)
 
-return module
+return ActionService

@@ -12,7 +12,7 @@ local CleanupService = require(ServerScriptService.Services.CleanupService)
 local AssemblyService = require(ServerScriptService.Services.AssemblyService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
-local module = {}
+local DamageService = {}
 
 local DamageFactorsByBodyPart = {
     Head = 2, 
@@ -61,7 +61,7 @@ function GetDamageFactor(damageType, damagingType)
 	return DamageTypes[damageType][damagingType]
 end
 
-function module.Damage(instance, damage, damageType)
+function DamageService.Damage(instance, damage, damageType)
 	--print("Damaging", instance, damage, damageType)
 	if not (damage < 0 or damage == 0 or damage > 0) then warn("Illegal damage value") end
 	
@@ -89,7 +89,7 @@ function module.Damage(instance, damage, damageType)
 			Electricity.Pull(damaging, damage, true)
 		else
 			local health = damaging.Health
-			if health.Value <= damage then module.Destroy(damaging) return end
+			if health.Value <= damage then DamageService.Destroy(damaging) return end
 			health.Value -= damage
 			
 			--Effects
@@ -131,7 +131,7 @@ function Destroy(Object)
 	Object:Destroy()
 end
 
-function module.Destroy(Object)
+function DamageService.Destroy(Object)
 	local isRoot = AssemblyService.isRoot(Object)
 	if isRoot then
 		for v, _ in pairs(AssemblyService.getAttachments(Object)) do Destroy(v) end
@@ -139,4 +139,4 @@ function module.Destroy(Object)
 	Destroy(Object)
 end
 
-return module
+return DamageService

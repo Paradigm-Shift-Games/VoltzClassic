@@ -1,4 +1,4 @@
-local module = {}
+local ProjectileService = {}
 
 local Projectiles = {}
 
@@ -23,7 +23,7 @@ local Raycast = function(parameters, origin, direction)
 	return hit, hitPosition
 end
 
-function module.New(template, directions, parameters)
+function ProjectileService.New(template, directions, parameters)
 	local projectile = template:Clone()
 	Projectiles[projectile] = {directions = directions, parameters = parameters, projectile = projectile}
 	projectile:SetPrimaryPartCFrame(CFrame.new(directions[1], directions[1] + (directions[2] or Vector3.new(0,0,0)))) 
@@ -31,7 +31,7 @@ function module.New(template, directions, parameters)
 	return projectile
 end
 
-function module.Influence(projectile, directionsDelta)
+function ProjectileService.Influence(projectile, directionsDelta)
 	if not Projectiles[projectile] then return end
 	local directions = Projectiles[projectile].directions
 	for i, v in ipairs(directionsDelta) do
@@ -40,21 +40,21 @@ function module.Influence(projectile, directionsDelta)
 	end
 end
 
-function module.GetDirections(projectile)
+function ProjectileService.GetDirections(projectile)
 	if not projectile then return false end
 	return Projectiles[projectile].directions
 end
 
-function module.SetDirections(projectile, directions)
+function ProjectileService.SetDirections(projectile, directions)
 	if not projectile then return false end
 	Projectiles[projectile].directions = directions
 end
 
-function module.Bind(projectile, func)
+function ProjectileService.Bind(projectile, func)
 	Projectiles[projectile].connected = func
 end
 
-function module.Run(delta)
+function ProjectileService.Run(delta)
 	for projectile, data in pairs(Projectiles) do
 		local directions = data.directions
 		local parameters = data.parameters
@@ -73,4 +73,4 @@ function module.Run(delta)
 	end
 end
 
-return module
+return ProjectileService

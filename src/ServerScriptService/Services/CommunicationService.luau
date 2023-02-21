@@ -4,39 +4,39 @@ local MessagingService = game:GetService("MessagingService")
 
 -- Script for cross-server communication in an ordered fashion
 
-local module = {}
+local CommunicationService = {}
 
-module.MessageChannels = {
+CommunicationService.MessageChannels = {
 	["General"] = "GENERAL";
 	["Moderation"] = "MODERATION";
 }
 
-module.BoundToCommunication = {}
+CommunicationService.BoundToCommunication = {}
 
-function module.CreateChannel(key, channel)
-	module.MessageChannels[key] = channel
+function CommunicationService.CreateChannel(key, channel)
+	CommunicationService.MessageChannels[key] = channel
 end
 
-function module.BindToCommunication(channel, name, callback)
+function CommunicationService.BindToCommunication(channel, name, callback)
 	local success, connection = pcall(function()
 		return MessagingService:SubscribeAsync(channel, function(message) callback(message.Data) end)
 	end)
 	
 	if success then
-		module.BoundToCommunication[name] = connection
+		CommunicationService.BoundToCommunication[name] = connection
 		print("Successfully bound " .. name .. " to cross-server communication on " .. channel .. " channel.")
 	else
 		error("Unsuccessfully attempted to bind " .. name .. " to cross-server communication on " .. channel .. " channel: " .. connection)
 	end
 end
 
-function module.UnbindFromCommunication(name)
-	if not module.BoundToCommunication[name] then print("Unsuccessfully attempted to unbind " .. name .. " from cross-server communication as no bound callbacks exist under specified name.") return end
-	module.BoundToCommunication[name]:Disconnect()
+function CommunicationService.UnbindFromCommunication(name)
+	if not CommunicationService.BoundToCommunication[name] then print("Unsuccessfully attempted to unbind " .. name .. " from cross-server communication as no bound callbacks exist under specified name.") return end
+	CommunicationService.BoundToCommunication[name]:Disconnect()
 	print("Successfully unbound " .. name .. " from cross-server communication!")
 end
 
-function module.Communicate(channel, content)
+function CommunicationService.Communicate(channel, content)
 	if not channel then print("Unsuccessfully published message as channel key does not exist (" .. channel .. ")") return end
 	
 	local success, result = pcall(function()
@@ -49,4 +49,4 @@ function module.Communicate(channel, content)
 	end
 end
 
-return module
+return CommunicationService

@@ -3,13 +3,13 @@
 local Matrix = require(script.Parent.Matrix)
 local Settings = require(script.Parent.Settings.selectedSettings.Value)
 
-local module = {}
+local Support = {}
 local ColumnCount = 0
 local cellSelection = {items = {}, distribution = {}}
 local selectionTotal = 1 + Settings.WellPipeWeight + Settings.LadderWeight
 cellSelection.items = {"Support Fill", "Support Well", "Support Ladder"}
 cellSelection.distribution = {1/selectionTotal, Settings.WellPipeWeight/selectionTotal, Settings.LadderWeight/selectionTotal}
-module.Supports = {}
+Support.Supports = {}
 
 function WeightedChoice(weight)
 	local rand = math.random()
@@ -22,9 +22,9 @@ function WeightedChoice(weight)
 	end
 end
 
-function module.CanGenerate(x, z)
+function Support.CanGenerate(x, z)
 	local minDistance = Settings.SupportSpacing
-	for _, support in pairs(module.Supports) do
+	for _, support in pairs(Support.Supports) do
 		local distance = math.sqrt((support.X-x)^2 + (support.Z-z)^2)
 		if distance < minDistance then return false end
 	end
@@ -67,14 +67,14 @@ local function Generate(x, z, isCircular, size, isStarter)
 	end
 end
 
-module.Generate = function()
-	for _, v in pairs(module.Supports) do
+Support.Generate = function()
+	for _, v in pairs(Support.Supports) do
 		Generate(v.X, v.Z, v.isCircular, v.size, v.isStarter)
 	end
 end
 
-function module.Add(x, z, isCircular, size, isStarter)
-	table.insert(module.Supports, {X = x, Z = z, isCircular = isCircular, size = size, isStarter = isStarter})
+function Support.Add(x, z, isCircular, size, isStarter)
+	table.insert(Support.Supports, {X = x, Z = z, isCircular = isCircular, size = size, isStarter = isStarter})
 end
 
-return module
+return Support

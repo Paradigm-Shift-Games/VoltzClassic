@@ -10,7 +10,7 @@ local StructureUtil = require(ReplicatedStorage.StructureUtility)
 local AssemblyService = require(ServerScriptService.Services.AssemblyService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
-local module = {}
+local Structure = {}
 
 function PromoteUpgrade(Object)
 	--Clear Blueprint Data
@@ -35,7 +35,7 @@ function PromoteUpgrade(Object)
 	if Stats[Object.Name].Tags then for _, v in pairs(Stats[Object.Name].Tags) do CollectionService:AddTag(Object, v) end end
 end
 
-function module.Promote(Object)	
+function Structure.Promote(Object)	
 	--Offload Upgrades
 	if CollectionService:HasTag(Object, "Upgrade") then PromoteUpgrade(Object) return end
 	
@@ -81,4 +81,4 @@ function module.Promote(Object)
 	CollectionService:AddTag(Object, Object.Name)
 end
 
-return module
+return Structure

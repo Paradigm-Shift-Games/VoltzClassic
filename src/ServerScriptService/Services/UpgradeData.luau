@@ -1,10 +1,10 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local module = {}
+local UpgradeData = {}
 
 UpgradeData = {}
 
-module.Generate = function()
+UpgradeData.Generate = function()
 	for _, v in ipairs(ReplicatedStorage.Objects:GetChildren()) do
 		local upgradeFolder = v:FindFirstChild("Upgrades")
 		if upgradeFolder then
@@ -27,8 +27,8 @@ module.Generate = function()
 	end
 end
 
-function module.GetUpgrade(model, upgradeNumber)
+function UpgradeData.GetUpgrade(model, upgradeNumber)
 	return UpgradeData[model.Name][upgradeNumber]
 end
 
-return module
+return UpgradeData

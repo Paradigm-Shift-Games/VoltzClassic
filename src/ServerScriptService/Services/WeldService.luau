@@ -4,7 +4,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local CleanupService = require(ServerScriptService.Services.CleanupService)
 
-local module = {}
+local WeldService = {}
 local WeldGraph = {}
 local Welds = workspace.Welds
 local WeldIgnore = {WeldPad = true}
@@ -26,13 +26,13 @@ function WeldMotor6D(parent, part1, part2, name)
 	newMotor6.Part1 = part2
 end
 
-function module.Unanchor(Object)
+function WeldService.Unanchor(Object)
 	for _, v in pairs(Object:GetDescendants()) do
 		if v:IsA("BasePart") then v.Anchored = false end
 	end
 end
 
-function module.WeldModel(Object)
+function WeldService.WeldModel(Object)
 	for _, v in pairs(Object:GetDescendants()) do
 		if Object:IsA("Model") and v == Object.PrimaryPart then continue end
 		if v:IsA("BasePart") and not WeldIgnore[v.Name] then
@@ -41,7 +41,7 @@ function module.WeldModel(Object)
 	end
 end
 
-function module.WeldTool(tool)
+function WeldService.WeldTool(tool)
 	local handle = tool:FindFirstChild("Handle")
 	if not handle then warn(tool.Name, "has no handle!") return end
 	for _, v in pairs(tool:GetDescendants()) do
@@ -50,7 +50,7 @@ function module.WeldTool(tool)
 	end
 end
 
-function module.WeldAssembly(Object)
+function WeldService.WeldAssembly(Object)
 	
 	--Weld Models
 	for _, v in pairs(Object:GetChildren()) do
@@ -73,7 +73,7 @@ function module.WeldAssembly(Object)
 	end
 end
 
-function module.WeldModels(Object1, Object2)
+function WeldService.WeldModels(Object1, Object2)
 	if Object1 == Object2 then return end
 	if not WeldGraph[Object1] then
 		CleanupService.Reserve(Object1, "Weld")
@@ -88,7 +88,7 @@ function module.WeldModels(Object1, Object2)
 	WeldGraph[Object2][Object1] = weld
 end
 
-function module.Unweld(Object)
+function WeldService.Unweld(Object)
 	for Other, weld in pairs(WeldGraph[Object]) do
 		WeldGraph[Other][Object] = nil
 		weld:Destroy()
@@ -96,7 +96,7 @@ function module.Unweld(Object)
 	WeldGraph[Object] = nil
 end
 
-CleanupService.Bind("Weld", module.Unweld)
+CleanupService.Bind("Weld", WeldService.Unweld)
 
-return module
+return WeldService
 

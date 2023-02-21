@@ -8,7 +8,7 @@ local EffectTypes = {"Cracks", "Sparks", "Fire"}
 local IgnoredNames = {"Snap"}
 local DamageStates = {}
 
-local module = {}
+local DamageEffects = {}
 
 local function FindPoint(Structure)
 	local function CanHit(part)
@@ -136,7 +136,7 @@ local function CalculateDamageLevel(health, maxHealth)
 	return damageLevel
 end
 
-function module.Update(Structure, health, maxHealth)
+function DamageEffects.Update(Structure, health, maxHealth)
 	local damageLevel = CalculateDamageLevel(health, maxHealth) 
 	if not DamageStates[Structure] then DamageStates[Structure] = {} end
 	
@@ -152,10 +152,10 @@ function module.Update(Structure, health, maxHealth)
 	if damageLevel == 0 then end
 end
 
-function module.Clean(Structure)
+function DamageEffects.Clean(Structure)
 	for i = 1, 3 do if DamageStates[Structure][i] then RemoveEffect[i](Structure) end end
 end
 
-CleanupService.Bind("DamageEffects", module.Clean)
+CleanupService.Bind("DamageEffects", DamageEffects.Clean)
 
-return module
+return DamageEffects

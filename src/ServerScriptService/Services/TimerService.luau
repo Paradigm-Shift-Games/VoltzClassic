@@ -1,11 +1,11 @@
-local module = {}
+local TimerService = {}
 
 local timersIndex = {}
 local timers = {}
 
 local enabled = true
 
-function module.Start(str)
+function TimerService.Start(str)
 	if not enabled then return end
 	if not timersIndex[str] then
 		timersIndex[str] = #timers + 1
@@ -15,13 +15,13 @@ function module.Start(str)
 	end
 end
 
-function module.Record(str)
+function TimerService.Record(str)
 	if not enabled then return end
 	local index = timersIndex[str]
 	timers[index].time = os.clock() - timers[index].time
 end
 
-module.Post = function()
+TimerService.Post = function()
 	for _, v in ipairs(timers) do
 		local postStr = ""
 		local indentCount = #string.split(v.name) - 1
@@ -30,16 +30,16 @@ module.Post = function()
 	end
 end
 
-module.Enable = function()
+TimerService.Enable = function()
 	enabled = true
 end
 
-module.Disable = function()
+TimerService.Disable = function()
 	enabled = false
 end
 
-module.Toggle = function()
-	if enabled then module.Disable() else module.Enable() end
+TimerService.Toggle = function()
+	if enabled then TimerService.Disable() else TimerService.Enable() end
 end
 
-return module
+return TimerService

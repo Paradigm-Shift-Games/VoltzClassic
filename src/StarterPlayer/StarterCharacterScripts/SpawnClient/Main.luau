@@ -6,7 +6,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Stats = require(ReplicatedStorage.Stats.Structure)
 
-local module = {}
+local Main = {}
 local SpawnGuiAssets = ReplicatedFirst.RespawnGui
 local SpawnRemote = ReplicatedStorage.Events.RequestSpawn
 local LocalPlayer = Players.LocalPlayer
@@ -93,11 +93,11 @@ local function BuildGui()
 	Gui.Parent = LocalPlayer.PlayerGui
 end
 
-module.Enable = function()
+Main.Enable = function()
 	camera.CameraType = Enum.CameraType.Scriptable
 	BuildGui()
 	Gui.Buttons.ConfirmButton.MouseButton1Click:Connect(OnConfirmButtonClick)
 	RunService:BindToRenderStep("SpawnDisplay", 255, UpdateGui)
 end
 
-return module
+return Main

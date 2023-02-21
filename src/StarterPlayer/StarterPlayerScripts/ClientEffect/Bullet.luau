@@ -1,7 +1,7 @@
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 
-local module = function(Attachment, EndPosition, parameters)
+local Bullet = function(Attachment, EndPosition, parameters)
 	RunService.Heartbeat:Wait()
 	--Custom Parameters
 	local size = parameters.Size
@@ -34,4 +34,4 @@ local module = function(Attachment, EndPosition, parameters)
 	NewProjectile:Destroy()
 end
 
-return module
+return Bullet
