@@ -19,7 +19,7 @@ function BuilderPullBeam.Create(attachment0, position)
 	end	
 
 	--Destructor
-	effect.End = function()
+	function effect.End()
 		effect.beam:Destroy()
 	end
 

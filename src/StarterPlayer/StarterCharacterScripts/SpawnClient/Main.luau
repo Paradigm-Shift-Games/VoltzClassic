@@ -82,7 +82,8 @@ local function CreateSpawnButton(spawnPad)
 		UpdateButton(spawnButton)
 		spawnButton.Parent = Gui.Spawns
 	end
-	coroutine.wrap(BuildButton)()
+
+	task.spawn(BuildButton)
 end
 
 local function BuildGui()
@@ -93,7 +94,7 @@ local function BuildGui()
 	Gui.Parent = LocalPlayer.PlayerGui
 end
 
-Main.Enable = function()
+function Main.Enable()
 	camera.CameraType = Enum.CameraType.Scriptable
 	BuildGui()
 	Gui.Buttons.ConfirmButton.MouseButton1Click:Connect(OnConfirmButtonClick)

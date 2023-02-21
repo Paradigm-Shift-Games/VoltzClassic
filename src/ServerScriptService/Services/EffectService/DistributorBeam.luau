@@ -14,7 +14,7 @@ function DistributorBeam.Create(attachment0, attachment1)
 	end
 	
 	--Destructor
-	effect.End = function()
+	function effect.End()
 		effect.beam:Destroy()
 	end
 	

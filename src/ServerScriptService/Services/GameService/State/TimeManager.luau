@@ -63,7 +63,7 @@ function TimeManager.UpdateDeathTimeData(stringUserID, optionalTime)
 	print("GameService.State.TimeManager - UpdateDeathTimeData", optionalTime, DeathTimeData[stringUserID])
 end
 
-TimeManager.ActivateTracking = function()
+function TimeManager.ActivateTracking()
 	GameDate = DateTime.now()
 	print("GameService.State.TimeManager - ActivateTracking", GameDate, GameTime)
 	
@@ -75,7 +75,7 @@ TimeManager.ActivateTracking = function()
 	print("GameService.State.TimeManager - ActivateTracking", TotalTimeData, DeathTimeData)
 end
 
-TimeManager.TerminateTracking = function()
+function TimeManager.TerminateTracking()
 	GameTime = timeDifferenceMillis(DateTime.now(), GameDate)
 	print("GameService.State.TimeManager - TerminateTracking", GameDate, GameTime)
 	for _, player in ipairs(Players:GetPlayers()) do
@@ -87,7 +87,7 @@ TimeManager.TerminateTracking = function()
 	print("GameService.State.TimeManager - TerminateTracking", TotalTimeData, DeathTimeData)
 end
 
-TimeManager.GetTimeData = function()
+function TimeManager.GetTimeData()
 	print("GameService.State.TimeManager - GetTimeData", TotalTimeData, DeathTimeData, GameTime)
 	return TotalTimeData, DeathTimeData, GameTime
 end

@@ -57,7 +57,11 @@ end
 local function AssignTeam(player)
 	print("Finding team for", player)
 	for teamName, data in pairs(teamData) do
-		if table.find(data.UserIds, player.UserId) then print("\t".."Found Team") player.Team = data.Team return end 
+		if table.find(data.UserIds, player.UserId) then
+			print("\t".."Found Team")
+			player.Team = data.Team
+			return
+		end
 	end
 	
 	DumpData()
@@ -66,14 +70,21 @@ end
 
 local function OnPlayerAdded(player)
 	local teleportData = player:GetJoinData().TeleportData
-	if teleportData and teleportData.Mode == "Spectator" then return coroutine.wrap(function() Freecam(player) end)() end
+	if teleportData and teleportData.Mode == "Spectator" then
+		task.spawn(function()
+			Freecam(player)
+		end)
+		return 
+	end
 	if matchData == nil then
 		matchData = teleportData
 		BuildTeams()
 	end
 	
 	while not loaded do wait() end
-	if RunService:IsStudio() then table.insert(teamData[1].UserIds, player.UserId) end
+	if RunService:IsStudio() then
+		table.insert(teamData[1].UserIds, player.UserId)
+	end
 	
 	AssignTeam(player)
 end
@@ -86,15 +97,21 @@ if RunService:IsStudio() then
 			pos = 1;
 		}
 	}
-	coroutine.wrap(BuildTeams)()
+
+	task.spawn(BuildTeams)
 end
 	
-Team.GetTeamData = function()
+function Team.GetTeamData()
 	while not loaded do wait() end
 	return teamData
 end
 
-coroutine.wrap(function() for _, player in ipairs(Players:GetPlayers()) do OnPlayerAdded(player) end end)()
+task.spawn(function()
+	for _, player in ipairs(Players:GetPlayers()) do
+		OnPlayerAdded(player)
+	end
+end)
+
 Players.PlayerAdded:Connect(OnPlayerAdded)
 
 return Team

@@ -35,7 +35,7 @@ function Sleep(frequency)
     end
 end
 
-Map.Generate = function() -- will take a datastore at some point
+function Map.Generate() -- will take a datastore at some point
 	if generated then warn("Map generate called > 1 times") end
 	generated = true
 	print("Initializing!")

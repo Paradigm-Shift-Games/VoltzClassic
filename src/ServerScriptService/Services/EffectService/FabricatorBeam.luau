@@ -19,7 +19,7 @@ function FabricatorBeam.Create(attachment, part)
 	end
 	
 	--Destructor
-	effect.End = function()
+	function effect.End()
 		effect.beam:Destroy()
 		effect.attachment:Destroy()
 	end

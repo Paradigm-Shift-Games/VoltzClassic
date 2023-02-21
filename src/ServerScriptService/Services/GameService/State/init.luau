@@ -191,13 +191,19 @@ function State.StartGame(teamData)
 	TimeManager.ActivateTracking()
 	connectTracking()
 	
-	if not RunService:IsStudio() then coroutine.wrap(function() GameDataService.SetKeyData("ActiveGames", PrivateServerId, DateTime.now().UnixTimestamp) end)() end
+	if not RunService:IsStudio() then
+		task.spawn(function()
+			GameDataService.SetKeyData("ActiveGames", PrivateServerId, DateTime.now().UnixTimestamp) 
+		end)
+	end
 	
 	warn(teamData)
-	if length(teamData) <= 1 then State.TerminateGame() return end
+	if length(teamData) <= 1 then State.TerminateGame()
+		return
+	end
 end
 
-State.TerminateGame = function()
+function State.TerminateGame()
 	warn("The game has been terminated")
 	State = "Terminated"
 	

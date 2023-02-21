@@ -10,7 +10,7 @@ local webhookLinks = {
 --[[ Embed ]]--
 local Embed = {}
 Embed.__index = Embed
-Embed.New = function()
+function Embed.New()
 	return setmetatable({}, Embed)
 end
 

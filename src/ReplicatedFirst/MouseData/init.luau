@@ -40,7 +40,7 @@ local function OnRun(delta)
 	MouseDataRemote:FireServer(Hit, HitPosition, Normal)
 end
 
-MouseData.GetMouseData = function()
+function MouseData.GetMouseData()
 	return Hit, HitPosition, Normal
 end
 

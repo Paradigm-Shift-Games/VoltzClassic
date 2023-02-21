@@ -15,7 +15,7 @@ function roundVector(vector)
 	return Vector3.new(math.floor(vector.X + 0.5), math.floor(vector.Y + 0.5), math.floor(vector.Z + 0.5))
 end
 
-Replace.Intitialize = function()
+function Replace.Intitialize()
 	for _, v in pairs(CellFolder:GetChildren()) do
 		for _, g in pairs(v:GetChildren()) do
 			for _, j in pairs(g:GetChildren()) do
@@ -93,7 +93,7 @@ function PlaceCell(cellType)
 	end
 end
 
-Replace.Replace = function()
+function Replace.Replace()
 	if #MatrixContents == 0 then
 		Matrix.Interate(function(v) table.insert(MatrixContents, v) end)
 	else

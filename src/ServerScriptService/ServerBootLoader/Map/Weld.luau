@@ -23,12 +23,12 @@ function UnanchorCell(cell)
 	end
 end
 
-Weld.Weld = function()
+function Weld.Weld()
 	Matrix.Interate(WeldNeighbors)
 	Matrix.Interate(UnanchorCell)
 end
 
-Weld.Initialize = function()
+function Weld.Initialize()
 	for _, v in pairs(CellFolder:GetChildren()) do
 		for _, g in pairs(v:GetChildren()) do
 			for _, j in pairs(g:GetChildren()) do

@@ -120,7 +120,7 @@ function WinService.sendMatchResultAndUpdateRatings(livingTeamCount, lastTeam, r
 	return
 end
 
-WinService.scan = function()
+function WinService.scan()
 	if not Enabled or Debounce then return end
 	
 	Debounce = true

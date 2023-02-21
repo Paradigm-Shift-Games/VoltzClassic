@@ -4,7 +4,7 @@ local UpgradeData = {}
 
 UpgradeData = {}
 
-UpgradeData.Generate = function()
+function UpgradeData.Generate()
 	for _, v in ipairs(ReplicatedStorage.Objects:GetChildren()) do
 		local upgradeFolder = v:FindFirstChild("Upgrades")
 		if upgradeFolder then

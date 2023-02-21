@@ -14,7 +14,7 @@ function TeslaBeam.Create(attachment, part)
 	effect.beam.Parent = workspace.Effects
 
 	--Destructor
-	effect.End = function()
+	function effect.End()
 		effect.beam:Destroy()
 		effect.attachment:Destroy()
 	end

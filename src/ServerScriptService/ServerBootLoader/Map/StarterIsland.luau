@@ -55,7 +55,7 @@ function GetSafePart(island)
 	return bestResults.Instance, bestResults.Position
 end
 
-StarterIsland.Generate = function()
+function StarterIsland.Generate()
 	local step = math.rad(360 / 5)
 	for i = 1, 5 do
 		local center = CFrame.Angles(0, step * i, 0)
@@ -103,7 +103,7 @@ function StarterIsland.GetSafePosition(player)
 	return position
 end
 
-StarterIsland.EnableIslands = function()
+function StarterIsland.EnableIslands()
 	generated = true
 end
 

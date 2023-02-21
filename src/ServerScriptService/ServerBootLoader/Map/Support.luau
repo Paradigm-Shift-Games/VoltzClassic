@@ -67,7 +67,7 @@ local function Generate(x, z, isCircular, size, isStarter)
 	end
 end
 
-Support.Generate = function()
+function Support.Generate()
 	for _, v in pairs(Support.Supports) do
 		Generate(v.X, v.Z, v.isCircular, v.size, v.isStarter)
 	end
