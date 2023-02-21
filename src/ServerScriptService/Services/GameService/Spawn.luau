@@ -46,7 +46,11 @@ end
 
 RespawnRemote.OnServerEvent:Connect(RequestSpawn)
 
-coroutine.wrap(function() for _, player in ipairs(Players:GetPlayers()) do OnPlayerAdded(player) end end)()
+task.spawn(function()
+	for _, player in ipairs(Players:GetPlayers()) do
+		OnPlayerAdded(player)
+	end
+end)
 Players.PlayerAdded:Connect(OnPlayerAdded)
 
 return Spawn

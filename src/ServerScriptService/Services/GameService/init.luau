@@ -9,9 +9,9 @@ local Spawn = require(script.Spawn)
 GameService.SpawnPlayer = Spawn.SpawnPlayer
 GameService.GetTeamData = Team.GetTeamData
 
-coroutine.wrap(function() 
+task.spawn(function() 
 	local teamData = GameService.GetTeamData()
 	State.StartGame(teamData) 
-end)()
+end)
 
 return GameService

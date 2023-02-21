@@ -210,10 +210,10 @@ function State.TerminateGame()
 	TimeManager.TerminateTracking()
 	disconnectTracking()
 	
-	--if not RunService:IsStudio() then coroutine.wrap(function()
+	--if not RunService:IsStudio() then task.spawn(function()
 	--	local startTime = GameDataService.RemoveKeyFromDataStore("ActiveGames", PrivateServerId)
 	--	GameDataService.SetKeyFromDataStore("TerminatedGames", PrivateServerId, startTime)
-	--end)() end
+	--end) end
 	
 	local winningTeam = nil
 	for team, _ in pairs(AliveTeams) do winningTeam = team break end
