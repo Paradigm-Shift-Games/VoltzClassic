@@ -14,11 +14,11 @@ local buttonData = {}
 local buttonModes = {}
 local buttonDebounce = 0.5
 
-buttonModes.Push = function(player, button)
+function buttonModes.Push(player, button)
 	buttonData[button].Func(player)
 end
 
-buttonModes.Toggle = function(player, button)
+function buttonModes.Toggle(player, button)
 	buttonData[button].Enabled = not buttonData[button].Enabled
 	buttonData[button].Func(player, buttonData[button].Enabled)
 	local EnabledValue = button:FindFirstChild("Enabled")
@@ -45,14 +45,14 @@ end
 Binded function will be called with
 	Player : player, Button : BasePart
 ]]
-ButtonService.Clean = function(object)
+function ButtonService.Clean(object)
 	for button, _ in pairs(objectData[object]) do
 		ButtonService.UnBind(button)
 	end
 	objectData[object] = nil
 end
 
-ButtonService.Bind = function(object, button, func)
+function ButtonService.Bind(object, button, func)
 	if not objectData[object] then objectData[object] = {} end
 	objectData[object][button] = true
 	CleanupService.Reserve(object, "Buttons")
@@ -69,7 +69,7 @@ ButtonService.Bind = function(object, button, func)
 	end
 end
 
-ButtonService.UnBind = function(button)
+function ButtonService.UnBind(button)
 	CollectionService:RemoveTag(button, "Button")
 	buttonData[button] = nil
 end

@@ -1,7 +1,7 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local module = {}
+local MouseData = {}
 local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local Camera = workspace.CurrentCamera
@@ -40,10 +40,10 @@ local function OnRun(delta)
 	MouseDataRemote:FireServer(Hit, HitPosition, Normal)
 end
 
-module.GetMouseData = function()
+MouseData.GetMouseData = function()
 	return Hit, HitPosition, Normal
 end
 
 SelectedEvent:Connect(OnRun)
 
-return module
+return MouseData

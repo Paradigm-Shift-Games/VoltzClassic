@@ -1,6 +1,6 @@
-local module = {}
+local TeslaBeam = {}
 
-module.Create = function(attachment, part)
+function TeslaBeam.Create(attachment, part)
 	local effect = {}
 	--Attachment
 	effect.attachment = Instance.new("Attachment")
@@ -21,4 +21,4 @@ module.Create = function(attachment, part)
 	return effect
 end
 
-return module
+return TeslaBeam

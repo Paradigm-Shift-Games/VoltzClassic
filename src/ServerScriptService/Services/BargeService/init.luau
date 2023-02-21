@@ -44,7 +44,7 @@ end
 local function onBargeTagRemoved(Barge)
 	currentBargeData[Barge] = nil
 end
-BargeService.OnServerEvent = function(player, barge, isGoingUp)
+function BargeService.OnServerEvent(player, barge, isGoingUp)
 	if currentBargeData[barge] and currentBargeData[barge].Occupant == player then
 		local amount = 0
 		if isGoingUp then

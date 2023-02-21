@@ -1,6 +1,6 @@
-local module = {}
+local DistributorBeam = {}
 
-module.Create = function(attachment0, attachment1)
+function DistributorBeam.Create(attachment0, attachment1)
 	local effect = {}
 	--Beam
 	effect.beam = script.Beam:Clone()
@@ -9,7 +9,7 @@ module.Create = function(attachment0, attachment1)
 	effect.beam.Parent = workspace.Effects
 	
 	--Change Color
-	effect.SetColor = function(colorSequence)
+	function effect.SetColor(colorSequence)
 		effect.beam.Color = colorSequence
 	end
 	
@@ -21,4 +21,4 @@ module.Create = function(attachment0, attachment1)
 	return effect
 end
 
-return module
+return DistributorBeam

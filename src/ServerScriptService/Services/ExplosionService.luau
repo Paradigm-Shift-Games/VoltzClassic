@@ -8,7 +8,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local StructureUtil = require(ReplicatedStorage.StructureUtility)
 local Destruction = require(ServerScriptService.Services.DamageService)
 
-local module = {}
+local ExplosionService = {}
 
 local collider = Instance.new("Part")
 collider.Shape = Enum.PartType.Ball
@@ -76,7 +76,7 @@ local function getDistance(model, position)
 	return closestDistance or math.huge
 end
 
-module.Explode = function(position, radius, damage)
+function ExplosionService.Explode(position, radius, damage)
 	-- Create the explosion
 	local explosion = Instance.new("Explosion")
 	explosion.Position = position
@@ -119,4 +119,4 @@ module.Explode = function(position, radius, damage)
 	explosion.Parent = workspace.Effects
 end
 
-return module
+return ExplosionService

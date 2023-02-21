@@ -43,10 +43,10 @@ local function updateGui()
 	hintDataFrame.Size = UDim2.new(0, contextTextLabel.TextBounds.X, 0, contextTextLabel.TextBounds.Y)--Resize the frame to account for the text
 	hintDataFrame.Position = UDim2.new(0, mouse.X + mousexOffSet, 0, mouse.Y + mouseyOffset)
 end
-ContextHint.AddHint = function(name, Hint)
+function ContextHint.AddHint(name, Hint)
 	Hints[name] = Hint
 end
-ContextHint.RemoveHint = function(name)
+function ContextHint.RemoveHint(name)
 	Hints[name] = nil
 end
 RunService:BindToRenderStep("contextHint", 200, updateGui)

@@ -70,7 +70,7 @@ local onHeartBeat = function(delta)
 	end
 end
 
-ArsenalService.ButtonInteraction = function(player, button)
+function ArsenalService.ButtonInteraction(player, button)
 	local uiContainer = button.Parent.Parent
 	local arsenal = StructureUtil.GetModel(button)
 	--if not arsenal then return end--

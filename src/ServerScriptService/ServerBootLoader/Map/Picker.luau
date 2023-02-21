@@ -1,6 +1,6 @@
 -- Author: 4812571
 
-local module = {}
+local Picker = {}
 local Weights = {}
 local Tree = {}
 local CellOffsets = {}
@@ -23,7 +23,7 @@ function roundVector(vector)
 	return Vector3.new(math.floor(vector.X + 0.5), math.floor(vector.Y + 0.5), math.floor(vector.Z + 0.5))
 end
 
-module.Initialize = function()
+Picker.Initialize = function()
 	for _, v in pairs(MapCells:GetChildren()) do
 		for _, g in pairs(v:GetChildren()) do
 			Tree[v.Name..' '..g.Name] = {normal = {}, large = {}}
@@ -58,14 +58,14 @@ module.Initialize = function()
 	end
 end
 
-module.GetCell = function(cellType)
+function Picker.GetCell(cellType)
 	if not Weights[cellType] then
 		warn("Ivalid Cell Type!", cellType)
 	end
 	return WeightedChoice(Weights[cellType].normal)
 end
 
-module.GetLargeCell = function(cellType)
+function Picker.GetLargeCell(cellType)
 	if not Weights[cellType] then
 		warn("Ivalid Cell Type!", cellType)
 	end
@@ -73,4 +73,4 @@ module.GetLargeCell = function(cellType)
 	return chosen, CellSizes[chosen]
 end
 
-return module
+return Picker

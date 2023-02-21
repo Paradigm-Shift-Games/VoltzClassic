@@ -1,6 +1,6 @@
-local module = {}
+local DamageTypes = {}
 
-module["Bullet"] = {
+DamageTypes["Bullet"] = {
 	Player = 1;
 	Shield = 0.05;
 	Crystal = 0;
@@ -10,7 +10,7 @@ module["Bullet"] = {
 
 }
 
-module["Laser"] = {
+DamageTypes["Laser"] = {
 	Player = 0.01;
 	Shield = 0.05;
 	Crystal = 1;
@@ -19,7 +19,7 @@ module["Laser"] = {
 	Structure = 2;
 }
 
-module["BuilderBreak"] = {
+DamageTypes["BuilderBreak"] = {
 	Player = 0;
 	Shield = 1;
 	Crystal = 0.15;
@@ -28,7 +28,7 @@ module["BuilderBreak"] = {
 	Structure = 1;
 }
 
-module["Explosive"] = {
+DamageTypes["Explosive"] = {
 	Player = 1;
 	Shield = 1.15;
 	Crystal = 0;
@@ -37,4 +37,4 @@ module["Explosive"] = {
 	Structure = 1;
 }
 
-return module
+return DamageTypes

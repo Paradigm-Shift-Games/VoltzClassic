@@ -8,7 +8,7 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ElectricityDisplay = require(ServerScriptService.Packages.Electricity.Display)
 local Influencer = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Influencer)
 
-local module = {}
+local Atmospheric Generator = {}
 
 --Data
 local Grounded = {}
@@ -60,7 +60,7 @@ function onRemoved(object)
 	objectData[object] = nil
 end
 
-module.Run = function(delta)
+function Atmospheric Generator.Run(delta)
 	for v, _ in pairs(Ungrounded) do
 		if v.PrimaryPart:IsGrounded() then
 			Ungrounded[v], Grounded[v]  = nil, true
@@ -102,7 +102,7 @@ function AtmosphericGeneratorServer:Destroy()
 end
 
 function AtmosphericGeneratorServer.StaticUpdate(deltaTime)
-	module.Run(deltaTime)
+	Atmospheric Generator.Run(deltaTime)
 end
 
 return AtmosphericGeneratorServer

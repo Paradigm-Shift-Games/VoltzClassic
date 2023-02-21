@@ -8,7 +8,7 @@ local Colorizer = require(ServerScriptService.Services.Colorizer)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local StarterIsland = require(ServerScriptService.ServerBootLoader.Map.StarterIsland)
 
-local module = {}
+local Spawn = {}
 local SpawnStats = require(ReplicatedStorage.Stats.Structure).Spawn
 local RespawnRemote = ReplicatedStorage.Events.RequestSpawn
 
@@ -23,7 +23,7 @@ local StarterTools = {
 local function RequestSpawn(player, spawnpad)
 	if spawnpad:FindFirstChild("Team") and spawnpad.Team.Value ~= player.Team then warn("Player attempted to spawn at another team's pad!") return end
 	if not Electricity.Pull(spawnpad, SpawnStats.SpawnConsumption) then return end
-	module.SpawnPlayer(player, spawnpad.Point.CFrame)
+	Spawn.SpawnPlayer(player, spawnpad.Point.CFrame)
 end
 
 local function RequestTeleport(...)
@@ -33,10 +33,10 @@ end
 local function OnPlayerAdded(player)
 	if not RunService:IsStudio() and player:GetJoinData().TeleportData["Rejoin"] then return end
 	local position = StarterIsland.GetSafePosition(player)
-	module.SpawnPlayer(player, CFrame.new(position))
+	Spawn.SpawnPlayer(player, CFrame.new(position))
 end
 
-module.SpawnPlayer = function(player, cframe)
+function Spawn.SpawnPlayer(player, cframe)
 	player:LoadCharacter()
 	local character = player.Character or player.CharacterAdded:Wait()
 	for _, v in ipairs(StarterTools) do v:Clone().Parent = player.Backpack end
@@ -49,4 +49,4 @@ RespawnRemote.OnServerEvent:Connect(RequestSpawn)
 coroutine.wrap(function() for _, player in ipairs(Players:GetPlayers()) do OnPlayerAdded(player) end end)()
 Players.PlayerAdded:Connect(OnPlayerAdded)
 
-return module
+return Spawn

@@ -11,7 +11,7 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local TransferLine = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.TransferLine)
 
 	
-local module = {}
+local Distributor = {}
 
 local hardGraph = Graph.New()
 local softGraph = Graph.New()
@@ -119,7 +119,7 @@ function runObject(Distributor)
 end
 
 --Service Update
-module.Run = function(delta)
+function Distributor.Run(delta)
 	--Swap Grounded -> Ungrounded
 	for Object, _ in pairs(Grounded) do
 		if Object.PrimaryPart:IsGrounded() then continue end
@@ -182,7 +182,7 @@ end
 
 function DistributorServer.StaticUpdate(deltaTime)
 	-- Shim
-	module.Run(deltaTime)
+	Distributor.Run(deltaTime)
 end
 
 return DistributorServer

@@ -11,7 +11,7 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ArrayGraph = require(ServerScriptService.Classes.Datastructure.ArrayGraph)
 local TransferLine = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.TransferLine)
 
-local module = {}
+local Fabricator = {}
 
 --Graphs
 local beamGraph = 		Graph.New()
@@ -209,7 +209,7 @@ function runObject(Fabricator)
 end
 
 --Service Update
-module.Run = function(delta)
+function Fabricator.Run(delta)
 	--Swap Grounded -> Ungrounded
 	for Object, _ in pairs(Grounded) do
 		if Object.PrimaryPart:IsGrounded() then continue end
@@ -267,7 +267,7 @@ end
 
 function FabricatorServer.StaticUpdate(deltaTime)
 	-- Shim
-	module.Run(deltaTime)
+	Fabricator.Run(deltaTime)
 end
 
 return FabricatorServer

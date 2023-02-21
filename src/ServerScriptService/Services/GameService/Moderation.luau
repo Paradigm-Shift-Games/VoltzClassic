@@ -15,12 +15,12 @@ local function HandleCommands(commandString)
 	end
 end
 
-local module = {}
+local Moderation = {}
 
-module.ListenForEvents = function()
+Moderation.ListenForEvents = function()
 	CommunicationService.BindToCommunication(CommunicationService.MessageChannels.Moderation, "CommandHandler", HandleCommands)
 end
 
-module.ListenForEvents()
+Moderation.ListenForEvents()
 
-return module
+return Moderation

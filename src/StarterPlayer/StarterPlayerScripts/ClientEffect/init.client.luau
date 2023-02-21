@@ -3,8 +3,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Events = ReplicatedStorage:WaitForChild("Events")
 local EffectRemote = Events:WaitForChild("Effect")
 local RegisteredEffects = {}
-for _, module in ipairs(script:GetChildren()) do
-	RegisteredEffects[module.Name] = require(module)
+for _, ClientEffect in ipairs(script:GetChildren()) do
+	RegisteredEffects[ClientEffect.Name] = require(ClientEffect)
 end
 local function OnEffectRequest(Effect, ...)
 	if RegisteredEffects[Effect] then

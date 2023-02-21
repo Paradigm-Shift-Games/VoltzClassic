@@ -1,6 +1,6 @@
-local module = {}
+local BuilderPullBeam = {}
 
-module.Create = function(attachment0, position)
+function BuilderPullBeam.Create(attachment0, position)
 	local effect = {}
 	--Create Attachment
 	effect.attachment = Instance.new("Attachment")
@@ -14,7 +14,7 @@ module.Create = function(attachment0, position)
 	effect.beam.Parent = workspace.Effects
 
 	--UpdatePosition
-	effect.UpdatePosition = function(position)
+	function effect.UpdatePosition(position)
 		effect.attachment.Position = position
 	end	
 
@@ -26,4 +26,4 @@ module.Create = function(attachment0, position)
 	return effect
 end
 
-return module
+return BuilderPullBeam

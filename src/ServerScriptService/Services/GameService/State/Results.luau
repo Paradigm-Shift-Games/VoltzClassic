@@ -8,7 +8,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local ChatService = require(ServerScriptService.Services.ChatService)
 local DiscordService = require(ServerScriptService.Services.DiscordService)
 
-local module = {}
+local Results = {}
 
 local function maxElement(tab)
 	local max = -math.huge
@@ -53,7 +53,7 @@ local function addPlayerResult(stringUserID, ratingStringUserIDs, ratingDelta, d
 	return "\n"..name.." [ "..formatTime(playerTime).." ]: "..rating..sign..math.floor(ratingDelta)
 end
 
-module.SendWinMessage = function(winningTeam, ratingDeltas)	
+function Results.SendWinMessage(winningTeam, ratingDeltas)	
 	local color = winningTeam.TeamColor.Color--Color3.fromRGB(9, 137, 207)
 	local font = Enum.Font.Sarpanch
 	local textSize = 25
@@ -70,7 +70,7 @@ module.SendWinMessage = function(winningTeam, ratingDeltas)
 	end
 end
 
-module.SendMatchResult = function(winningTeam, dataTable, returnTable, deathTimeData, totalTime)
+function Results.SendMatchResult(winningTeam, dataTable, returnTable, deathTimeData, totalTime)
 	local newMessage = DiscordService.Content.New()
 	local newEmbed = DiscordService.Embed.New()
 	newEmbed:SetTitle("Match Results")
@@ -100,4 +100,4 @@ module.SendMatchResult = function(winningTeam, dataTable, returnTable, deathTime
 	DiscordService.SendContent("winHook", newMessage)
 end
 
-return module
+return Results

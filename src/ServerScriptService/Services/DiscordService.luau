@@ -37,7 +37,7 @@ end
 --[[ Content ]]--
 local Content = {}
 Content.__index = Content
-Content.New = function(name)
+function Content.New(name)
 	local self = {}
 	self.username = name
 	self.embeds = {}
@@ -68,7 +68,7 @@ end
 local DiscordService = {}
 DiscordService.Embed = Embed
 DiscordService.Content = Content
-DiscordService.SendContent = function(hookName, content)
+function DiscordService.SendContent(hookName, content)
 	local hook = webhookLinks[hookName]
 	if hook == nil then error(hookName.." is not a valid hookName!") end
 	

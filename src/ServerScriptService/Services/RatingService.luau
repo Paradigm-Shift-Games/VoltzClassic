@@ -11,12 +11,12 @@ local Mag = 6
 local Precision = 10^Mag
 local Reciprocal = 10^-Mag
 
-RatingService.GetRating = function(userID)
+function RatingService.GetRating(userID)
 	local rating = GameDataService.GetKeyData("PlayerRating", userID)
 	return rating and rating * Reciprocal
 end
 
-RatingService.SetRating = function(userID, rating)
+function RatingService.SetRating(userID, rating)
 	local newRating = GameDataService.SetKeyData("PlayerRating", userID, math.floor(rating * Precision))
 
 	local player = Players:GetPlayerByUserId(userID)
@@ -31,7 +31,7 @@ RatingService.SetRating = function(userID, rating)
 	return newRating
 end
 
-RatingService.AddRating = function(userID, ratingDelta) --USE THIS AS OFTEN AS POSSIBLE
+function RatingService.AddRating(userID, ratingDelta) --USE THIS AS OFTEN AS POSSIBLE
 	local newRating = GameDataService.UpdateKeyData("PlayerRating", userID, function (rating) return rating + math.floor(ratingDelta * Precision) end)
 
 	local player = Players:GetPlayerByUserId(userID)

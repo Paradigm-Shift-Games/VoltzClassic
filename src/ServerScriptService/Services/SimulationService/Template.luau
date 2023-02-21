@@ -4,7 +4,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Stats = require(ReplicatedStorage.Stats.Structure)
 
-local module = {}
+local Template = {}
 
 local objectStats = Stats[script.Name]
 local objectData = {}
@@ -42,4 +42,4 @@ function TemplateServer:Destroy()
 	onRemoved(self.Instance)
 end
 
-return module
+return Template

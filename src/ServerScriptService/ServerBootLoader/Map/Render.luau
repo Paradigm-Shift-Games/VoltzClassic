@@ -12,7 +12,7 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ElectricNode = require(ServerScriptService.Packages.Electricity.Classes.Node)
 local ElectricHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
 
-local module = {}
+local Render = {}
 local Map = workspace.Map
 local MapCells = workspace.MapCells
 local CellOffsets = {}
@@ -27,7 +27,7 @@ function Sleep(frequency)
     end
 end
 
-module.Initialize = function()
+Render.Initialize = function()
 	for _, v in pairs(MapCells:GetChildren()) do
 		for _, g in pairs(v:GetChildren()) do
 			for _, j in pairs(g:GetChildren()) do
@@ -85,8 +85,8 @@ function RenderCell(cell)
 	end
 end
 
-module.Render = function()
+Render.Render = function()
 	Matrix.SmartInterate(RenderCell)
 end
 
-return module
+return Render

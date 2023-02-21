@@ -68,7 +68,7 @@ local function writePlayerTexts(team, ratings, intendedSign, text)
 	return text
 end
 
-WinService.sendMatchResultAndUpdateRatings = function(livingTeamCount, lastTeam, remainingTeams)
+function WinService.sendMatchResultAndUpdateRatings(livingTeamCount, lastTeam, remainingTeams)
 	--if #Players:GetPlayers() <= 1 and #Teams:GetTeams() <= 1 then return end
 
 	remainingTeams[lastTeam] = true

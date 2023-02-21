@@ -4,7 +4,7 @@ local Matrix = require(script.Parent.Matrix)
 local Picker = require(script.Parent.Picker)
 local Settings = require(script.Parent.Settings.selectedSettings.Value)
 
-local module = {}
+local Replace = {}
 local Masks = {}
 local LargeTypes = {}
 local MatrixContents = {}
@@ -15,7 +15,7 @@ function roundVector(vector)
 	return Vector3.new(math.floor(vector.X + 0.5), math.floor(vector.Y + 0.5), math.floor(vector.Z + 0.5))
 end
 
-module.Intitialize = function()
+Replace.Intitialize = function()
 	for _, v in pairs(CellFolder:GetChildren()) do
 		for _, g in pairs(v:GetChildren()) do
 			for _, j in pairs(g:GetChildren()) do
@@ -93,7 +93,7 @@ function PlaceCell(cellType)
 	end
 end
 
-module.Replace = function()
+Replace.Replace = function()
 	if #MatrixContents == 0 then
 		Matrix.Interate(function(v) table.insert(MatrixContents, v) end)
 	else
@@ -104,4 +104,4 @@ module.Replace = function()
 	end
 end
 
-return module
+return Replace

@@ -38,11 +38,11 @@ end
 
 ]]
 
-local module = {}
+local Colorizer = {}
 
 data = {}
 
-module.ColorAsBlueprint = function(Structure)
+function Colorizer.ColorAsBlueprint(Structure)
 	data[Structure] = {}
 	local teamColor = Structure:FindFirstChild("Team") and Structure.Team.Value.TeamColor.Color
 	for _, v in pairs(Structure:GetDescendants()) do
@@ -61,7 +61,7 @@ module.ColorAsBlueprint = function(Structure)
 	end
 end
 
-module.DebugColor = function(Structure, debugColor)
+function Colorizer.DebugColor(Structure, debugColor)
 	if typeof(debugColor) == "BrickColor" then debugColor = debugColor.Color end
 	data[Structure] = {}
 	for _, v in pairs(Structure:GetDescendants()) do
@@ -76,7 +76,7 @@ module.DebugColor = function(Structure, debugColor)
 	end
 end
 
-module.UpdateBlueprintColor = function(Structure, charge, cost)
+function Colorizer.UpdateBlueprintColor(Structure, charge, cost)
 	local completion = charge / cost
 	if not data[Structure] then warn("Attempt to color invalid structure!") return end
 	for part, partData in pairs(data[Structure]) do
@@ -84,8 +84,8 @@ module.UpdateBlueprintColor = function(Structure, charge, cost)
 	end
 end
 
-module.ColorAsStructure = function(Structure)
-	module.RevertColors(Structure)
+function Colorizer.ColorAsStructure(Structure)
+	Colorizer.RevertColors(Structure)
 	local teamColor = Structure:FindFirstChild("Team") and Structure.Team.Value.TeamColor.Color
 	if not teamColor then return end
 	for _, v in pairs(Structure:GetDescendants()) do
@@ -95,17 +95,17 @@ module.ColorAsStructure = function(Structure)
 	end
 end
 
-module.RevertColors = function(Structure)
+function Colorizer.RevertColors(Structure)
 	if not data[Structure] then return nil end
 	for part, partData in pairs(data[Structure]) do
 		part.Color = partData.Color
 		part.Transparency = partData.Transparency
 		part.CanCollide = partData.CanCollide
 	end
-	module.Clean(Structure)
+	Colorizer.Clean(Structure)
 end
 
-module.ColorCharacter = function(character)
+function Colorizer.ColorCharacter(character)
 	local player = Players:GetPlayerFromCharacter(character)
 	local teamColor = player.Team.TeamColor
 	for _, v in pairs(character:GetChildren()) do
@@ -113,8 +113,8 @@ module.ColorCharacter = function(character)
 	end
 end
 
-module.Clean = function(Structure)
+function Colorizer.Clean(Structure)
 	data[Structure] = nil
 end
 
-return module
+return Colorizer

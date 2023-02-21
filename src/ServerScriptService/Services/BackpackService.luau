@@ -16,7 +16,7 @@ local ChargeAnimator = 	require(ServerScriptService.Packages.Electricity.Classes
 local Events = ReplicatedStorage:WaitForChild("Events")
 local ThrusterEvent = Events:WaitForChild("thruster")
 local jetpacks = {}
-local module = {}
+local BackpackService = {}
 
 local function RemoveJetpack(player)
 	local jetpack = jetpacks[player]
@@ -76,11 +76,11 @@ local function onPlayerAdded(player)
 	player.CharacterAdded:Connect(function() AddJetpack(player) end)
 end
 
-module.GetBackpack = function(player)
+function BackpackService.GetBackpack(player)
 	return jetpacks[player]
 end
 
 ThrusterEvent.OnServerEvent:connect(onRemoteEvent)
 Players.PlayerAdded:Connect(onPlayerAdded)
 
-return module
+return BackpackService

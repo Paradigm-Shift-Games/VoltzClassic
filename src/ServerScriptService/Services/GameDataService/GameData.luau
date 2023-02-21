@@ -4,13 +4,13 @@ local DataStoreService = game:GetService("DataStoreService")
 
 local GameData = {}
 
-local module = {}
+local GameData = {}
 
-module.GetGameData = function(name)
+function GameData.GetGameData(name)
 	return GameData[name]
 end
 
-module.SetGameData = function(name, iteration, defaultValue, allowedTypes, isOrdered)
+function GameData.SetGameData(name, iteration, defaultValue, allowedTypes, isOrdered)
 	local types = {}
 	for _, v in pairs(allowedTypes) do types[v] = true end
 
@@ -23,15 +23,15 @@ module.SetGameData = function(name, iteration, defaultValue, allowedTypes, isOrd
 	GameData[name]["DataStore"] = DataStoreService:GetDataStore(name..GameData[name]["Iteration"]) 
 end
 
-module.SetGameData("BannedPlayers", 0, 0, {"number", "string"})
+GameData.SetGameData("BannedPlayers", 0, 0, {"number", "string"})
 
-module.SetGameData("PlayerRating", 1, 0, {"number"}, true)
-module.SetGameData("PlayerWins", 0, 0, {"number"}, true)
-module.SetGameData("PlayerLosses", 0, 0, {"number"}, true)
+GameData.SetGameData("PlayerRating", 1, 0, {"number"}, true)
+GameData.SetGameData("PlayerWins", 0, 0, {"number"}, true)
+GameData.SetGameData("PlayerLosses", 0, 0, {"number"}, true)
 
-module.SetGameData("PlayerGames", 0, "", {"string"})
+GameData.SetGameData("PlayerGames", 0, "", {"string"})
 
-module.SetGameData("ActiveGames", 0, -1, {"number"}, true)
-module.SetGameData("TerminatedGames", 0, -1, {"number"}, true)
+GameData.SetGameData("ActiveGames", 0, -1, {"number"}, true)
+GameData.SetGameData("TerminatedGames", 0, -1, {"number"}, true)
 
-return module
+return GameData

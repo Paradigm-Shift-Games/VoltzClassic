@@ -8,7 +8,7 @@ local Blueprint = require(ServerScriptService.Blueprint)
 local Settings = require(script.Parent.Settings.selectedSettings.Value)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
-local module = {}
+local StarterIsland = {}
 local TeamIslands = {}
 local Islands = {}
 local generated = false
@@ -55,7 +55,7 @@ function GetSafePart(island)
 	return bestResults.Instance, bestResults.Position
 end
 
-module.Generate = function()
+StarterIsland.Generate = function()
 	local step = math.rad(360 / 5)
 	for i = 1, 5 do
 		local center = CFrame.Angles(0, step * i, 0)
@@ -87,7 +87,7 @@ module.Generate = function()
 	print("generated")
 end
 
-module.AssignIsland = function(island, team)
+function StarterIsland.AssignIsland(island, team)
 	while not generated do wait() end
 	TeamIslands[team] = island
 	local part, position = GetSafePart(island)
@@ -97,14 +97,14 @@ module.AssignIsland = function(island, team)
 	Electricity.Push(spawnPad, math.huge, true)
 end
 
-module.GetSafePosition = function(player) 
+function StarterIsland.GetSafePosition(player) 
 	while not TeamIslands[player.Team] do wait() end
 	local part, position = GetSafePart(TeamIslands[player.Team])
 	return position
 end
 
-module.EnableIslands = function()
+StarterIsland.EnableIslands = function()
 	generated = true
 end
 
-return module
+return StarterIsland

@@ -2,16 +2,16 @@ local Team = require(script.Team)
 local State = require(script.State)
 local Moderation = require(script.Moderation)
 
-local module = {}
+local GameService = {}
 
 local Spawn = require(script.Spawn) 
 
-module.SpawnPlayer = Spawn.SpawnPlayer
-module.GetTeamData = Team.GetTeamData
+GameService.SpawnPlayer = Spawn.SpawnPlayer
+GameService.GetTeamData = Team.GetTeamData
 
 coroutine.wrap(function() 
-	local teamData = module.GetTeamData()
+	local teamData = GameService.GetTeamData()
 	State.StartGame(teamData) 
 end)()
 
-return module
+return GameService
