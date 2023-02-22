@@ -31,7 +31,7 @@ function RatingService.SetRating(userID, rating)
 	return newRating
 end
 
-function RatingService.AddRating(userID, ratingDelta) --USE THIS AS OFTEN AS POSSIBLE
+function RatingService.AddRating(userID, ratingDelta) -- USE THIS AS OFTEN AS POSSIBLE
 	local newRating = GameDataService.UpdateKeyData("PlayerRating", userID, function (rating) return rating + math.floor(ratingDelta * Precision) end)
 
 	local player = Players:GetPlayerByUserId(userID)

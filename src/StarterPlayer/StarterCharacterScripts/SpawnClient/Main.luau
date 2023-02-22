@@ -33,7 +33,7 @@ local function OnConfirmButtonClick()
 end
 
 local function UpdateButton(button)
-	--Calculate Cost
+	-- Calculate Cost
 	local cost
 	if teleporting then
 		cost = Stats.Spawn.TeleportConsumption
@@ -41,20 +41,20 @@ local function UpdateButton(button)
 		cost = Stats.Spawn.SpawnConsumption
 	end
 	
-	--Update Meter
+	-- Update Meter
 	local percent = math.clamp(button.Spawn.Value:WaitForChild("Charge").Value / cost, 0, 1)
 	button.Fill.Position = UDim2.fromScale(0, 1 - percent)
 	button.Fill.Size = UDim2.fromScale(1, percent)
 end
 
 local function UpdateGui()
-	--Update Buttons
+	-- Update Buttons
 	for _, v in pairs(Gui.Spawns:GetChildren()) do
 		if v.Name == "UIGridLayout" then continue end
 		UpdateButton(v)
 	end
 	
-	--Update Confirm Button  
+	-- Update Confirm Button  
 	if selectedSpawn then 
 		if selectedSpawn.Charge.Value >= Stats.Spawn.SpawnConsumption then
 			Gui.Buttons.ConfirmButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -67,11 +67,11 @@ local function UpdateGui()
 end
 
 local function CreateSpawnButton(spawnPad)
-	--TeamChecking
+	-- TeamChecking
 	local team = LocalPlayer.Team
 	if spawnPad.Team.Value ~= team then return end
 
-	--Build Button
+	-- Build Button
 	local function BuildButton()
 		local spawnButton = SpawnGuiAssets.Spawn:Clone()
 		spawnButton.Spawn.Value = spawnPad

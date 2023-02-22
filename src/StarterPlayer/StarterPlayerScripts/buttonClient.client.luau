@@ -83,10 +83,10 @@ local function onHeartBeat(delta)
 		contextHint.AddHint("Button", parseText(currentButton or hitPart))
 		if hitPart ~= currentButton then
 			currentButton = hitPart
---			contextHint.AddHint("Button", parseText(currentButton))--Method testing to lazy to add text until I know it's working
+--			contextHint.AddHint("Button", parseText(currentButton))-- Method testing to lazy to add text until I know it's working
 		else
 --			contextHint.AddHint("Button", parseText(currentButton))
-			--Update text
+			-- Update text
 		end
 	elseif currentButton ~= nil then
 		currentButton = nil

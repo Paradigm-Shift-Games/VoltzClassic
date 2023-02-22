@@ -48,7 +48,7 @@ local function onRenderStepped(delta)
 		local magnitudeOfVelocity = currentVelocity.Magnitude
 		local currentSpeed = BargeSpeed
 		local velocityToApply = (-currentBargePart.CFrame.LookVector) * (currentSpeed * driverSeat.Throttle) * delta
-		if driverSeat.Throttle == 0 then--We need to slow it down slowly.
+		if driverSeat.Throttle == 0 then-- We need to slow it down slowly.
 			local currentSpeedThisFrame = 24 * delta;
 			if magnitudeOfVelocity < currentSpeedThisFrame then
 				velocityToApply = -currentBargePart.Velocity;
@@ -77,13 +77,13 @@ local function onRenderStepped(delta)
 		local absyRot = math.abs(yRot)
 		local directionToSteer = -driverSeat.Steer * SteerSpeed * delta
 		if bodyPosition.MaxForce.Y <= 0 then
-			directionToSteer = 0--The barge isn't hovering again.
+			directionToSteer = 0-- The barge isn't hovering again.
 		end
-		if driverSeat.Steer == 0 then--0'd out again
+		if driverSeat.Steer == 0 then-- 0'd out again
 			local steerSpeedThisFrame = SteerSpeed*delta
 			if absyRot < steerSpeedThisFrame then
 				directionToSteer = -yRot
-			else--unitize and multiply :sunglasses:
+			else-- unitize and multiply :sunglasses:
 				directionToSteer = -math.sign(yRot) * steerSpeedThisFrame
 			end
 		end

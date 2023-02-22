@@ -23,7 +23,7 @@ function CleanupService.Free(Object)
 end
 
 function CleanupService.Clean(Object)
-	--print("Cleaning!")
+	-- print("Cleaning!")
 	if not Reserved[Object] then return end
 	for key, _ in pairs(Reserved[Object]) do
 		CleanupFunctions[key](Object)

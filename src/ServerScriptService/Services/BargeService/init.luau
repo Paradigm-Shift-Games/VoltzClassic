@@ -8,19 +8,19 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Events = ReplicatedStorage:WaitForChild("Events")
 local bargeEvent = Events:WaitForChild("Barge")
 local HeightPerLevel = 10
-local HeightDecreasePerSecond = 10 --1
+local HeightDecreasePerSecond = 10 -- 1
 local BargeService = {}
 local currentBargeData = {}
 local function onOccupantChanged(barge, NewOccupant)
 	if NewOccupant then
 		local Player = Players:GetPlayerFromCharacter(NewOccupant.Parent)
 		currentBargeData[barge].Occupant = Player
-		barge.PrimaryPart:SetNetworkOwner(Player)--Very important so that the client can set the velocity
+		barge.PrimaryPart:SetNetworkOwner(Player)-- Very important so that the client can set the velocity
 	else
 		currentBargeData[barge].Occupant = nil
-		barge.PrimaryPart:SetNetworkOwner(nil)--Make it so no one can set the velocity anymore :D because no one is sitting in it
-		--Network ownership
-		--https://developer.roblox.com/en-us/articles/Network-Ownership
+		barge.PrimaryPart:SetNetworkOwner(nil)-- Make it so no one can set the velocity anymore :D because no one is sitting in it
+		-- Network ownership
+		-- https://developer.roblox.com/en-us/articles/Network-Ownership
 	end
 end
 local maxForce = Vector3.new(0, 5000000, 0)
@@ -86,12 +86,12 @@ local function onHeartBeat(delta)
 				data.BodyMover.Position = Vector3.new(0, data.BodyMover.Position.Y-(delta*HeightDecreasePerSecond), 0)
 			end
 		else
-			data.BodyMover.MaxForce = Vector3.new()--Make it not control the barge physics anymore!
+			data.BodyMover.MaxForce = Vector3.new()-- Make it not control the barge physics anymore!
 		end
 	end
 end
 RunService.Heartbeat:Connect(onHeartBeat)
---Your code errors too much, please fix it. <3 - 4812571
+-- Your code errors too much, please fix it. <3 - 4812571
 CollectionService:GetInstanceAddedSignal("Barge"):Connect(onBargeTagAdded)
 CollectionService:GetInstanceRemovedSignal("Barge"):Connect(onBargeTagRemoved)
 bargeEvent.OnServerEvent:Connect(BargeService.OnServerEvent)

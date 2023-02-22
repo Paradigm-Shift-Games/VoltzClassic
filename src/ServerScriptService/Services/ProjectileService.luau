@@ -61,11 +61,11 @@ function ProjectileService.Run(delta)
 		for i = #directions, 2, -1 do
 			directions[i - 1] = directions[i - 1] + (directions[i] * delta)
 		end
-		--local result = workspace:Raycast(projectile.PrimaryPart.Position, directions[1] - projectile.PrimaryPart.Position)
+		-- local result = workspace:Raycast(projectile.PrimaryPart.Position, directions[1] - projectile.PrimaryPart.Position)
 		local hit, position = Raycast(parameters, projectile.PrimaryPart.Position, directions[1] - projectile.PrimaryPart.Position)
 		if hit then directions[1] = position end
 		projectile:SetPrimaryPartCFrame(CFrame.new(directions[1], directions[1] + directions[2])) 
-		if hit or directions[1].Magnitude > 1000 then --memory safety
+		if hit or directions[1].Magnitude > 1000 then -- memory safety
 			Projectiles[projectile].Hit = hit
 			if Projectiles[projectile].connected then Projectiles[projectile].connected(Projectiles[projectile]) end
 			Projectiles[projectile] = nil

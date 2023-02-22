@@ -2,7 +2,7 @@
 
 local Matrix = require(script.Parent.Matrix)
 local Picker = require(script.Parent.Picker)
-local Settings = require(script.Parent.Settings.selectedSettings.Value)
+local Settings = require(script.Parent.Settings.Default)
 
 local Replace = {}
 local Masks = {}

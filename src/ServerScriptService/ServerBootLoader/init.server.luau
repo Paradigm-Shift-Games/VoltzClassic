@@ -1,7 +1,7 @@
---Authors: 4812571, Styx, n0pa
+-- Authors: 4812571, Styx, n0pa
 local Version = "0.4.2"
 
---Object Reference
+-- Object Reference
 local ServerScriptService = game:GetService("ServerScriptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")

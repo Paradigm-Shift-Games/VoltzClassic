@@ -13,14 +13,14 @@ local mousexOffSet = 45
 local mouseyOffset = 20
 local Hints = {}
 local HintOrder = {
-	--Builder
+	-- Builder
 	"Pull";
 	"Push";
 	"Destroy";
 	"Upgrade";
-	--Button
+	-- Button
 	"Button";
-	--Placer
+	-- Placer
 	"Place";
 	"Cancel";
 	"HardRotate";
@@ -32,7 +32,7 @@ local function updateGui()
 	local keyText = ""
 	local contentText = ""
 	for _, tag in ipairs(HintOrder) do
-		if Hints[tag] then--Append the text
+		if Hints[tag] then-- Append the text
 			keyText = keyText..Hints[tag][1]..":\n"
 			contentText = contentText..Hints[tag][2].."\n"
 		end
@@ -40,7 +40,7 @@ local function updateGui()
 	
 	contextTextLabel.Text = contentText
 	keyTextLabel.Text = keyText
-	hintDataFrame.Size = UDim2.new(0, contextTextLabel.TextBounds.X, 0, contextTextLabel.TextBounds.Y)--Resize the frame to account for the text
+	hintDataFrame.Size = UDim2.new(0, contextTextLabel.TextBounds.X, 0, contextTextLabel.TextBounds.Y)-- Resize the frame to account for the text
 	hintDataFrame.Position = UDim2.new(0, mouse.X + mousexOffSet, 0, mouse.Y + mouseyOffset)
 end
 function ContextHint.AddHint(name, Hint)

@@ -96,16 +96,16 @@ end
 
 function Place(player, team, modelName, buildType, snapState, instantStructure, attachment1, attachment2)
 	
-	--Get Model
+	-- Get Model
 	local model = GetModel(modelName, attachment1, attachment2, snapState)
 	
-	--Get Attachment Models
+	-- Get Attachment Models
 	if attachment1 then attachment1.Model = StructureUtil.GetModel(attachment1.part) end
 	if attachment2 then attachment2.Model = StructureUtil.GetModel(attachment2.part) end
 	local attachment1Lookup = attachment1 and attachment1.Model and (attachment1.part.Name == "Connector" and "Connector" or attachment1.Model.Name)
 	local attachment2Lookup = attachment2 and attachment2.Model and (attachment2.part.Name == "Connector" and "Connector" or attachment2.Model.Name)
 	
-	--Check Attachment Model Connection State
+	-- Check Attachment Model Connection State
 	local attachedModel1 = attachment1 and StructureUtil.IsDetector(attachment1.part) and StructureUtil.CanSnap(model, attachment1Lookup) and (not attachment1.part.Object.Value) and attachment1.Model or nil
 	local attachedModel2 = attachment2 and StructureUtil.IsDetector(attachment2.part) and StructureUtil.CanSnap(model, attachment2Lookup) and (not attachment2.part.Object.Value) and attachment2.Model or nil
 	
@@ -113,12 +113,12 @@ function Place(player, team, modelName, buildType, snapState, instantStructure, 
 		warn("Server-Side Snap Failure!")
 	end
 	
-	--Assemble Models
+	-- Assemble Models
 	if attachedModel1 and table.find(attachNames, modelName) then
 		AssemblyService.Attach(model, attachedModel1, "Attach")
 	end
 	
-	--Attach Model Values
+	-- Attach Model Values
 	if modelName == "Wire" then
 		if attachedModel1 then
 			local wire = model.Wire1
@@ -140,7 +140,7 @@ function Place(player, team, modelName, buildType, snapState, instantStructure, 
 		snapFolder[tostring(snapState)].Object.Value = attachment1.part
 	end
 	
-	--Group Snaps
+	-- Group Snaps
 	if modelName == "Wire" then
 		WireGroup(model, model.Wire1.Connectors, model.Wire2.Connectors)
 	else
@@ -152,13 +152,13 @@ function Place(player, team, modelName, buildType, snapState, instantStructure, 
 		end
 	end
 	
-	--Constraints
+	-- Constraints
 	BuildingConstraints.Add(model, player)
 	local canPlace = BuildingConstraints.Check(model, {attachedModel1, attachedModel2})
 	BuildingConstraints.Clear(model)
 	if not canPlace then return end
 	
-	--Welding
+	-- Welding
 	if model:FindFirstChild("Hinge1", true) then
 		WeldService.WeldAssembly(model)
 	else
@@ -182,10 +182,10 @@ function Place(player, team, modelName, buildType, snapState, instantStructure, 
 		end
 	end
 	
-	--Electrical $$DUPLICATE CODE$$
+	-- Electrical $$DUPLICATE CODE$$
 	CollectionService:AddTag(model, "NoLeaks")
 	local node = ElectricNode.New()
-	node.charge = 1 / 10^12 --Small nonzero value
+	node.charge = 1 / 10^12 -- Small nonzero value
 	node.storage = Stats[model.Name].Cost
 	Electricity.BindStructure(model, node)
 	
@@ -206,7 +206,7 @@ function Place(player, team, modelName, buildType, snapState, instantStructure, 
 	teamVal.Name = "Team"
 	teamVal.Parent = model
 	
-	--Color $$DUPLICATE CODE$$
+	-- Color $$DUPLICATE CODE$$
 	if instantStructure then
 		Colorizer.ColorAsStructure(model)
 		Structure.Promote(model)
@@ -236,7 +236,7 @@ function Upgrade(model, instantStructure)
 	WeldService.Unanchor(upgradeModel)
 	local upgradeStats = Stats[model.Name]["Upgrades"][model.UpgradeState.Value]
 	
-	--Values $$DUPLICATE CODE$$
+	-- Values $$DUPLICATE CODE$$
 	local teamVal = Instance.new("ObjectValue")
 	local upgradeRoot = Instance.new("ObjectValue")
 	local upgrading = Instance.new("BoolValue")
@@ -250,10 +250,10 @@ function Upgrade(model, instantStructure)
 	upgrading.Parent = model
 	
 	
-	--Electrical $$DUPLICATE CODE$$
+	-- Electrical $$DUPLICATE CODE$$
 	CollectionService:AddTag(upgradeModel, "NoLeaks")
 	local node = ElectricNode.New()
-	node.charge = 1 / 10^12 --Small nonzero value
+	node.charge = 1 / 10^12 -- Small nonzero value
 	node.storage = upgradeStats.Cost
 	Electricity.BindStructure(upgradeModel, node)
 
@@ -269,7 +269,7 @@ function Upgrade(model, instantStructure)
 	updatedHook:Connect(function(node) Colorizer.UpdateBlueprintColor(node.structure, node:GetCharge(), node:GetStorage()) end)
 	updatedHook:BindNode(node)
 	
-	--Color $$DUPLICATE CODE$$
+	-- Color $$DUPLICATE CODE$$
 	if instantStructure then
 		Colorizer.ColorAsStructure(upgradeModel)
 		Structure.Promote(upgradeModel)

@@ -12,25 +12,25 @@ local ActionService = require(ServerScriptService.Services.ActionService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
 local InteractRange = 30
-local Multiplier = 30 *(RunService:IsStudio() and 1000 or 1) --n0pa
+local Multiplier = 30 *(RunService:IsStudio() and 1000 or 1) -- n0pa
 local beams = {} 
 local tools = {}
 
 function AddPlayer(player)
 	if beams[player] then return end
 
-	--Get Builder
+	-- Get Builder
 	local builderTool = player.Character:FindFirstChild("Builder")
 	if not builderTool then return end
 	tools[player] = builderTool
 
-	--Get Mouse
+	-- Get Mouse
 	local part, position, normal = MouseData.GetMouse(player)
 	
-	--Start Sound
+	-- Start Sound
 	builderTool.PushSound.Playing = true
 	
-	--Create Effect
+	-- Create Effect
 	local effectID = EffectService.CreateEffect("BuilderPushBeam", builderTool.Handle.Attachment, position)
 	beams[player] = effectID
 end
@@ -38,10 +38,10 @@ end
 function RemovePlayer(player)
 	if not beams[player] then return end
 
-	--End Sound
+	-- End Sound
 	tools[player].PushSound.Playing = false
 
-	--Remove Effect
+	-- Remove Effect
 	EffectService.EndEffect(beams[player])
 	tools[player] = nil
 	beams[player] = nil
@@ -53,7 +53,7 @@ function Run(delta)
 		local builder = tools[player]
 		local target = StructureUtil.GetModel(part)
 
-		--Update Effect
+		-- Update Effect
 		local handle = builder:FindFirstChild("Handle")
 		if not handle then continue end
 		
@@ -64,14 +64,14 @@ function Run(delta)
 		beamDirection = beamUnit * math.min(beamDistance, InteractRange)
 		EffectService.SignalEffect(effectID, "UpdatePosition", beamStartPosition + beamDirection)
 
-		--Checks
+		-- Checks
 		if not target then continue end
 		if not (player.Character and player.Character:FindFirstChild("Backpack")) then continue end
 		if not (CollectionService:HasTag(target, "Blueprint") or CollectionService:HasTag(target, "Crystal") or part.Name == "RefillConsole") then continue end
 		if target:FindFirstChild("Team") and player.Team ~= target.Team.Value then continue end
 		if beamDistance > InteractRange then continue end
 
-		--Transfer
+		-- Transfer
 		Electricity.Transfer(player.Character.Backpack, target, delta * Multiplier)
 		if Electricity.GetChargePercent(player.Character.Backpack) == 0 then builder.ClickSound:Play() RemovePlayer(player) end
 	end

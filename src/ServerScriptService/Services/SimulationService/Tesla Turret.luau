@@ -8,13 +8,13 @@ local EffectService = require(ServerScriptService.Services.EffectService)
 local GridInterface = require(ServerScriptService.Packages.Grid.Interface2)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
---Imports
+-- Imports
 local Stats = require(ReplicatedStorage.Stats.Structure)["Tesla Turret"]
 
---Data
+-- Data
 local TurretData = {}
 
---Helper Functions
+-- Helper Functions
 local function getCharactersInRange(position, teamToIgnore)
 	local characters = GridInterface.GetPriorityInRadius(
 		"Characters",
@@ -75,11 +75,11 @@ local function onRemoved(turret)
 end
 
 local function runObject(turret, deltaTime)
-	--data.Cooldown -= delta
-	--if data.Cooldown > 0 then continue end
+	-- data.Cooldown -= delta
+	-- if data.Cooldown > 0 then continue end
 
 	local characters = getCharactersInRange(turret.PrimaryPart.Position, turret.Team.Value)
-	--if character then shoot(turret, character) end
+	-- if character then shoot(turret, character) end
 	track(deltaTime, turret, characters)
 end
 

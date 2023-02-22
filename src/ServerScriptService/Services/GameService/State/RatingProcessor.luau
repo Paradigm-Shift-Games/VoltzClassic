@@ -14,7 +14,7 @@ local RatingProcessor = {}
 
 local M_1_1_PI = 1/math.pi
 
---default sigmoid curve
+-- default sigmoid curve
 local function s(x)
 	return M_1_1_PI*math.atan(x) + 0.5
 end
@@ -144,10 +144,10 @@ end
 
 --[[Size Weight]]--
 WinningWeightFunctions[4] = function(dataTable)
-	--Desmos' Regression came up with these, f(1) = 1, f(2) = 2, f(3) = 2.8 [f(2) <= f(3) <= 3]
-	--local D1 = 2.78406 -- (-inf, inf), 1
-	--local D2 = -2.54728 -- (-inf, inf), 0
-	--local D3 = -4.07435 -- (-inf, inf), 0
+	-- Desmos' Regression came up with these, f(1) = 1, f(2) = 2, f(3) = 2.8 [f(2) <= f(3) <= 3]
+	-- local D1 = 2.78406 -- (-inf, inf), 1
+	-- local D2 = -2.54728 -- (-inf, inf), 0
+	-- local D3 = -4.07435 -- (-inf, inf), 0
 	
 	local minPossible = 0.5 -- [0, max]
 	local maxPossible = 1 -- [min, 1]
@@ -177,7 +177,7 @@ local function calculateWeights(dataTable)
 	for _, weightFunction in ipairs(LosingWeightFunctions) do weightFunction(dataTable) end
 end
 
-local function formatData(inputTable, timeTable) --returns DataTable
+local function formatData(inputTable, timeTable) -- returns DataTable
 	local winningRatings = {}
 	local winningTimes = {}
 	for index, userID in pairs(inputTable["WinningTeam"].userIDs) do
@@ -286,7 +286,7 @@ TeamData Template = {
 TimeData Template = {
 	[userIDs: string] = {
 		DateTime: DateTime | nil
-		TotalTime: number --Milliseconds
+		TotalTime: number -- Milliseconds
 	}
 }
 

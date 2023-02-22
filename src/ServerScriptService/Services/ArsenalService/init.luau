@@ -4,28 +4,29 @@ local TweenService = game:GetService("TweenService")
 local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
-local ServerScriptService:WaitForChild("Services"):WaitForChild("ButtonService") = game:GetService("ServerScriptService:WaitForChild("Services"):WaitForChild("ButtonService")")
 
 local ArsenalHeiarchy = require(ReplicatedStorage.ArsenalWeapons)
 local StructureUtil = require(ReplicatedStorage.StructureUtility)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ButtonService = require(ServerScriptService:WaitForChild("Services"):WaitForChild("ButtonService"))
 
---This code is going to be changed -Styx
+-- This code is going to be changed -Styx
 local Events = ReplicatedStorage:WaitForChild("Events")
-local uiMain = script:WaitForChild("uiMain")
-local button = uiMain:WaitForChild("container"):WaitForChild("CategoryContainer"):WaitForChild("1"):Clone()
+
+-- These variables were unused. I have no idea why. 4812571, 2/12/2023
+-- local uiMain = ReplicatedStorage:WaitForChild("Assets"):WaitForChild("ArsenalUIMain")
+-- local button = uiMain:WaitForChild("container"):WaitForChild("CategoryContainer"):WaitForChild("1"):Clone()
 local ArsenalButtonRemote = Events:WaitForChild("ArsenalButton")
 
-local ArsenalData = {} --Arsenal models as keys, table data as values
+local ArsenalData = {} -- Arsenal models as keys, table data as values
 
 local ArsenalService = {}
 
 local onArsenalTagAdded = function(arsenal)
 	ArsenalData[arsenal] = {
-		CurrentlyProducingWeapon = nil; --nil | weapon model
+		CurrentlyProducingWeapon = nil; -- nil | weapon model
 		TimeToProduce = 0; -- 0 | weapon's timeToProduce
-		CurrentProductionTime = 0; --time from start of production
+		CurrentProductionTime = 0; -- time from start of production
 		CurrentTween = nil;
 	}
 end
@@ -73,7 +74,7 @@ end
 function ArsenalService.ButtonInteraction(player, button)
 	local uiContainer = button.Parent.Parent
 	local arsenal = StructureUtil.GetModel(button)
-	--if not arsenal then return end--
+	-- if not arsenal then return end--
 	local container = button.Parent
 	local selectedCategoryValue = uiContainer.Parent:WaitForChild("SelectedCategory", 0.1) or Instance.new("StringValue")
 	
@@ -129,7 +130,7 @@ function ArsenalService.ButtonInteraction(player, button)
 		local arsenalData = ArsenalData[arsenal]
 		arsenalData.CurrentlyProducing = requestedWeapon.weaponModel
 		arsenalData.TimeToProduce = requestedWeapon.timeToProduce
-		--arsenalData.CurrentTime = 0
+		-- arsenalData.CurrentTime = 0
 	end
 end
 

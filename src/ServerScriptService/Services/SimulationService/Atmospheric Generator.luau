@@ -8,15 +8,15 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ElectricityDisplay = require(ServerScriptService.Packages.Electricity.Display)
 local Influencer = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Influencer)
 
-local Atmospheric Generator = {}
+local AtmosphericGenerator = {}
 
---Data
+-- Data
 local Grounded = {}
 local Ungrounded = {}
 local objectStats = Stats[script.Name]
 local objectData = {}
 
---Variables
+-- Variables
 local tickCount = 0
 local updateFrequency = 30
 local minProduction = objectStats.MinProduction
@@ -25,7 +25,7 @@ local minHeight = objectStats.MinHeight
 local maxHeight = objectStats.MaxHeight
 
 function getProduction(object)
-	--https://www.desmos.com/calculator/pshxnz0pjo
+	-- https://www.desmos.com/calculator/pshxnz0pjo
 	local heightFactor = math.clamp((object.PrimaryPart.Position.Y - minHeight) / (maxHeight - minHeight), 0, 1)
 	print(heightFactor)
 	return minProduction + ((maxProduction - minProduction) * heightFactor)
@@ -42,10 +42,10 @@ end
 function onAdded(object)
 	objectData[object] = {}
 	
-	--Ground State
+	-- Ground State
 	if object.PrimaryPart:IsGrounded() then Grounded[object] = true else Ungrounded[object] = true end
 	
-	--Create Influencer
+	-- Create Influencer
 	local influencer = Influencer.New()
 	objectData[object].influencer = influencer
 	updateProduction(object)
@@ -60,7 +60,7 @@ function onRemoved(object)
 	objectData[object] = nil
 end
 
-function Atmospheric Generator.Run(delta)
+function AtmosphericGenerator.Run(delta)
 	for v, _ in pairs(Ungrounded) do
 		if v.PrimaryPart:IsGrounded() then
 			Ungrounded[v], Grounded[v]  = nil, true
@@ -102,7 +102,7 @@ function AtmosphericGeneratorServer:Destroy()
 end
 
 function AtmosphericGeneratorServer.StaticUpdate(deltaTime)
-	Atmospheric Generator.Run(deltaTime)
+	AtmosphericGenerator.Run(deltaTime)
 end
 
 return AtmosphericGeneratorServer

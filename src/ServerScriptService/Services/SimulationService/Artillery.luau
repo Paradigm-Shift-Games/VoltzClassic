@@ -14,9 +14,9 @@ local Events = ReplicatedStorage:WaitForChild("Events")
 local ArtilleryRemote = Events:WaitForChild("ArtilleryRemote")
 local RocketTemplate = workspace.Extras.Projectiles.Rocket
 
---Constants
-local MAXPITCH = 0.7 --These are radians from the horizontal
-local MINPITCH = -0.55 --These are radians from the horizontal
+-- Constants
+local MAXPITCH = 0.7 -- These are radians from the horizontal
+local MINPITCH = -0.55 -- These are radians from the horizontal
 
 local ArtilleryData = {}
 
@@ -65,7 +65,7 @@ local function onServerEvent(player, artillery, mode, rotationArray)
 	local artilleryData = ArtilleryData[artillery]
 	if not artilleryData or ArtilleryData[artillery].Occupant ~= player then return end
 		
-	if mode == "Fire" then --Needs to be finished @NPA
+	if mode == "Fire" then -- Needs to be finished @NPA
 		print(artilleryData.CurrentReloadingTime, ArtilleryStats.ReloadTime);
 		if artilleryData.CurrentReloadingTime < ArtilleryStats.ReloadTime then return end
 		
@@ -83,19 +83,19 @@ local function onServerEvent(player, artillery, mode, rotationArray)
 	end
 		
 	if mode == "Pitch" then
-		ArtilleryData[artillery].NetPitch = 1 * rotationArray[1] + -1 * rotationArray[2] --Refer to the client script for the indices
+		ArtilleryData[artillery].NetPitch = 1 * rotationArray[1] + -1 * rotationArray[2] -- Refer to the client script for the indices
 		
 	elseif mode == "Yaw" then
-		ArtilleryData[artillery].NetYaw = -1 * rotationArray[1] + 1 * rotationArray[2] --Refer to the client script for the indices
+		ArtilleryData[artillery].NetYaw = -1 * rotationArray[1] + 1 * rotationArray[2] -- Refer to the client script for the indices
 	end
 end
 
-local function runObject(delta, artillery) --Not named to "runArtillery" for the sake of Artillery.Run errors
+local function runObject(delta, artillery) -- Not named to "runArtillery" for the sake of Artillery.Run errors
 	local artilleryData = ArtilleryData[artillery]
 	
 	if artilleryData.Consumed then
-		artilleryData.CurrentReloadingTime = math.min(artilleryData.CurrentReloadingTime + delta, ArtilleryStats.ReloadTime) --Increases until reload time is reached
-		--Update the part maybe?
+		artilleryData.CurrentReloadingTime = math.min(artilleryData.CurrentReloadingTime + delta, ArtilleryStats.ReloadTime) -- Increases until reload time is reached
+		-- Update the part maybe?
 	else
 		artilleryData.Consumed = Electricity.Pull(artillery, ArtilleryStats.ShotCost)
 	end
@@ -110,7 +110,7 @@ local function runObject(delta, artillery) --Not named to "runArtillery" for the
 		
 	local _, _, pitch = barrelHingeMotor.C0:ToEulerAnglesYXZ()
 	pitch += ArtilleryStats.PitchSpeed * artilleryData.NetPitch * delta
-	barrelHingeMotor.C0 = CFrame.Angles(0, 0, math.clamp(pitch, MINPITCH, MAXPITCH)) --pitch needs a clamp otherwise it clips through the base / head
+	barrelHingeMotor.C0 = CFrame.Angles(0, 0, math.clamp(pitch, MINPITCH, MAXPITCH)) -- pitch needs a clamp otherwise it clips through the base / head
 	
 	local _, yaw, _ = headHingeMotor.C0:ToEulerAnglesYXZ()
 	yaw += ArtilleryStats.YawSpeed * artilleryData.NetYaw * delta

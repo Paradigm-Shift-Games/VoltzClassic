@@ -35,7 +35,7 @@ function StructureUtility.GetModel(part)
 		if parent == workspace then return nil end
 		if parent == game then return nil end
 		if parent == workspace.Structures then return object end
-		if parent == workspace.Lobby then return object end
+		if parent == workspace.Map then return object end
 		object = parent
 		parent = object.Parent
 	end
@@ -81,6 +81,5 @@ end
 function StructureUtility.DetectorType(snapPart)
 	return StructureUtility.DetectorParent(snapPart).Name
 end
-
 
 return StructureUtility

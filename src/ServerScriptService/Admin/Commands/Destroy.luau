@@ -15,7 +15,7 @@ local function Command(player, parameters)
 	elseif #parameters == 2 then
 		local team = Teams:FindFirstChild(parameters[2])
 		if not team then 
-			--ChatService.BroadcastToPlayer(player, "System", "Invalid team "..parameters[2]) 
+			-- ChatService.BroadcastToPlayer(player, "System", "Invalid team "..parameters[2]) 
 			return
 		end
 		for _, v in pairs(CollectionService:GetTagged(parameters[1])) do
@@ -24,7 +24,7 @@ local function Command(player, parameters)
 			DamageService.Destroy(v)
 		end		
 	elseif #parameters > 2 then
-		--ChatService.BroadcastToPlayer(player, "System", "Too many parameters"..parameters[2])
+		-- ChatService.BroadcastToPlayer(player, "System", "Too many parameters"..parameters[2])
 	end
 end
 

@@ -25,10 +25,10 @@ end
 
 local LogService = {}
 --[[
---LogService--
+-- LogService--
 
 bool AutoReport
---Autoreporter setting
+-- Autoreporter setting
 
 void function Report(string message)
 reports string, make it use traceback to automatically know the caller :)

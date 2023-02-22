@@ -26,20 +26,20 @@ end
 local function BuildTeams()
 	print("Building Teams!")
 	for teamName, data in pairs(matchData) do		
-		--Team Object
+		-- Team Object
 		local newTeam = Instance.new("Team")
 		newTeam.Name = teamName
 		newTeam.AutoAssignable = false
 		newTeam.TeamColor = BrickColor.new(Color3.new(data.teamColor.R, data.teamColor.G, data.teamColor.B))
 		newTeam.Parent = Teams
 		
-		--Data Formatting
+		-- Data Formatting
 		print("Creating Team Entry", data.teamColor, data.pos)
 		teamData[data.pos] = {}
 		teamData[data.pos].Team = newTeam
 		teamData[data.pos].UserIds = data.players
 		
-		--Islands
+		-- Islands
 		StarterIsland.AssignIsland(data.pos, newTeam)
 	end
 	loaded = true

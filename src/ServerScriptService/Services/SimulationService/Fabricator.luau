@@ -13,28 +13,28 @@ local TransferLine = require(ServerScriptService.Packages.Electricity.Classes.Ne
 
 local Fabricator = {}
 
---Graphs
+-- Graphs
 local beamGraph = 		Graph.New()
 local debugBeamGraph = 	Graph.New()
 local hardGraph = 		ArrayGraph.New()
 local softGraph = 		ArrayGraph.New()
 
---Stats
+-- Stats
 local FabricatorStats = StructureStats["Fabricator"]
 local range = FabricatorStats.Range
 
---Data
+-- Data
 local Grounded = {}
 local Ungrounded = {}
 local FabricatorData = {}
 
---Settings
+-- Settings
 local Debug = false
 local DebugDefault = ColorSequence.new(Color3.fromRGB(0, 0, 0))
 local DebugHard = ColorSequence.new(Color3.fromRGB(0, 255, 0)) 
 local DebugSoft = ColorSequence.new(Color3.fromRGB(255, 0, 0)) 
 
---Debug
+-- Debug
 function EnableDebug()
 	print("Fabricator: Enabling Debug Mode")
 	for _, Fabricator in ipairs(CollectionService:GetTagged("Fabricator")) do
@@ -63,7 +63,7 @@ function DisableDebug()
 	end
 end
 
---Lines
+-- Lines
 function ConnectBeam(Fabricator, Blueprint)
 	local effectID = EffectService.CreateEffect("FabricatorBeam", Fabricator.Point.Attachment, Blueprint.PrimaryPart)
 	local transferLine = TransferLine.New(Electricity.GetNode(Blueprint), FabricatorStats.TransferRate)
@@ -76,7 +76,7 @@ function TerminateBeam(beamData)
 	beamData.transferLine:Unbind()
 end
 
---Connections
+-- Connections
 function Connect(graph, Fabricator, Blueprint)
 	graph:Connect(Fabricator, Blueprint)
 	if Debug then
@@ -119,7 +119,7 @@ function AttemptInitialConnection(Fabricator, Blueprint)
 	if Fabricator.Team.Value ~= Blueprint.Team.Value then return end
 	if (Fabricator.Point.Position - Blueprint.PrimaryPart.Position).Magnitude > range then return end
 	
-	--Effect Initialize
+	-- Effect Initialize
 	if Grounded[Fabricator] and Grounded[Blueprint] then
 		print("Creating Initial Hard Connection")
 		Connect(hardGraph, Fabricator, Blueprint)
@@ -129,7 +129,7 @@ function AttemptInitialConnection(Fabricator, Blueprint)
 	end
 end
 
---Objects Added
+-- Objects Added
 
 function OnFabricatorAdded(Fabricator)
 	print("Adding Fabricator")
@@ -155,11 +155,11 @@ function OnRemoved(Structure)
 	FabricatorData[Structure] = nil
 end
 
---Connections
+-- Connections
 CollectionService:GetInstanceAddedSignal("Blueprint"):Connect(OnBlueprintAdded)
 CollectionService:GetInstanceRemovedSignal("Blueprint"):Connect(OnRemoved)
 
---Object Update
+-- Object Update
 function getCount(hashtab) 
 	local count = 0 for _, _ in pairs(hashtab) do count += 1 end
 	return count
@@ -185,7 +185,7 @@ end
 function runObject(Fabricator)
 	local softConnected = softGraph:GetConnections(Fabricator)
 	
-	--Scan New Soft Connections
+	-- Scan New Soft Connections
 	for v, _ in ipairs(Ungrounded) do
 		if v.Name == "Fabricator" then continue end
 		if softConnected[v] then continue end
@@ -193,7 +193,7 @@ function runObject(Fabricator)
 		AttemptInitialConnection(Fabricator, v)
 	end
 	
-	--Disconnect Invalid Soft Connections
+	-- Disconnect Invalid Soft Connections
 	for i = softConnected:GetSize(), 1 , -1 do
 		local Blueprint = softConnected[i]
 		if (Fabricator.Point.Position - Blueprint.PrimaryPart.Position).Magnitude < range then continue end
@@ -208,14 +208,14 @@ function runObject(Fabricator)
 	end
 end
 
---Service Update
+-- Service Update
 function Fabricator.Run(delta)
-	--Swap Grounded -> Ungrounded
+	-- Swap Grounded -> Ungrounded
 	for Object, _ in pairs(Grounded) do
 		if Object.PrimaryPart:IsGrounded() then continue end
 		print(Object.Name, "Ungrounded!")
 
-		--Transfer all connections to Soft Graph
+		-- Transfer all connections to Soft Graph
 		local connections = hardGraph:GetConnections(Object)
 		for i = connections:GetSize(), 1, -1 do 
 			local Connected = connections[i]
@@ -225,12 +225,12 @@ function Fabricator.Run(delta)
 		Grounded[Object], Ungrounded[Object] = nil, true
 	end
 
-	--Swap Ungrounded -> Grounded
+	-- Swap Ungrounded -> Grounded
 	for Object, _ in pairs(Ungrounded) do
 		if not Object.PrimaryPart:IsGrounded() then continue end		
 		print(Object.Name, "Grounded!")
 
-		--Transfer all grounded connections to Hard Graph
+		-- Transfer all grounded connections to Hard Graph
 		local connections = softGraph:GetConnections(Object)
 		for i = connections:GetSize(), 1, -1 do
 			local Connected = connections[i]

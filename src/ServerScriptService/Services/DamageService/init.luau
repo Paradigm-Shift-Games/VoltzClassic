@@ -62,18 +62,18 @@ function GetDamageFactor(damageType, damagingType)
 end
 
 function DamageService.Damage(instance, damage, damageType)
-	--print("Damaging", instance, damage, damageType)
+	-- print("Damaging", instance, damage, damageType)
 	if not (damage < 0 or damage == 0 or damage > 0) then warn("Illegal damage value") end
 	
 	local humanoid = GetHumanoidFromPart(instance)
 	local model = StructureUtil.GetModel(instance)
 	
-	--Player
+	-- Player
 	if humanoid then
 		humanoid:TakeDamage(damage * (DamageFactorsByBodyPart[instance.Name] or 0.8)) return
 	end
 	
-	--Structure
+	-- Structure
 	if model then
 		if CollectionService:HasTag(model, "Invincible") then print("Haha you can't kill me | Tell 4812571 if you see this!") return end
 		local isMerged = AssemblyService.getAttachmentType(model) == "Merge"
@@ -81,10 +81,10 @@ function DamageService.Damage(instance, damage, damageType)
 		local modelType = GetModelType(damaging)
 		damage = damage * GetDamageFactor(damageType, modelType)
 		
-		--Explosion
+		-- Explosion
 		if isMerged and damageType == "Explosive" then print("Handled") return end
 		
-		--Damage
+		-- Damage
 		if CollectionService:HasTag(damaging, "Blueprint") or CollectionService:HasTag(damaging, "Crystal") then
 			Electricity.Pull(damaging, damage, true)
 		else
@@ -92,7 +92,7 @@ function DamageService.Damage(instance, damage, damageType)
 			if health.Value <= damage then DamageService.Destroy(damaging) return end
 			health.Value -= damage
 			
-			--Effects
+			-- Effects
 			if CollectionService:HasTag(damaging, "Structure") then
 				local health = health.Value
 				local maxHealth = Stats[damaging.Name].Health
@@ -109,7 +109,7 @@ end
 function Destroy(Object)
 	if not Object.Parent then return end
 	
-	--Clean Connectors
+	-- Clean Connectors
 	for _, v in pairs(Object:GetChildren()) do
 		if v.Name == "Snaps" or v.Name == "Connectors" then
 			for _, g in pairs(v:GetChildren()) do
@@ -118,13 +118,13 @@ function Destroy(Object)
 		end
 	end
 	
-	--Clean Upgrades
+	-- Clean Upgrades
 	if CollectionService:HasTag(Object, "Blueprint") and CollectionService:HasTag(Object, "Upgrade") then
 		Object.UpgradeRoot.Value.Upgrading:Destroy()
 		Object.UpgradeRoot.Value.UpgradeState.Value -= 1
 	end
 	
-	--Clean Tags
+	-- Clean Tags
 	for _, v in ipairs(CollectionService:GetTags(Object)) do CollectionService:RemoveTag(Object, v) end
 	
 	CleanupService.Clean(Object)

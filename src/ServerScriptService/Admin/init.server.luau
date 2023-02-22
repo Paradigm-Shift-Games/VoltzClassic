@@ -22,10 +22,10 @@ end
 
 local function onPlayerChatted(player, message, recipient)
 	if recipient then return end -- Ignore whispers
-	if player:GetRankInGroup(GroupID) < AdminRank then return end --Ignore non admins
+	if player:GetRankInGroup(GroupID) < AdminRank then return end -- Ignore non admins
 	if message:sub(1, commandString:len()):lower() ~= commandString:lower() then return end -- Ignore non commands
 	
-	local command = message:sub(commandString:len() + 1, message:len()) --Grab everything after command string
+	local command = message:sub(commandString:len() + 1, message:len()) -- Grab everything after command string
 	print("User:", player, "Attempted to fire command", command)
 	local keyword = command:split(" ")[1]:lower()
 	

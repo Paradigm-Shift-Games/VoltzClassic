@@ -14,15 +14,15 @@ local IgnoredNames = {}
 local Hit, HitPosition, Normal
 
 local function CanHit(HitPart)
-	if HitPart == nil then return true end --Nil 
-	if table.find(TargetedNames, HitPart.Name) then return true end --Filter 
+	if HitPart == nil then return true end -- Nil 
+	if table.find(TargetedNames, HitPart.Name) then return true end -- Filter 
 	if table.find(IgnoredNames, HitPart.Name) then return false end -- Filter
-	if HitPart.Name == "ShieldDome" then if HitPart.Parent.Team.Value == LocalPlayer.Team then return false else return true end end --Shield
-	if HitPart:IsDescendantOf(workspace.Effects) then return false end --Effects
-	if HitPart:IsA("Terrain") then return true end --Terrain
+	if HitPart.Name == "ShieldDome" then if HitPart.Parent.Team.Value == LocalPlayer.Team then return false else return true end end -- Shield
+	if HitPart:IsDescendantOf(workspace.Effects) then return false end -- Effects
+	if HitPart:IsA("Terrain") then return true end -- Terrain
 	if HitPart.Transparency < 1 then return true end -- Visibility
-	if HitPart.CanCollide then return true end --Collision
-	if HitPart.Parent:FindFirstChild("Humanoid") then return true end --Character
+	if HitPart.CanCollide then return true end -- Collision
+	if HitPart.Parent:FindFirstChild("Humanoid") then return true end -- Character
 	return false
 end
 
