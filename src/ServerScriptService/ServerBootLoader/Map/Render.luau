@@ -27,7 +27,7 @@ function Sleep(frequency)
     end
 end
 
-Render.Initialize = function()
+function Render.Initialize()
 	for _, v in pairs(MapCells:GetChildren()) do
 		for _, g in pairs(v:GetChildren()) do
 			for _, j in pairs(g:GetChildren()) do
@@ -85,7 +85,7 @@ function RenderCell(cell)
 	end
 end
 
-Render.Render = function()
+function Render.Render()
 	Matrix.SmartInterate(RenderCell)
 end
 

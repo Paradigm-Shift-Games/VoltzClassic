@@ -1,7 +1,7 @@
 -- Author: 4812571
 
 local Matrix = require(script.Parent.Matrix)
-local Settings = require(script.Parent.Settings.selectedSettings.Value)
+local Settings = require(script.Parent.Settings.Default)
 
 local Support = {}
 local ColumnCount = 0
@@ -32,7 +32,7 @@ function Support.CanGenerate(x, z)
 end
 
 local function Generate(x, z, isCircular, size, isStarter)
-	--if isStarter then print(";)") end
+	-- if isStarter then print(";)") end
 	local isCircular = isCircular or math.random(1, 2) == 1
 	local size = size or math.random(0, 1)
 	for dx = -size, size do
@@ -67,7 +67,7 @@ local function Generate(x, z, isCircular, size, isStarter)
 	end
 end
 
-Support.Generate = function()
+function Support.Generate()
 	for _, v in pairs(Support.Supports) do
 		Generate(v.X, v.Z, v.isCircular, v.size, v.isStarter)
 	end

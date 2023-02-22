@@ -17,7 +17,7 @@ end
 
 local Moderation = {}
 
-Moderation.ListenForEvents = function()
+function Moderation.ListenForEvents()
 	CommunicationService.BindToCommunication(CommunicationService.MessageChannels.Moderation, "CommandHandler", HandleCommands)
 end
 

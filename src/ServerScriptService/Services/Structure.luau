@@ -13,47 +13,47 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local Structure = {}
 
 function PromoteUpgrade(Object)
-	--Clear Blueprint Data
+	-- Clear Blueprint Data
 	CollectionService:RemoveTag(Object, "Blueprint")
 	CollectionService:RemoveTag(Object, "NoLeaks")
 	Colorizer.RevertColors(Object)
 	
-	--Clear Blueprint Electrical Data
+	-- Clear Blueprint Electrical Data
 	Electricity.RemoveStructure(Object)
 
-	--Add New Electrical Data
+	-- Add New Electrical Data
 	Electricity.AddStructure(Object)
 	Electricity.ConnectStructures(Object, Object.UpgradeRoot.Value)
 	
-	--Handle Upgrade
+	-- Handle Upgrade
 	AssemblyService.SetAttachmentType(Object, "Merge")
 	Object.UpgradeRoot.Value.Upgrading:Destroy()	
 	
-	--Add New Tags
+	-- Add New Tags
 	CollectionService:AddTag(Object, "Structure")
 	CollectionService:AddTag(Object, Object.Name)
 	if Stats[Object.Name].Tags then for _, v in pairs(Stats[Object.Name].Tags) do CollectionService:AddTag(Object, v) end end
 end
 
 function Structure.Promote(Object)	
-	--Offload Upgrades
+	-- Offload Upgrades
 	if CollectionService:HasTag(Object, "Upgrade") then PromoteUpgrade(Object) return end
 	
-	--Clear Blueprint Data
+	-- Clear Blueprint Data
 	CollectionService:RemoveTag(Object, "Blueprint")
 	CollectionService:RemoveTag(Object, "NoLeaks")
 	Colorizer.RevertColors(Object)
 	
-	--Clear Blueprint Electrical Data
+	-- Clear Blueprint Electrical Data
 	Electricity.RemoveStructure(Object)
 	
-	--Insert Health
+	-- Insert Health
 	local health = Instance.new("NumberValue")
 	health.Name = "Health"
 	health.Value = Stats[Object.Name].Health
 	health.Parent = Object
 	
-	--Handle Connectors
+	-- Handle Connectors
 	local connectors = {}
 	for _, v in pairs(Object:GetChildren()) do
 		if v.Name == "Snaps" or v.Name == "Connectors" then
@@ -64,7 +64,7 @@ function Structure.Promote(Object)
 		end 	
 	end	
 	
-	--Add New Electrical Data
+	-- Add New Electrical Data
 	if #connectors > 0 then
 		Electricity.AddStructure(Object)
 
@@ -76,7 +76,7 @@ function Structure.Promote(Object)
 		end
 	end
 	
-	--Add New Tags
+	-- Add New Tags
 	CollectionService:AddTag(Object, "Structure")
 	CollectionService:AddTag(Object, Object.Name)
 end

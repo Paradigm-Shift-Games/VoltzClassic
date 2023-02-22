@@ -28,17 +28,17 @@ function Raycast(object1, object2)
 end
 
 function runObject(object, delta)
-	--Cooldown
+	-- Cooldown
 	if tick() < objectData[object].NextConnectionTime then return end
 	objectData[object].NextConnectionTime = tick() + objectStats.Cooldown
 	
-	--Connect
+	-- Connect
 	for _, v in pairs(CollectionService:GetTagged(script.Name)) do
 		if object == v then continue end
 		if Raycast(object, v) then continue end
-		--Determine Direction and Transfer, 
+		-- Determine Direction and Transfer, 
 		if Electricity.GetChargePercent(object) > Electricity.GetChargePercent(v) then
-			--Percent Balancing Math
+			-- Percent Balancing Math
 			local chargeTotal = Electricity.GetCharge(object) + Electricity.GetCharge(v)
 			local storageTotal = Electricity.GetStorage(object) + Electricity.GetStorage(v)
 			local targetConnectedCharge = (chargeTotal / storageTotal) * Electricity.GetStorage(v)

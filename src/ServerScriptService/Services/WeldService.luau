@@ -52,7 +52,7 @@ end
 
 function WeldService.WeldAssembly(Object)
 	
-	--Weld Models
+	-- Weld Models
 	for _, v in pairs(Object:GetChildren()) do
 		if v:IsA("Model") then
 			local Primary = v.PrimaryPart
@@ -67,7 +67,7 @@ function WeldService.WeldAssembly(Object)
  		end
 	end
 	
-	--Weld Hinges
+	-- Weld Hinges
 	for _, v in pairs(Object:GetDescendants()) do
 		if v.Name == "Hinge1" then WeldMotor6D(v.Parent, v, v.Attach.Value, "HingeMotor") end
 	end

@@ -66,10 +66,10 @@ end
 function runObject(object, delta)
 	local data = objectData[object]
 	
-	--Cooldown
+	-- Cooldown
 	if tick() < data.enableTime or not data.Enabled then return end
 	
-	--Generate Shield
+	-- Generate Shield
 	local shield = object.Shield.Value
 	if (not shield) or (not shield.Parent) then
 		if not Electricity.Pull(object, 2) then return end
@@ -79,7 +79,7 @@ function runObject(object, delta)
 	end
 	
 	
-	--Drain
+	-- Drain
 	local shieldPower = shield:WaitForChild("ShieldPower")
 	if not Electricity.Pull(object, delta * objectStats.Drain) then 
 		object.Shield.Value:Destroy() 
@@ -87,7 +87,7 @@ function runObject(object, delta)
 		return
 	end
 	
-	--Charge Shield
+	-- Charge Shield
 	if shieldPower.Value == objectStats.MaxCharge then return end
 	if Electricity.Pull(object, delta * objectStats.Consumption) then
 		shieldPower.Value = math.min(shieldPower.Value + (delta * objectStats.ChargeRate), objectStats.MaxCharge)

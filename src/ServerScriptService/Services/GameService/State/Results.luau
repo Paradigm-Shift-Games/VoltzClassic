@@ -41,7 +41,7 @@ local function formatTime(totalMilliseconds)
 end
 
 local function formatColor(color)
-	--16^6 - 1 = 16711680, 16^4 - 1 = 65280, 16^2 - 1 = 255
+	-- 16^6 - 1 = 16711680, 16^4 - 1 = 65280, 16^2 - 1 = 255
 	return 16711680*color.r + 65280*color.g + 255*color.b
 end
 
@@ -54,7 +54,7 @@ local function addPlayerResult(stringUserID, ratingStringUserIDs, ratingDelta, d
 end
 
 function Results.SendWinMessage(winningTeam, ratingDeltas)	
-	local color = winningTeam.TeamColor.Color--Color3.fromRGB(9, 137, 207)
+	local color = winningTeam.TeamColor.Color-- Color3.fromRGB(9, 137, 207)
 	local font = Enum.Font.Sarpanch
 	local textSize = 25
 	

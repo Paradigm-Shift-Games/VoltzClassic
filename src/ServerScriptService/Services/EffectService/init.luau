@@ -8,7 +8,7 @@ for _, v in ipairs(script:GetChildren()) do
 	Effects[v.Name] = require(v)
 end
 
-EffectService.CreateEffect = function(effectName, ...)
+function EffectService.CreateEffect(effectName, ...)
 	local ID = GetID()
 	ActiveEffects[ID] = Effects[effectName].Create(...)
 	return ID
@@ -21,11 +21,11 @@ function EffectService.EndEffect(effectID)
 	ActiveEffects[effectID] = nil
 end
 
-EffectService.FireEffect = function(effectName, ...)
+function EffectService.FireEffect(effectName, ...)
 	Effects[effectName].Fire(...)
 end
 
-EffectService.SignalEffect = function(effectID, signal, ...)
+function EffectService.SignalEffect(effectID, signal, ...)
 	ActiveEffects[effectID][signal](...)
 end
 

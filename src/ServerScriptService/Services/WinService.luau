@@ -9,7 +9,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local RatingService = require(ServerScriptService.Services.RatingService)
 local DiscordService = require(ServerScriptService.Services.DiscordService)
 
-local Enabled = true --Just for future stuff.
+local Enabled = true -- Just for future stuff.
 local Debounce = false
 
 local teamSpawnCounts = {}
@@ -24,12 +24,12 @@ end
 
 local WinService = {}
 
-local function getTeamLifeCounts() --Finds all teams and stores them and how many players are still alive in teams
+local function getTeamLifeCounts() -- Finds all teams and stores them and how many players are still alive in teams
 	local teams = {}
 	for _, team in ipairs(Teams:GetTeams()) do
-		teams[team] = 0 --0 initial players
+		teams[team] = 0 -- 0 initial players
 
-		for _, player in ipairs(team:GetPlayers()) do --Adds 1 to teams[team] per living player
+		for _, player in ipairs(team:GetPlayers()) do -- Adds 1 to teams[team] per living player
 			if not player.Character then continue end
 
 			local Humanoid = player.Character:FindFirstChild("Humanoid")
@@ -69,7 +69,7 @@ local function writePlayerTexts(team, ratings, intendedSign, text)
 end
 
 function WinService.sendMatchResultAndUpdateRatings(livingTeamCount, lastTeam, remainingTeams)
-	--if #Players:GetPlayers() <= 1 and #Teams:GetTeams() <= 1 then return end
+	-- if #Players:GetPlayers() <= 1 and #Teams:GetTeams() <= 1 then return end
 
 	remainingTeams[lastTeam] = true
 	
@@ -92,7 +92,7 @@ function WinService.sendMatchResultAndUpdateRatings(livingTeamCount, lastTeam, r
 		};
 	}
 
-	local newMessage = DiscordService.Content.New() --everything is broken, will fix tomorrow.
+	local newMessage = DiscordService.Content.New() -- everything is broken, will fix tomorrow.
 	local newEmbed = DiscordService.Embed.New()
 
 	newEmbed:SetTitle("Match Results")
@@ -103,7 +103,7 @@ function WinService.sendMatchResultAndUpdateRatings(livingTeamCount, lastTeam, r
 	text ..= "\n"
 
 	local remainingRatings, remainingTeams = RatingService.calculateLosingRatings(dataTable, weightTable)
-	for team, _ in pairs(remainingTeams) do --k = team, v = true
+	for team, _ in pairs(remainingTeams) do -- k = team, v = true
 		local ratings = remainingRatings[team]
 
 		text = writePlayerTexts(team, ratings, "- ", text)
@@ -120,7 +120,7 @@ function WinService.sendMatchResultAndUpdateRatings(livingTeamCount, lastTeam, r
 	return
 end
 
-WinService.scan = function()
+function WinService.scan()
 	if not Enabled or Debounce then return end
 	
 	Debounce = true
@@ -129,7 +129,7 @@ WinService.scan = function()
 	local livingTeams = {}
 	local remainingTeams = {}
 
-	for team, lifeCount in pairs(teamLifeCounts) do --Adds all living teams to livingTeams
+	for team, lifeCount in pairs(teamLifeCounts) do -- Adds all living teams to livingTeams
 		if lifeCount < 1 then
 			remainingTeams[team] = true
 			return

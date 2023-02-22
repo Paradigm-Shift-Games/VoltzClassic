@@ -59,7 +59,7 @@ local function getDistance(model, position)
 	for _, v in pairs(model:GetDescendants()) do
 		if not v:IsA("BasePart") then continue end
 		local origin, direction = position, v.Position - position
-		local safetyOffset = (direction.Unit * 2) --Prevents surface rays from tunneling through block
+		local safetyOffset = (direction.Unit * 2) -- Prevents surface rays from tunneling through block
 		origin = position - safetyOffset
 		direction = direction + safetyOffset
 		local ray = Ray.new(origin, direction)
@@ -84,19 +84,19 @@ function ExplosionService.Explode(position, radius, damage)
 	explosion.DestroyJointRadiusPercent = 0
 	explosion.BlastPressure = 0
 	
-	--Position Collider
+	-- Position Collider
 	collider.Size = Vector3.new(1, 1, 1) * (radius * 2)
 	collider.Position = position
 	
 	local modelCache = {}
 	if radius > 0 and damage > 0 then
-		--Get Hit Models
+		-- Get Hit Models
 		for _, part in pairs(getHitParts()) do
 			local model = StructureUtil.GetModel(part)
 			if model then modelCache[model] = true end
 		end
 		
-		--Models
+		-- Models
 		for v, _ in pairs(modelCache) do
 			if not v.Parent then continue end
 			if v.Name == "Shield" then continue end
@@ -107,7 +107,7 @@ function ExplosionService.Explode(position, radius, damage)
 			Destruction.Damage(v, blastDamage, "Explosive")
 		end
 		
-		--Players
+		-- Players
 		for _, v in pairs(Players:GetPlayers()) do
 			if not (v.Character and v.Character:FindFirstChild("HumanoidRootPart")) then continue end
 			local distance = (v.Character.HumanoidRootPart.Position - position).Magnitude

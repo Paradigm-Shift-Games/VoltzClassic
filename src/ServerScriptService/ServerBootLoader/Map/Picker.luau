@@ -23,7 +23,7 @@ function roundVector(vector)
 	return Vector3.new(math.floor(vector.X + 0.5), math.floor(vector.Y + 0.5), math.floor(vector.Z + 0.5))
 end
 
-Picker.Initialize = function()
+function Picker.Initialize()
 	for _, v in pairs(MapCells:GetChildren()) do
 		for _, g in pairs(v:GetChildren()) do
 			Tree[v.Name..' '..g.Name] = {normal = {}, large = {}}

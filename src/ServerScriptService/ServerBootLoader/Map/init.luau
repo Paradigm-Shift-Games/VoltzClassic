@@ -9,7 +9,7 @@ local Support = require(script.Support)
 local Renderer = require(script.Render)
 local Replacer = require(script.Replace)
 local StarterIsland = require(script.StarterIsland)
-local Settings = require(script.Settings.selectedSettings.Value)
+local Settings = require(script.Settings.Default)
 
 local Map = {}
 local NoiseKeys = {}
@@ -22,10 +22,6 @@ function Noise(x, z, f, key)
     return (math.noise(x/f, z/f, NoiseKeys[key]) + 1) / 2
 end
 
-function DeleteCell(x, z, y)
-	Matrix.Clear(x, z, y)
-end
-
 local sleepCount = 0
 function Sleep(frequency)
     sleepCount = sleepCount + 1
@@ -35,7 +31,7 @@ function Sleep(frequency)
     end
 end
 
-Map.Generate = function() -- will take a datastore at some point
+function Map.Generate() -- will take a datastore at some point
 	if generated then warn("Map generate called > 1 times") end
 	generated = true
 	print("Initializing!")

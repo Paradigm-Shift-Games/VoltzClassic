@@ -38,7 +38,10 @@ local function Rocket(weapon, weaponStats, weaponData)
 	local projectile = ProjectileService.New(weaponStats.Projectile, directions, parameters)
 	ProjectileService.Bind(projectile, Explode)
 	if weaponStats.ThrustTime and weaponStats.ThrustTime > 0 then
-		coroutine.wrap(function() wait(weaponStats.ThrustTime) ProjectileService.Influence(projectile, {0, 0, Vector3.new(0, -workspace.Gravity, 0)}) end)()
+		task.spawn(function()
+			task.wait(weaponStats.ThrustTime)
+			ProjectileService.Influence(projectile, {0, 0, Vector3.new(0, -workspace.Gravity, 0)})
+		end)
 	end
 	return true
 end

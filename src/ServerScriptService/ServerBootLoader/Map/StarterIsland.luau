@@ -5,7 +5,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local Matrix = require(script.Parent.Matrix)
 local Supports = require(script.Parent.Support)
 local Blueprint = require(ServerScriptService.Blueprint)
-local Settings = require(script.Parent.Settings.selectedSettings.Value)
+local Settings = require(script.Parent.Settings.Default)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
 local StarterIsland = {}
@@ -29,7 +29,7 @@ function GetSafePart(island)
 	local centerPosition = Vector3.new(centerBlock.X, centerBlock.Y, centerBlock.Z) 
 	local foundPositions = {}
 	
-	--Generate Positions
+	-- Generate Positions
 	while #foundPositions < 75 do
 		local Blocks = Islands[island].Blocks
 		local block = Blocks[math.random(1, #Blocks)]
@@ -42,7 +42,7 @@ function GetSafePart(island)
 		wait()
 	end
 	
-	--Find Best Position
+	-- Find Best Position
 	local bestResults, bestScore = nil, math.huge
 	for _, v in pairs(foundPositions) do
 		local score = math.abs(v.distance - 2)
@@ -55,13 +55,13 @@ function GetSafePart(island)
 	return bestResults.Instance, bestResults.Position
 end
 
-StarterIsland.Generate = function()
+function StarterIsland.Generate()
 	local step = math.rad(360 / 5)
 	for i = 1, 5 do
 		local center = CFrame.Angles(0, step * i, 0)
 		local islandPosition = center * CFrame.new(Settings.Size + Settings.StarterDistance + Settings.StarterSize, 0, 0)
 		local x, z = math.floor(islandPosition.X + 0.5), math.floor(islandPosition.Z + 0.5)
-		--Generate Island
+		-- Generate Island
 		Islands[i] = {}
 		Islands[i].Blocks = {}
 		local Blocks = Islands[i].Blocks
@@ -103,7 +103,7 @@ function StarterIsland.GetSafePosition(player)
 	return position
 end
 
-StarterIsland.EnableIslands = function()
+function StarterIsland.EnableIslands()
 	generated = true
 end
 

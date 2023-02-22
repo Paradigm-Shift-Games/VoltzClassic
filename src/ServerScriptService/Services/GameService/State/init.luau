@@ -13,7 +13,7 @@ local RatingService = require(ServerScriptService.Services.RatingService)
 local GameDataService = require(ServerScriptService.Services.GameDataService)
 
 local State = "Booting"
-local EliminationTime = 3 * 60 --seconds
+local EliminationTime = 3 * 60 -- seconds
 
 local TeamData = {}
 local Spawns = {}
@@ -75,7 +75,7 @@ local function setTeamState(team, state)
 		print("GameService.State - setTeamState - Dead", AliveTeams[team], CountingTeams[team], DeadTeams[team], length(AliveTeams), State)
 		
 		if length(AliveTeams) == 1 and State ~= "Terminated" then State.TerminateGame() end
-		--if State ~= "Terminated" then State.TerminateGame() end
+		-- if State ~= "Terminated" then State.TerminateGame() end
 		
 	elseif state == "Counting" then
 		AliveTeams[team] = nil
@@ -191,23 +191,29 @@ function State.StartGame(teamData)
 	TimeManager.ActivateTracking()
 	connectTracking()
 	
-	if not RunService:IsStudio() then coroutine.wrap(function() GameDataService.SetKeyData("ActiveGames", PrivateServerId, DateTime.now().UnixTimestamp) end)() end
+	if not RunService:IsStudio() then
+		task.spawn(function()
+			GameDataService.SetKeyData("ActiveGames", PrivateServerId, DateTime.now().UnixTimestamp) 
+		end)
+	end
 	
 	warn(teamData)
-	if length(teamData) <= 1 then State.TerminateGame() return end
+	if length(teamData) <= 1 then State.TerminateGame()
+		return
+	end
 end
 
-State.TerminateGame = function()
+function State.TerminateGame()
 	warn("The game has been terminated")
 	State = "Terminated"
 	
 	TimeManager.TerminateTracking()
 	disconnectTracking()
 	
-	--if not RunService:IsStudio() then coroutine.wrap(function()
+	-- if not RunService:IsStudio() then task.spawn(function()
 	--	local startTime = GameDataService.RemoveKeyFromDataStore("ActiveGames", PrivateServerId)
 	--	GameDataService.SetKeyFromDataStore("TerminatedGames", PrivateServerId, startTime)
-	--end)() end
+	-- end) end
 	
 	local winningTeam = nil
 	for team, _ in pairs(AliveTeams) do winningTeam = team break end
@@ -216,7 +222,7 @@ State.TerminateGame = function()
 	local winningTeamData = TeamData[winningTeam]
 	local losingTeamDatas = {}
 	for team, _ in pairs(DeadTeams) do losingTeamDatas[team] = TeamData[team] end
-	--for team, _ in pairs(AliveTeams) do losingTeamDatas[team] = TeamData[team] end
+	-- for team, _ in pairs(AliveTeams) do losingTeamDatas[team] = TeamData[team] end
 	
 	local TotalTimeData, DeathTimeData, GameTime = TimeManager.GetTimeData()
 	local InputData = {["WinningTeam"] = winningTeamData; ["LosingTeams"] = losingTeamDatas;}

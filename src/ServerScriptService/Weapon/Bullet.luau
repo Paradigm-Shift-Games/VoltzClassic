@@ -18,7 +18,7 @@ local function Raycast(player, bulletRay)
 end
 
 local function SpreadHitscan(player, barrelPos, targetPos, range, spreadAngle)
-	--Spread
+	-- Spread
 	local targetCF = CFrame.new(barrelPos, targetPos)
 	
 	local rotationCF = CFrame.Angles(0, 0, math.pi * 2 * math.random())
@@ -26,7 +26,7 @@ local function SpreadHitscan(player, barrelPos, targetPos, range, spreadAngle)
 	local spreadCF = targetCF * rotationCF * translationCF
 	local bulletRay = Ray.new(barrelPos, spreadCF.LookVector * range)
 	
-	--Raycast
+	-- Raycast
 	return Raycast(player, bulletRay)
 end
 

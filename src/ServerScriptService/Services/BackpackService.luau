@@ -11,7 +11,7 @@ local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ElectricNode = require(ServerScriptService.Packages.Electricity.Classes.Node)
 local ValueReplicator = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.ValueReplicator)
 
-local jetpackModel = script:WaitForChild("Backpack")
+local jetpackModel = ReplicatedStorage:WaitForChild("Assets"):WaitForChild("Backpack")
 local ChargeAnimator = 	require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.ChargeAnimator)
 local Events = ReplicatedStorage:WaitForChild("Events")
 local ThrusterEvent = Events:WaitForChild("thruster")
@@ -28,13 +28,13 @@ end
 local function AddJetpack(player)
 	if jetpacks[player] then RemoveJetpack(player) end
 
-	--Data
+	-- Data
 	local newJetpack = jetpackModel:Clone()
 	local character = player.Character
 	local humanoid = character:FindFirstChild("Humanoid")
 	local upperTorso = character:FindFirstChild("UpperTorso")
 
-	--Build Jetpack
+	-- Build Jetpack
 	newJetpack.TeamColorPart.BrickColor = player.Team.TeamColor
 	WeldService.WeldModel(newJetpack)
 	local newWeldConstraint = Instance.new("WeldConstraint")
@@ -43,14 +43,14 @@ local function AddJetpack(player)
 	newWeldConstraint.Part0 = newJetpack.PrimaryPart
 	newWeldConstraint.Part1 = upperTorso
 
-	--Electrical
+	-- Electrical
 	local node = ElectricNode.New()
 	node.charge = 0
 	node.storage = 100
 	ChargeAnimator.New(newJetpack.ChargeBar, newJetpack.PrimaryPart):BindNode(node)
 	Electricity.BindStructure(newJetpack, node)
 
-	--Finalize
+	-- Finalize
 	jetpacks[player] = newJetpack
 	ValueReplicator.New():BindNode(node)
 	humanoid.died:Connect(function() RemoveJetpack(player) end)
@@ -59,15 +59,15 @@ local function AddJetpack(player)
 end
 
 local function onRemoteEvent(player, enabled)
-	--Jetpack
+	-- Jetpack
 	local jetpack = jetpacks[player]
 	if not jetpack then return end
 
-	--Emitter
+	-- Emitter
 	local emitter = jetpack:FindFirstChild("Emitter")
 	if not emitter then return end
 
-	--Set Emitter State
+	-- Set Emitter State
 	for _, v in ipairs(emitter:GetChildren()) do v.ParticleEmitter.Enabled = enabled end
 end
 

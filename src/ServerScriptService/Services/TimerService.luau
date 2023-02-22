@@ -21,7 +21,7 @@ function TimerService.Record(str)
 	timers[index].time = os.clock() - timers[index].time
 end
 
-TimerService.Post = function()
+function TimerService.Post()
 	for _, v in ipairs(timers) do
 		local postStr = ""
 		local indentCount = #string.split(v.name) - 1
@@ -30,15 +30,15 @@ TimerService.Post = function()
 	end
 end
 
-TimerService.Enable = function()
+function TimerService.Enable()
 	enabled = true
 end
 
-TimerService.Disable = function()
+function TimerService.Disable()
 	enabled = false
 end
 
-TimerService.Toggle = function()
+function TimerService.Toggle()
 	if enabled then TimerService.Disable() else TimerService.Enable() end
 end
 

@@ -12,7 +12,7 @@ local Spawn = {}
 local SpawnStats = require(ReplicatedStorage.Stats.Structure).Spawn
 local RespawnRemote = ReplicatedStorage.Events.RequestSpawn
 
---Variables
+-- Variables
 local spawnOffset = CFrame.new(0, 2.5, 0)
 
 local StarterTools = {
@@ -46,7 +46,11 @@ end
 
 RespawnRemote.OnServerEvent:Connect(RequestSpawn)
 
-coroutine.wrap(function() for _, player in ipairs(Players:GetPlayers()) do OnPlayerAdded(player) end end)()
+task.spawn(function()
+	for _, player in ipairs(Players:GetPlayers()) do
+		OnPlayerAdded(player)
+	end
+end)
 Players.PlayerAdded:Connect(OnPlayerAdded)
 
 return Spawn

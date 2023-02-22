@@ -14,19 +14,19 @@ local currentArtillery = nil
 
 -- These are multipliers for the summed net rotations on the server, using 0 and 1 because LUA does not support boolean arithmetic
 local PitchRotationArray = { 
-	[1] = 0; --Pitch Up 1
-	[2] = 0; --Pitch Down -1
+	[1] = 0; -- Pitch Up 1
+	[2] = 0; -- Pitch Down -1
 }
 
 local YawRotationArray = {
-	[1] = 0; --Yaw Right -1
-	[2] = 0; --Yaw Left 1
+	[1] = 0; -- Yaw Right -1
+	[2] = 0; -- Yaw Left 1
 }
 
 -- These are the keys that access the rotations
 local PitchKeys = {
-	[Enum.KeyCode.W] = 1; --RotationArray index stored with each key
-	[Enum.KeyCode.S] = 2; --Allows for multiple keys to have same rotation
+	[Enum.KeyCode.W] = 1; -- RotationArray index stored with each key
+	[Enum.KeyCode.S] = 2; -- Allows for multiple keys to have same rotation
 }
 
 local YawKeys = {
@@ -92,7 +92,7 @@ local function onArtilleryTagAdded(artillery)
 	local function onOccupancyChanged()
 		if artillery == currentArtillery then
 			unbindControlKeys()
-			currentArtillery = nil --We obviously aren't in this artillery anymore. -Styx
+			currentArtillery = nil -- We obviously aren't in this artillery anymore. -Styx
 			return
 		end
 		

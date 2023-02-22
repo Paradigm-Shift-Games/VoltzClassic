@@ -228,7 +228,7 @@ local Input = {} do
 		end
 
 		local function MouseWheel(action, state, input)
-			--mouse[input.UserInputType.Name] = -input.Position.z
+			-- mouse[input.UserInputType.Name] = -input.Position.z
 			return Enum.ContextActionResult.Sink
 		end
 
@@ -376,7 +376,7 @@ local PlayerState = {} do
 		cameraFocus = Camera.Focus
 
 		mouseIconEnabled = UserInputService.MouseIconEnabled
-		--UserInputService.MouseIconEnabled = false
+		-- UserInputService.MouseIconEnabled = false
 
 		mouseBehavior = UserInputService.MouseBehavior
 		UserInputService.MouseBehavior = Enum.MouseBehavior.Default

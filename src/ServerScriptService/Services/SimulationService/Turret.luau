@@ -10,11 +10,11 @@ local EffectService = require(ServerScriptService.Services.EffectService)
 local GridInterface = require(ServerScriptService.Packages.Grid.Interface2)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
---Imports
+-- Imports
 local Stats = require(ReplicatedStorage.Stats.Structure)["Turret"]
 local Effect = require(ReplicatedStorage.Stats.Weapon).Effects["Physical_l"]
 
---Data
+-- Data
 local TurretData = {}
 
 local raycastParameters = RaycastParams.new()
