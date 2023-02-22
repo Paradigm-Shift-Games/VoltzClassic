@@ -1,4 +1,5 @@
 -- Author: 4812571
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 -- ValueReplicator Class
 local ValueReplicator = {type = script.Name}
@@ -9,7 +10,7 @@ function ValueReplicator:BindNode(node)
 	if not node.structure then error("node must have structure") end
 	
 	-- Create Value
-	local value = script.Charge:Clone()
+	local value = ReplicatedStorage:WaitForChild("Assets"):WaitForChild("Charge"):Clone()
 	value.Parent = node.structure	
 	
 	node.boundObjects[self] = true

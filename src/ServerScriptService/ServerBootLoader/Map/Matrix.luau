@@ -2,7 +2,6 @@
 
 local Matrix = {}
 local data = {}
-data.LargeCells = {}
 
 function Allocate(x, z, y, cellData)
 	if not data[x] then
