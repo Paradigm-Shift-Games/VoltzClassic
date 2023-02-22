@@ -1,0 +1,43 @@
+{
+    "name": "Voltz Classic",
+
+    "tree": {
+        "$className": "DataModel",
+
+        "ServerScriptService": {
+            "$className": "ServerScriptService",
+            "$path": "src/ServerScriptService"
+        },
+
+        "ReplicatedFirst": {
+            "$className": "ReplicatedFirst",
+            "$path": "src/ReplicatedFirst"
+        },
+
+        "ReplicatedStorage": {
+            "$className": "ReplicatedStorage",
+            "$path": "src/ReplicatedStorage",
+
+            "$ignoreUnknownInstances": true
+        },
+
+        "StarterGui": {
+            "$className": "StarterGui",
+            "$path": "src/StarterGui"
+        },
+
+        "StarterPlayer": {
+            "$className": "StarterPlayer",
+
+            "StarterPlayerScripts": {
+                "$className": "StarterPlayerScripts",
+                "$path": "src/StarterPlayer/StarterPlayerScripts"
+            },
+
+            "StarterCharacterScripts": {
+                "$className": "StarterCharacterScripts",
+                "$path": "src/StarterPlayer/StarterCharacterScripts"
+            }
+        }
+    }
+}
