@@ -68,16 +68,16 @@ SimulationService.Init()
 function SimulationService.Run(deltaTime)
 	for _, binder in binders do
 		for _, object in binder:GetAll() do
-			object:Update(deltaTime)
+			if object.Update then
+				object:Update(deltaTime)
+			end
 		end
 	end
 
 	for _, class in simulationClasses do
-		if not class.StaticUpdate then
-			continue
+		if class.StaticUpdate then
+			class.StaticUpdate(deltaTime)
 		end
-
-		class.StaticUpdate(deltaTime)
 	end
 end
 

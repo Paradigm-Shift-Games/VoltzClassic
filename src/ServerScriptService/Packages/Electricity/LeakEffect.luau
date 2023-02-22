@@ -1,8 +1,9 @@
 local CollectionService = game:GetService("CollectionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
 local ElectricHook = require(game.ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
 
 local module = {}
-
 
 local parts = {}
 local activeParts = {}
@@ -21,9 +22,9 @@ end
 
 function AddLeak(node, part)
 	if activeParts[part] then return end
-	script.Emitter:Clone().Parent = part.Xenon
-	script.Sound  :Clone().Parent = part.Xenon
-	script.Light  :Clone().Parent = part.Xenon
+	ReplicatedStorage:WaitForChild("Assets"):WaitForChild("LeakEffect").Emitter:Clone().Parent = part.Xenon
+	ReplicatedStorage:WaitForChild("Assets"):WaitForChild("LeakEffect").Sound  :Clone().Parent = part.Xenon
+	ReplicatedStorage:WaitForChild("Assets"):WaitForChild("LeakEffect").Light  :Clone().Parent = part.Xenon
 	
 	-- Hooks
 	hooks[part] = {}
