@@ -25,6 +25,7 @@ local CleanupService = require(Services:WaitForChild("CleanupService"))
 local ArsenalService = require(Services:WaitForChild("ArsenalService"))
 local LogService = require(Services:WaitForChild("LogService"))
 local TickManager = require(Services:WaitForChild("TickManager"))
+local SpawnService = require(Services:WaitForChild("SpawnService"))
 
 local Map = require(script.Map)
 --

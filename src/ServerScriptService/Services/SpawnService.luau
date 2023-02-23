@@ -25,18 +25,28 @@ local function RequestSpawn(player, spawnpad)
 	SpawnService.SpawnPlayer(player, spawnpad.Point.CFrame)
 end
 
-local function OnPlayerAdded(player)
-	if not RunService:IsStudio() and player:GetJoinData().TeleportData["Rejoin"] then return end
-	local position = StarterIsland.GetSafePosition(player)
-	SpawnService.SpawnPlayer(player, CFrame.new(position))
-end
-
 function SpawnService.SpawnPlayer(player, cframe)
 	player:LoadCharacter()
 	local character = player.Character or player.CharacterAdded:Wait()
-	for _, v in ipairs(StarterTools) do v:Clone().Parent = player.Backpack end
+	for _, v in ipairs(StarterTools) do
+		v:Clone().Parent = player.Backpack
+	end
 	Colorizer.ColorCharacter(character)
 	character:SetPrimaryPartCFrame(cframe * spawnOffset)
+end
+
+local function OnPlayerAdded(player)
+	local position = StarterIsland.GetSafePosition(player)
+
+	if RunService:IsStudio() then
+		SpawnService.SpawnPlayer(player, CFrame.new(position))
+		return
+	end
+
+	if player:GetJoinData().TeleportData.Rejoin then
+		SpawnService.SpawnPlayer(player, CFrame.new(position))
+		return
+	end
 end
 
 RespawnRemote.OnServerEvent:Connect(RequestSpawn)
