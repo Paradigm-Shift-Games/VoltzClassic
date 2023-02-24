@@ -8,7 +8,7 @@ local Stats = require(ReplicatedStorage.Stats.Structure)
 local ColorizerService = require(ServerScriptService.Services.ColorizerService)
 local StructureUtil = require(ReplicatedStorage.StructureUtility)
 local Structure = require(ServerScriptService.Services.Structure)
-local UpgradeData = require(ServerScriptService.Services.UpgradeData)
+local UpgradeDataService = require(ServerScriptService.Services.UpgradeDataService)
 local WeldService = require(ServerScriptService.Services.WeldService)
 local DamageService = require(ServerScriptService.Services.DamageService)
 local BuildingConstraints = require(ReplicatedStorage.BuildingConstraints)
@@ -226,7 +226,7 @@ function Upgrade(model, instantStructure)
 	if model:FindFirstChild("Upgrading") then return false end
 	if model.UpgradeState.Value >= model.MaxUpgrades.Value then return false end
 	model.UpgradeState.Value += 1
-	local upgrade = UpgradeData.GetUpgrade(model, model.UpgradeState.Value)
+	local upgrade = UpgradeDataService.GetUpgrade(model, model.UpgradeState.Value)
 	local upgradeModel = upgrade.model:Clone()
 	if upgradeModel:FindFirstChild("Rename") then upgradeModel.Name = upgradeModel.Rename.Value upgradeModel.Rename:Destroy() end
 	AssemblyService.Attach(upgradeModel, model, "Attach")

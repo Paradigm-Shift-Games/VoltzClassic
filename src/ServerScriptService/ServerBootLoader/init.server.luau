@@ -19,7 +19,7 @@ require(Packages.Grid.Grids)
 local DiscordService = require(Services:WaitForChild("DiscordService"))
 local SnapDataService = require(Services:WaitForChild("SnapDataService"))
 local WeldService = require(Services:WaitForChild("WeldService"))
-local UpgradeData = require(Services:WaitForChild("UpgradeData"))
+local UpgradeDataService = require(Services:WaitForChild("UpgradeDataService"))
 local BackpackService = require(Services:WaitForChild("BackpackService"))
 local GameService = require(Services:WaitForChild("GameService"))
 local BargeService = require(Services:WaitForChild("BargeService"))
@@ -53,7 +53,7 @@ Players.PlayerAdded:Connect(function(player) LogService.MessageClient(player, "S
 
 -- These calls are all starting up services. 
 -- They may be order-dependent, but I'm not sure.
-UpgradeData.Generate()
+UpgradeDataService.Generate()
 Map.Generate()
 TickManager.Activate()
 
