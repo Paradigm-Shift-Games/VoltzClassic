@@ -2,10 +2,10 @@ local EffectService = {}
 local Effects = {}
 local ActiveEffects = {}
 local m_ID = 0
-local function GetID() m_ID = m_ID + 1 return m_ID end 
 
-for _, v in script:GetChildren() do
-	Effects[v.Name] = require(v)
+local function GetID()
+	m_ID = m_ID + 1
+	return m_ID
 end
 
 function EffectService.CreateEffect(effectName, ...)
@@ -32,6 +32,12 @@ end
 function EffectService.Update(delta)
 	for _, v in pairs(ActiveEffects) do 
 		if v.Update then v.Update(delta) end
+	end
+end
+
+function EffectService:Start()
+	for _, v in script:GetChildren() do
+		Effects[v.Name] = require(v)
 	end
 end
 
