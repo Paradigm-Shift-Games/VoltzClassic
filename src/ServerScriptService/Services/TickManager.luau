@@ -4,8 +4,8 @@ local RunService = game:GetService("RunService")
 local ServerScriptService = game:GetService("ServerScriptService")
 
 local TimerService = require(ServerScriptService.Services.TimerService)
-local Simulation = require(ServerScriptService.Services.SimulationService)
-local Projectile = require(ServerScriptService.Services.ProjectileService)
+local SimulationService = require(ServerScriptService.Services.SimulationService)
+local ProjectileService = require(ServerScriptService.Services.ProjectileService)
 local Network = require(ServerScriptService.Packages.Electricity.Classes.Network)
 
 local TickManager = {}
@@ -22,9 +22,9 @@ end
 function Tick(delta)
 	TimerService.Start("Game")
 	serviceWrapper("Electricity", Network.Run, delta)
-	serviceWrapper("ProjectileService", Projectile.Run, delta)
-	serviceWrapper("Simulation", Simulation.Run, delta)
-	TimerService.Record("Game")	
+	serviceWrapper("ProjectileService", ProjectileService.Run, delta)
+	serviceWrapper("Simulation", SimulationService.Run, delta)
+	TimerService.Record("Game")
 end
 
 function TickManager.Activate()
