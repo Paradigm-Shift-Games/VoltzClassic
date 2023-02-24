@@ -11,11 +11,11 @@ local AdminRank = 253
 local function findPlayerFromPartialName(partial)
 	if Players:FindFirstChild(partial) then return Players[partial] end
 	
-	for _, player in ipairs(Players:GetPlayers()) do
+	for _, player in Players:GetPlayers() do
 		if player.Name:match("^" .. partial) then return player end
 	end
 	
-	for _, player in ipairs(Players:GetPlayers()) do
+	for _, player in Players:GetPlayers() do
 		if player.Name:lower():match("^" .. partial:lower()) then return player end
 	end
 end
@@ -50,7 +50,7 @@ local function onPlayerAdded(player)
 	player.Chatted:Connect(function (...) onPlayerChatted(player, ...) end)
 end
 
-for _, player in ipairs(Players:GetPlayers()) do onPlayerAdded(player) end
+for _, player in Players:GetPlayers() do onPlayerAdded(player) end
 for _, v in ipairs(script.Commands:GetChildren()) do Commands[v.Name:lower()] = require(v) end
 
 Players.PlayerAdded:Connect(onPlayerAdded)

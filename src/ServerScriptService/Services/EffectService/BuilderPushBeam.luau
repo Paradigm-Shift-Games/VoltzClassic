@@ -1,3 +1,5 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
 local BuilderPushBeam = {}
 
 function BuilderPushBeam.Create(attachment0, position)
@@ -8,7 +10,7 @@ function BuilderPushBeam.Create(attachment0, position)
 	effect.attachment.Parent = workspace.Origin
 	
 	-- Beam
-	effect.beam = script.Beam:Clone()
+	effect.beam = ReplicatedStorage:WaitForChild("Beams"):WaitForChild("BuilderPushBeam"):Clone()
 	effect.beam.Attachment0 = attachment0
 	effect.beam.Attachment1 = effect.attachment
 	effect.beam.Parent = workspace.Effects

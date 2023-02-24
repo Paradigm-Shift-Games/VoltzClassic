@@ -56,7 +56,7 @@ end
 
 local function getDistance(model, position)
 	local closest, closestDistance
-	for _, v in pairs(model:GetDescendants()) do
+	for _, v in model:GetDescendants() do
 		if not v:IsA("BasePart") then continue end
 		local origin, direction = position, v.Position - position
 		local safetyOffset = (direction.Unit * 2) -- Prevents surface rays from tunneling through block
@@ -108,7 +108,7 @@ function ExplosionService.Explode(position, radius, damage)
 		end
 		
 		-- Players
-		for _, v in pairs(Players:GetPlayers()) do
+		for _, v in Players:GetPlayers() do
 			if not (v.Character and v.Character:FindFirstChild("HumanoidRootPart")) then continue end
 			local distance = (v.Character.HumanoidRootPart.Position - position).Magnitude
 			local blastDamage = damage * getDamageMultiplier(distance, radius)

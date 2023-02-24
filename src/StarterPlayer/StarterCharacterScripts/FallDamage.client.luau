@@ -9,7 +9,7 @@ local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
 local MaxFallDistance = 75
 
 local function RemoveVelocity(Model)
-	for _, Part in pairs(Model:GetChildren()) do
+	for _, Part in Model:GetChildren() do
 		if Part:IsA("BasePart") then
 			Part.Velocity = Vector3.new()
 		elseif Part:IsA("Accessory") then

@@ -38,14 +38,14 @@ function ConnectCylinder(cylinder, h1, h2)
 end
 
 function ConnectorGroup(folder)
-	for _, v in pairs(folder:GetChildren()) do
+	for _, v in folder:GetChildren() do
 		v.Name = "DisabledConnector"
 	end
 	
 end
 
 function WireGroup(model, folder1, folder2)
-	for _, v in pairs(folder2:GetChildren()) do
+	for _, v in folder2:GetChildren() do
 		v.Parent = folder1
 	end
 	folder2:Destroy()
@@ -54,7 +54,7 @@ function WireGroup(model, folder1, folder2)
 end
 
 function SnapGroup(folder)
-	for _, v in pairs(folder:GetChildren()) do
+	for _, v in folder:GetChildren() do
 		v.Name = "DisabledSnap"
 	end
 end
@@ -166,7 +166,7 @@ function Place(player, team, modelName, buildType, snapState, instantStructure, 
 	end
 	
 	WeldService.Unanchor(model)
-	for _, v in pairs(model:GetDescendants()) do
+	for _, v in model:GetDescendants() do
 		if v.Name == "WeldPad" then
 			local weldPad = v
 			weldPad.CanCollide = false
@@ -176,7 +176,7 @@ function Place(player, team, modelName, buildType, snapState, instantStructure, 
 				WeldService.WeldModels(model, v)
 			end
 		elseif v.Name == "Snaps" or v.Name == "Connectors" then
-			for _, g in pairs(v:GetChildren()) do
+			for _, g in v:GetChildren() do
 				if g.Object.Value then WeldService.WeldModels(model, StructureUtil.GetModel(g.Object.Value)) end		
 			end
 		end

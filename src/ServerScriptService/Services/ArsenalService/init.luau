@@ -85,7 +85,7 @@ function ArsenalService.ButtonInteraction(player, button)
 	if container.Name == "CategoryContainer" then
 		local weaponContainer = uiContainer:WaitForChild("WeaponContainer")
 		
-		for _, weaponContainerChild in ipairs(weaponContainer:GetChildren()) do			
+		for _, weaponContainerChild in weaponContainer:GetChildren() do			
 			if weaponContainerChild:IsA("TextButton") then				
 				weaponContainerChild:Destroy() 
 			end
@@ -108,7 +108,7 @@ function ArsenalService.ButtonInteraction(player, button)
 		local newWeaponTemplate = requestedWeapon.weaponModel:Clone()
 		local newModel = Instance.new("Model")
 		
-		for _, newWeaponChildren in ipairs(newWeaponTemplate:GetChildren()) do
+		for _, newWeaponChildren in newWeaponTemplate:GetChildren() do
 			newWeaponChildren.Parent = newModel
 		end
 		

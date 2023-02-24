@@ -55,7 +55,7 @@ local AddEffect = {
 		print("Adding Effect: 1")
 		DamageStates[Structure][1] = true
 		CleanupService.Reserve(Structure, "DamageEffects")
-		for _, v in ipairs(Structure:GetDescendants()) do
+		for _, v in Structure:GetDescendants() do
 			if v:IsA("BasePart") and not table.find(IgnoredNames, v.Name) then 
 				for _, g in ipairs(script.Cracks:GetChildren()) do g:Clone().Parent = v end
 			end

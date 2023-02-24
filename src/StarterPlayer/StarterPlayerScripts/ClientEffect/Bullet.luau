@@ -1,5 +1,8 @@
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local bulletPart = ReplicatedStorage:WaitForChild("Assets"):WaitForChild("BulletPart")
 
 local Bullet = function(Attachment, EndPosition, parameters)
 	RunService.Heartbeat:Wait()
@@ -7,7 +10,7 @@ local Bullet = function(Attachment, EndPosition, parameters)
 	local size = parameters.Size
 	local speed = parameters.Speed
 	-- Apply Remaining Parameters
-	local NewProjectile = script:WaitForChild("Part"):Clone()
+	local NewProjectile = bulletPart:Clone()
 	for i, v in pairs(parameters) do
 		if table.find({"Size", "Speed"}, i) then continue end
 		

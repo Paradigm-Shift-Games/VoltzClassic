@@ -55,9 +55,9 @@ function Structure.Promote(Object)
 	
 	-- Handle Connectors
 	local connectors = {}
-	for _, v in pairs(Object:GetChildren()) do
+	for _, v in Object:GetChildren() do
 		if v.Name == "Snaps" or v.Name == "Connectors" then
-			for _, g in pairs(v:GetChildren()) do
+			for _, g in v:GetChildren() do
 				g.Name = string.gsub(g.Name, "Disabled", "")
 				if g.Name == "Connector" then table.insert(connectors, g) end
 			end

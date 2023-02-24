@@ -90,11 +90,11 @@ local function Run(delta)
 	end
 end
 
-for _, v in ipairs(script:GetChildren()) do FiringModes[v.Name] = require(v) end
+for _, v in script:GetChildren() do FiringModes[v.Name] = require(v) end
 
 for _, v in ipairs(ReplicatedStorage.Guns:GetChildren()) do WeldServcice.Unanchor(v) WeldServcice.WeldTool(v) end
 
-for _, player in ipairs(Players:GetPlayers()) do OnPlayerAdded(player) end
+for _, player in Players:GetPlayers() do OnPlayerAdded(player) end
 Players.PlayerAdded:Connect(OnPlayerAdded)
 	
 RunService.Heartbeat:Connect(Run)

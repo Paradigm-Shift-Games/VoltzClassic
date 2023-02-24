@@ -29,7 +29,7 @@ end
 local function connectTracking()
 	print("GameService.State.TimeManager - connectTracking")
 	Players.PlayerAdded:Connect(onPlayerAdded)
-	for _, player in ipairs(Players:GetPlayers()) do onPlayerAdded(player) end
+	for _, player in Players:GetPlayers() do onPlayerAdded(player) end
 end
 
 local function timeDifferenceMillis(dateTime1, dateTime2)	
@@ -68,7 +68,7 @@ function TimeManager.ActivateTracking()
 	print("GameService.State.TimeManager - ActivateTracking", GameDate, GameTime)
 	
 	connectTracking()
-	for _, player in ipairs(Players:GetPlayers()) do TimeManager.UpdateTotalTimeData(tostring(player.UserId)) end
+	for _, player in Players:GetPlayers() do TimeManager.UpdateTotalTimeData(tostring(player.UserId)) end
 	
 	DeathTimeData = {}
 	TotalTimeData = {}
@@ -78,7 +78,7 @@ end
 function TimeManager.TerminateTracking()
 	GameTime = timeDifferenceMillis(DateTime.now(), GameDate)
 	print("GameService.State.TimeManager - TerminateTracking", GameDate, GameTime)
-	for _, player in ipairs(Players:GetPlayers()) do
+	for _, player in Players:GetPlayers() do
 		local stringUserID = tostring(player.UserId)
 		TimeManager.UpdateTotalTimeData(stringUserID)
 		TimeManager.UpdateDeathTimeData(stringUserID, GameTime)

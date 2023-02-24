@@ -178,7 +178,7 @@ end
 
 Players.PlayerAdded:Connect(onPlayerAdded)
 
-for _, player in pairs(Players:GetPlayers()) do
+for _, player in Players:GetPlayers() do
 	onPlayerAdded(player)
 end
 

@@ -11,7 +11,9 @@
 
         "ReplicatedFirst": {
             "$className": "ReplicatedFirst",
-            "$path": "src/ReplicatedFirst"
+            "$path": "src/ReplicatedFirst",
+
+            "$ignoreUnknownInstances": true
         },
 
         "ReplicatedStorage": {
@@ -19,11 +21,6 @@
             "$path": "src/ReplicatedStorage",
 
             "$ignoreUnknownInstances": true
-        },
-
-        "StarterGui": {
-            "$className": "StarterGui",
-            "$path": "src/StarterGui"
         },
 
         "StarterPlayer": {

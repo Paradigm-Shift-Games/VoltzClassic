@@ -27,7 +27,7 @@ local function buildNode(structure)
 		node.charge = 0
 		
 		-- Bars
-		local electricalBars = {} for _, v in ipairs(structure:GetDescendants()) do if v.Name == "ChargeBar" then table.insert(electricalBars, v) end end
+		local electricalBars = {} for _, v in structure:GetDescendants() do if v.Name == "ChargeBar" then table.insert(electricalBars, v) end end
 		for _, v in pairs(electricalBars) do
 			ChargeAnimator.New(v, structure.PrimaryPart):BindNode(node)
 		end

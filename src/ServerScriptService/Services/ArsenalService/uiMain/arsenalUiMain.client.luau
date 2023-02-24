@@ -5,7 +5,7 @@ local container = script.Parent:WaitForChild("container")
 local CategoryContainer = container:WaitForChild("CategoryContainer")
 local WeaponContainer = container:WaitForChild("WeaponContainer")
 local OriginalArsenal = script.Parent:WaitForChild("OriginalArsenal")
-for _, button in ipairs(CategoryContainer:GetChildren()) do
+for _, button in CategoryContainer:GetChildren() do
 	if button:IsA("TextButton") then 
 		button.MouseButton1Click:Connect(function()
 			ButtonRemote:FireServer(button)
