@@ -20,7 +20,7 @@ local function onOccupantChanged(barge, NewOccupant)
 		currentBargeData[barge].Occupant = nil
 		barge.PrimaryPart:SetNetworkOwner(nil)-- Make it so no one can set the velocity anymore :D because no one is sitting in it
 		-- Network ownership
-		-- https://developer.roblox.com/en-us/articles/Network-Ownership
+		-- https://create.roblox.com/docs/scripting/networking/network-ownership
 	end
 end
 local maxForce = Vector3.new(0, 5000000, 0)
