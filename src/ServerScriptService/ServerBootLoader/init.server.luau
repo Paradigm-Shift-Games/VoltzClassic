@@ -52,3 +52,6 @@ SnapData.Generate()
 UpgradeData.Generate()
 Map.Generate()
 TickManager.Activate()
+
+-- These are all services that have a proper start method.
+ArsenalService:Start()

@@ -1,5 +1,6 @@
 -- Author: n0pa
 
+local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -134,11 +135,13 @@ function ArsenalService.ButtonInteraction(player, button)
 	end
 end
 
-game:GetService("RunService").Heartbeat:Connect(onHeartBeat)
+function ArsenalService:Start()
+	RunService.Heartbeat:Connect(onHeartBeat)
 
-CollectionService:GetInstanceAddedSignal("Arsenal"):Connect(onArsenalTagAdded)
-CollectionService:GetInstanceRemovedSignal("Arsenal"):Connect(onArsenalTagRemoved)
-
-ArsenalButtonRemote.OnServerEvent:Connect(ArsenalService.ButtonInteraction)
+	CollectionService:GetInstanceAddedSignal("Arsenal"):Connect(onArsenalTagAdded)
+	CollectionService:GetInstanceRemovedSignal("Arsenal"):Connect(onArsenalTagRemoved)
+	
+	ArsenalButtonRemote.OnServerEvent:Connect(ArsenalService.ButtonInteraction)
+end
 
 return ArsenalService
