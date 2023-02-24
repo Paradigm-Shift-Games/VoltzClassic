@@ -46,17 +46,19 @@ function RatingService.AddRating(userID, ratingDelta) -- USE THIS AS OFTEN AS PO
 	return newRating
 end
 
-Players.PlayerAdded:Connect(function(player)
-	local leaderStats = Instance.new("Folder")
-	leaderStats.Name = "leaderstats"
-	leaderStats.Parent = player
-
-	local ratingStat = Instance.new("IntValue")
-	ratingStat.Name = "Rating"
-	ratingStat.Parent = leaderStats
-
-	local rating = RatingService.GetRating(player.UserId) or RatingService.SetRating(player.UserId, 0)
-	ratingStat.Value = rating
-end)
+function RatingService:Start()
+	Players.PlayerAdded:Connect(function(player)
+		local leaderStats = Instance.new("Folder")
+		leaderStats.Name = "leaderstats"
+		leaderStats.Parent = player
+	
+		local ratingStat = Instance.new("IntValue")
+		ratingStat.Name = "Rating"
+		ratingStat.Parent = leaderStats
+	
+		local rating = RatingService.GetRating(player.UserId) or RatingService.SetRating(player.UserId, 0)
+		ratingStat.Value = rating
+	end)
+end
 
 return RatingService
