@@ -33,6 +33,7 @@ local SimulationService = require(Services:WaitForChild("SimulationService"))
 local ActionService = require(Services:WaitForChild("ActionService"))
 local ButtonService = require(Services:WaitForChild("ButtonService"))
 local RatingService = require(Services:WaitForChild("RatingService"))
+local WeaponService = require(Services:WaitForChild("WeaponService"))
 
 -- There's no need to require the map in any specific order - it has a start method.
 local Map = require(script.Map)
@@ -70,3 +71,4 @@ RatingService:Start()
 LogService:Start()
 SnapDataService:Start()
 SpawnService:Start()
+WeaponService:Start()
