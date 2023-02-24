@@ -86,4 +86,7 @@ end
 UserInputService.InputBegan:Connect(onInputBegan)
 humanoid.StateChanged:Connect(onHumanoidStateChanged)
 RunService:BindToRenderStep("jetpack", 200, onRenderStepped)
-script.Function.OnInvoke = getData
+
+-- This is bad practice, but it's used to be used in the old Jetpack
+-- It's better than how it was, which was a child of the script
+ReplicatedStorage.Events.JetpackFunction.OnInvoke = getData
