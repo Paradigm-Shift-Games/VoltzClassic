@@ -55,7 +55,7 @@ Players.PlayerAdded:Connect(function(player) LogService.MessageClient(player, "S
 
 -- These calls are all starting up services. 
 -- They may be order-dependent, but I'm not sure.
-UpgradeDataService.Generate()
+UpgradeDataService:Start()
 Map.Generate()
 TickManagerService.Activate()
 
