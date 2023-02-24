@@ -29,6 +29,7 @@ local LogService = require(Services:WaitForChild("LogService"))
 local TickManager = require(Services:WaitForChild("TickManager"))
 local SpawnService = require(Services:WaitForChild("SpawnService"))
 local EffectService = require(Services:WaitForChild("EffectService"))
+local SimulationService = require(Services:WaitForChild("SimulationService"))
 
 -- There's no need to require the map in any specific order - it has a start method.
 local Map = require(script.Map)
@@ -59,3 +60,4 @@ ArsenalService:Start()
 BargeService:Start()
 EffectService:Start()
 GameService:Start()
+SimulationService:Start()
