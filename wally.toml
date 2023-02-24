@@ -1,0 +1,8 @@
+[package]
+name = "do-not-publish/voltz"
+version = "0.1.3"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+
+[dependencies]
+Loader = "sleitnick/loader@2.0.0"
