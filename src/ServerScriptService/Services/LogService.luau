@@ -69,13 +69,8 @@ local function ClientReport(Player, ErrorCode, StackTrace)
 	ErrorCode = Player.UserId.."/"..Player.Name.."\n"..ErrorCode
 	LogService.ReportError(ErrorCode, StackTrace, nil, true)
 end
-MessageRemote.OnServerEvent:Connect(ClientReport)
 
-if LogService.AutoReport then
-	connection = ScriptContext.Error:Connect(LogService.ReportError)
-end
-
-function LogService.SetAutoReport(isEnabled)
+function LogService.SetAutoReport(isEnabled: boolean)
 	if isEnabled == LogService.AutoReport then
 		return
 	end
@@ -87,6 +82,14 @@ function LogService.SetAutoReport(isEnabled)
 	else
 		connection:Disconnect()
 		connection = nil
+	end
+end
+
+function LogService:Start()
+	MessageRemote.OnServerEvent:Connect(ClientReport)
+
+	if LogService.AutoReport then
+		connection = ScriptContext.Error:Connect(LogService.ReportError)
 	end
 end
 
