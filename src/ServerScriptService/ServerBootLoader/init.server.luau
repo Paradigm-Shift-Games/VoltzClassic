@@ -26,7 +26,7 @@ local BargeService = require(Services.BargeService)
 local CleanupService = require(Services.CleanupService)
 local ArsenalService = require(Services.ArsenalService)
 local LogService = require(Services.LogService)
-local TickManager = require(Services.TickManager)
+local TickManagerService = require(Services.TickManagerService)
 local SpawnService = require(Services.SpawnService)
 local EffectService = require(Services.EffectService)
 local SimulationService = require(Services.SimulationService)
@@ -57,7 +57,7 @@ Players.PlayerAdded:Connect(function(player) LogService.MessageClient(player, "S
 -- They may be order-dependent, but I'm not sure.
 UpgradeDataService.Generate()
 Map.Generate()
-TickManager.Activate()
+TickManagerService.Activate()
 
 -- These are all services that have a proper start method.
 ArsenalService:Start()
