@@ -49,13 +49,16 @@ local function OnPlayerAdded(player)
 	end
 end
 
-RespawnRemote.OnServerEvent:Connect(RequestSpawn)
+function SpawnService:Start()
+	RespawnRemote.OnServerEvent:Connect(RequestSpawn)
 
-task.spawn(function()
 	for _, player in Players:GetPlayers() do
-		OnPlayerAdded(player)
+		task.spawn(function()
+			OnPlayerAdded(player)
+		end)
 	end
-end)
-Players.PlayerAdded:Connect(OnPlayerAdded)
+
+	Players.PlayerAdded:Connect(OnPlayerAdded)
+end
 
 return SpawnService
