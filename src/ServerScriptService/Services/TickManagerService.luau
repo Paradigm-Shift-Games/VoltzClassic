@@ -27,11 +27,6 @@ function Tick(delta)
 	TimerService.Record("Game")
 end
 
-function TickManagerService.Activate()
-	activated = true
-	TickManagerService.Enable()	
-end
-
 function TickManagerService.Enable()
 	if not activated then warn("TickManagerService inactive!") return false end
 	if not connection then
@@ -50,6 +45,11 @@ end
 function TickManagerService.Toggle()
 	if not activated then warn("TickManagerService inactive!") return false end
 	if connection then TickManagerService.Disable() else TickManagerService.Enable() end
+end
+
+function TickManagerService:Start()
+	activated = true
+	TickManagerService.Enable()	
 end
 
 return TickManagerService

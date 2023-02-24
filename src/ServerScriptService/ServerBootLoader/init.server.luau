@@ -57,7 +57,7 @@ Players.PlayerAdded:Connect(function(player) LogService.MessageClient(player, "S
 -- They may be order-dependent, but I'm not sure.
 UpgradeDataService.Generate()
 Map.Generate()
-TickManagerService.Activate()
+TickManagerService:Start()
 
 -- These are all services that have a proper start method.
 ArsenalService:Start()
