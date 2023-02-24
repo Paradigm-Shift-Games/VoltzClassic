@@ -1,3 +1,5 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
 local TeslaBeam = {}
 
 function TeslaBeam.Create(attachment, part)
@@ -8,7 +10,7 @@ function TeslaBeam.Create(attachment, part)
 	effect.attachment.Parent = part
 
 	-- Beam
-	effect.beam = script.Beam:Clone()
+	effect.beam = ReplicatedStorage:WaitForChild("Beams"):WaitForChild("TeslaBeam"):Clone()
 	effect.beam.Attachment0 = attachment 
 	effect.beam.Attachment1 = effect.attachment
 	effect.beam.Parent = workspace.Effects
