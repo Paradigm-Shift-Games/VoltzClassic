@@ -45,7 +45,7 @@ data = {}
 function Colorizer.ColorAsBlueprint(Structure)
 	data[Structure] = {}
 	local teamColor = Structure:FindFirstChild("Team") and Structure.Team.Value.TeamColor.Color
-	for _, v in pairs(Structure:GetDescendants()) do
+	for _, v in Structure:GetDescendants() do
 		if v.Name == "DisabledSnap" then continue end
 		local structureData = data[Structure]
 		if v:IsA("BasePart") then
@@ -64,7 +64,7 @@ end
 function Colorizer.DebugColor(Structure, debugColor)
 	if typeof(debugColor) == "BrickColor" then debugColor = debugColor.Color end
 	data[Structure] = {}
-	for _, v in pairs(Structure:GetDescendants()) do
+	for _, v in Structure:GetDescendants() do
 		if v.Name == "DisabledSnap" then continue end
 		local structureData = data[Structure]
 		if v:IsA("BasePart") then
@@ -88,7 +88,7 @@ function Colorizer.ColorAsStructure(Structure)
 	Colorizer.RevertColors(Structure)
 	local teamColor = Structure:FindFirstChild("Team") and Structure.Team.Value.TeamColor.Color
 	if not teamColor then return end
-	for _, v in pairs(Structure:GetDescendants()) do
+	for _, v in Structure:GetDescendants() do
 		if v:IsA("BasePart") and v.Name == "TeamColor" then
 			v.Color = teamColor	
 		end

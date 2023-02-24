@@ -56,7 +56,7 @@ end
 
 local function getDistance(model, position)
 	local closest, closestDistance
-	for _, v in pairs(model:GetDescendants()) do
+	for _, v in model:GetDescendants() do
 		if not v:IsA("BasePart") then continue end
 		local origin, direction = position, v.Position - position
 		local safetyOffset = (direction.Unit * 2) -- Prevents surface rays from tunneling through block

@@ -166,7 +166,7 @@ function Place(player, team, modelName, buildType, snapState, instantStructure, 
 	end
 	
 	WeldService.Unanchor(model)
-	for _, v in pairs(model:GetDescendants()) do
+	for _, v in model:GetDescendants() do
 		if v.Name == "WeldPad" then
 			local weldPad = v
 			weldPad.CanCollide = false

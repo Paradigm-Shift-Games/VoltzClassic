@@ -32,7 +32,7 @@ function Weld.Initialize()
 	for _, v in CellFolder:GetChildren() do
 		for _, g in v:GetChildren() do
 			for _, j in g:GetChildren() do
-				for _, k in pairs(j:GetDescendants()) do
+				for _, k in j:GetDescendants() do
 					if j.PrimaryPart.Anchored == false then
 						warn(j:GetFullName().." :PrimaryPart is not anchored!")
 					end

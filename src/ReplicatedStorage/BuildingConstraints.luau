@@ -33,7 +33,7 @@ function IsTouching(part, IgnoreTables)
 	for _, v in pairs(IgnoreTables) do
 		for _, g in pairs(v) do
 			if g:IsA("BasePart") then ignored[g] = true end
-			for _, j in pairs(g:GetDescendants()) do
+			for _, j in g:GetDescendants() do
 				if j:IsA("BasePart") then ignored[j] = true end
 			end
 		end		
@@ -50,7 +50,7 @@ module.Add = function(Structure, Player)
 	if Structure:FindFirstChild("Region", true) then 	
 		constraint.Regions = {}
 		if Structure.Name == "Wire" and Structure:FindFirstChild("WireCylinder") then table.insert(constraint.Regions, Structure.WireCylinder) end
-		for _, v in pairs(Structure:GetDescendants()) do
+		for _, v in Structure:GetDescendants() do
 			if v.Name == "Region" and v:IsA("Folder") then
 				for _, g in v:GetChildren() do
 					table.insert(constraint.Regions, g)

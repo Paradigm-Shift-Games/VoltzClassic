@@ -27,13 +27,13 @@ function WeldMotor6D(parent, part1, part2, name)
 end
 
 function WeldService.Unanchor(Object)
-	for _, v in pairs(Object:GetDescendants()) do
+	for _, v in Object:GetDescendants() do
 		if v:IsA("BasePart") then v.Anchored = false end
 	end
 end
 
 function WeldService.WeldModel(Object)
-	for _, v in pairs(Object:GetDescendants()) do
+	for _, v in Object:GetDescendants() do
 		if Object:IsA("Model") and v == Object.PrimaryPart then continue end
 		if v:IsA("BasePart") and not WeldIgnore[v.Name] then
 			if v.Name == "ChargeBar" then WeldMotor6D(v, v, Object.PrimaryPart) else Weld(Object, Object.PrimaryPart, v) end
@@ -44,7 +44,7 @@ end
 function WeldService.WeldTool(tool)
 	local handle = tool:FindFirstChild("Handle")
 	if not handle then warn(tool.Name, "has no handle!") return end
-	for _, v in pairs(tool:GetDescendants()) do
+	for _, v in tool:GetDescendants() do
 		if v == handle then continue end
 		if v:IsA("BasePart") then WeldMotor6D(handle, handle, v) end
 	end
@@ -56,7 +56,7 @@ function WeldService.WeldAssembly(Object)
 	for _, v in Object:GetChildren() do
 		if v:IsA("Model") then
 			local Primary = v.PrimaryPart
-			for _, g in pairs(v:GetDescendants()) do
+			for _, g in v:GetDescendants() do
 				if g:IsA("BasePart") then Weld(v, Primary, g) end
 			end
 		end
@@ -68,7 +68,7 @@ function WeldService.WeldAssembly(Object)
 	end
 	
 	-- Weld Hinges
-	for _, v in pairs(Object:GetDescendants()) do
+	for _, v in Object:GetDescendants() do
 		if v.Name == "Hinge1" then WeldMotor6D(v.Parent, v, v.Attach.Value, "HingeMotor") end
 	end
 end
