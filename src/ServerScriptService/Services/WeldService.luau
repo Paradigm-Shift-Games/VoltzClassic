@@ -96,7 +96,8 @@ function WeldService.Unweld(Object)
 	WeldGraph[Object] = nil
 end
 
-CleanupService.Bind("Weld", WeldService.Unweld)
+function WeldService:Start()
+	CleanupService.Bind("Weld", WeldService.Unweld)
+end
 
 return WeldService
-
