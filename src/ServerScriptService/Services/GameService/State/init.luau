@@ -160,7 +160,7 @@ local function connectTracking()
 	Connection = RunService.Heartbeat:Connect(onHeartbeat)
 	
 	Players.PlayerAdded:Connect(onPlayerAdded)
-	for _, player in ipairs(Players:GetPlayers()) do onPlayerAdded(player) end
+	for _, player in Players:GetPlayers() do onPlayerAdded(player) end
 
 	Players.PlayerRemoving:Connect(onPlayerRemoved)
 end

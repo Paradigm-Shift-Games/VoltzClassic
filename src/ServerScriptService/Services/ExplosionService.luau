@@ -108,7 +108,7 @@ function ExplosionService.Explode(position, radius, damage)
 		end
 		
 		-- Players
-		for _, v in pairs(Players:GetPlayers()) do
+		for _, v in Players:GetPlayers() do
 			if not (v.Character and v.Character:FindFirstChild("HumanoidRootPart")) then continue end
 			local distance = (v.Character.HumanoidRootPart.Position - position).Magnitude
 			local blastDamage = damage * getDamageMultiplier(distance, radius)

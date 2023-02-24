@@ -52,7 +52,7 @@ end
 RespawnRemote.OnServerEvent:Connect(RequestSpawn)
 
 task.spawn(function()
-	for _, player in ipairs(Players:GetPlayers()) do
+	for _, player in Players:GetPlayers() do
 		OnPlayerAdded(player)
 	end
 end)

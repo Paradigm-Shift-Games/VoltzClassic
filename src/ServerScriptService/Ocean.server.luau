@@ -21,7 +21,7 @@ end
 
 function onHeartBeat(delta)
 	if RunService:IsStudio() then return end
-	for _, player in pairs(Players:GetPlayers()) do
+	for _, player in Players:GetPlayers() do
 		if not (player and player.Character and player.Character:FindFirstChild("HumanoidRootPart")) then continue end
 		local posY = player.Character.HumanoidRootPart.Position.Y
 		if (posY > maxHeight) then continue end
