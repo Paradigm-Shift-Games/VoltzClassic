@@ -52,7 +52,7 @@ module.Add = function(Structure, Player)
 		if Structure.Name == "Wire" and Structure:FindFirstChild("WireCylinder") then table.insert(constraint.Regions, Structure.WireCylinder) end
 		for _, v in pairs(Structure:GetDescendants()) do
 			if v.Name == "Region" and v:IsA("Folder") then
-				for _, g in pairs(v:GetChildren()) do
+				for _, g in v:GetChildren() do
 					table.insert(constraint.Regions, g)
 				end
 			end
@@ -104,7 +104,7 @@ module.Check = function(Structure, Attached)
 	
 	-- Wire Angle/Distance
 	if constraint.Wire then
-		for _, v in pairs(Structure:GetChildren()) do
+		for _, v in Structure:GetChildren() do
 			if v.Name == "Wire" then
 				local angle = Angle(v.PrimaryPart.Position + v.PrimaryPart.CFrame.RightVector, Structure.WireCylinder.Position, v.PrimaryPart.Position)
 				if math.deg(angle) < WireMinAngle then return false end

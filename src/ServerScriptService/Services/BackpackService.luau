@@ -68,7 +68,7 @@ local function onRemoteEvent(player, enabled)
 	if not emitter then return end
 
 	-- Set Emitter State
-	for _, v in ipairs(emitter:GetChildren()) do v.ParticleEmitter.Enabled = enabled end
+	for _, v in emitter:GetChildren() do v.ParticleEmitter.Enabled = enabled end
 end
 
 local function onPlayerAdded(player)

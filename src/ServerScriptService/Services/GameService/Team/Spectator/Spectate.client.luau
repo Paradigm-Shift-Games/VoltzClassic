@@ -356,7 +356,7 @@ local PlayerState = {} do
 		end
 		local playergui = LocalPlayer:FindFirstChildOfClass("PlayerGui")
 		if playergui then
-			for _, gui in pairs(playergui:GetChildren()) do
+			for _, gui in playergui:GetChildren() do
 				if whitelistedGuis[gui.Name] then continue end
 				if gui:IsA("ScreenGui") and gui.Enabled then
 					print("Disabling GUI " .. gui.Name)

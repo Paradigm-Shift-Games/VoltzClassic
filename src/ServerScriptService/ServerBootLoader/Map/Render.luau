@@ -28,9 +28,9 @@ function Sleep(frequency)
 end
 
 function Render.Initialize()
-	for _, v in pairs(MapCells:GetChildren()) do
-		for _, g in pairs(v:GetChildren()) do
-			for _, j in pairs(g:GetChildren()) do
+	for _, v in MapCells:GetChildren() do
+		for _, g in v:GetChildren() do
+			for _, j in g:GetChildren() do
 				if not j:FindFirstChild("Main") then error(j:GetFullName().." has no main part!") end
 				CellOffsets[j] = j.Main.CFrame:ToObjectSpace(j.PrimaryPart.CFrame)
 			end

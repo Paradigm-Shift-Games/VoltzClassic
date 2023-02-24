@@ -108,7 +108,7 @@ end
 function Colorizer.ColorCharacter(character)
 	local player = Players:GetPlayerFromCharacter(character)
 	local teamColor = player.Team.TeamColor
-	for _, v in pairs(character:GetChildren()) do
+	for _, v in character:GetChildren() do
 		if v:IsA("BasePart") and v.Name ~= "Light" and v.Name ~= "Nozzle" then v.BrickColor = teamColor end
 	end
 end

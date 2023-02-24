@@ -90,7 +90,7 @@ local function Run(delta)
 	end
 end
 
-for _, v in ipairs(script:GetChildren()) do FiringModes[v.Name] = require(v) end
+for _, v in script:GetChildren() do FiringModes[v.Name] = require(v) end
 
 for _, v in ipairs(ReplicatedStorage.Guns:GetChildren()) do WeldServcice.Unanchor(v) WeldServcice.WeldTool(v) end
 

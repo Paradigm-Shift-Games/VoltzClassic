@@ -4,7 +4,7 @@ local ActiveEffects = {}
 local m_ID = 0
 local function GetID() m_ID = m_ID + 1 return m_ID end 
 
-for _, v in ipairs(script:GetChildren()) do
+for _, v in script:GetChildren() do
 	Effects[v.Name] = require(v)
 end
 

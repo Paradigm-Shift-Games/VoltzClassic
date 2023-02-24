@@ -110,9 +110,9 @@ function Destroy(Object)
 	if not Object.Parent then return end
 	
 	-- Clean Connectors
-	for _, v in pairs(Object:GetChildren()) do
+	for _, v in Object:GetChildren() do
 		if v.Name == "Snaps" or v.Name == "Connectors" then
-			for _, g in pairs(v:GetChildren()) do
+			for _, g in v:GetChildren() do
 				if g.Object.Value then g.Object.Value.Object.Value = nil end
 			end
 		end

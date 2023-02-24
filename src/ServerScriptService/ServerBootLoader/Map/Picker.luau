@@ -24,11 +24,11 @@ function roundVector(vector)
 end
 
 function Picker.Initialize()
-	for _, v in pairs(MapCells:GetChildren()) do
-		for _, g in pairs(v:GetChildren()) do
+	for _, v in MapCells:GetChildren() do
+		for _, g in v:GetChildren() do
 			Tree[v.Name..' '..g.Name] = {normal = {}, large = {}}
 			Weights[v.Name..' '..g.Name] = {normal = {items = {}, distribution = {}}, large = {items = {}, distribution = {}}}
-			for _, j in pairs(g:GetChildren()) do 
+			for _, j in g:GetChildren() do 
 				CellSizes[j] = roundVector(j.Main.Size / CellSize)
 				if CellSizes[j] == Vector3.new(1, 1, 1) then
 					table.insert(Tree[v.Name..' '..g.Name].normal, j)

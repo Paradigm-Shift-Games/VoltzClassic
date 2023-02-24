@@ -53,7 +53,7 @@ end
 function WeldService.WeldAssembly(Object)
 	
 	-- Weld Models
-	for _, v in pairs(Object:GetChildren()) do
+	for _, v in Object:GetChildren() do
 		if v:IsA("Model") then
 			local Primary = v.PrimaryPart
 			for _, g in pairs(v:GetDescendants()) do
@@ -61,9 +61,9 @@ function WeldService.WeldAssembly(Object)
 			end
 		end
 	end
-	for _, v in pairs(Object:GetChildren()) do
+	for _, v in Object:GetChildren() do
 		if v.Name == "Snaps" or v.Name == "Connectors" then
-			for _, g in pairs(v:GetChildren()) do Weld(Object, g, Object.PrimaryPart) end
+			for _, g in v:GetChildren() do Weld(Object, g, Object.PrimaryPart) end
  		end
 	end
 	

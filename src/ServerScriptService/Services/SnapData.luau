@@ -19,7 +19,7 @@ end
 function Recurse(obj, root)
     if obj:IsA("Folder") then
         local tab = {}
-        for _, v in pairs(obj:GetChildren()) do
+        for _, v in obj:GetChildren() do
             tab[v.Name] = Recurse(v, root)
         end
         return tab     
@@ -30,7 +30,7 @@ end
 
 function SnapData.Generate()
 	for _, v in pairs(toRecurse) do
-		for _, g in pairs(v:GetChildren()) do
+		for _, g in v:GetChildren() do
 			if g:FindFirstChild("AdvancedAttachment") then
 				Data[g.Name] = Recurse(g.AdvancedAttachment, g)
 				g.AdvancedAttachment:Destroy()

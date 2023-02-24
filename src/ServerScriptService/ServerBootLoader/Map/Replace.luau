@@ -16,9 +16,9 @@ function roundVector(vector)
 end
 
 function Replace.Intitialize()
-	for _, v in pairs(CellFolder:GetChildren()) do
-		for _, g in pairs(v:GetChildren()) do
-			for _, j in pairs(g:GetChildren()) do
+	for _, v in CellFolder:GetChildren() do
+		for _, g in v:GetChildren() do
+			for _, j in g:GetChildren() do
 				if j:FindFirstChild("ReplacementMatrix") then
 					Masks[j] = {}
 					LargeTypes[v.Name..' '..g.Name] = true

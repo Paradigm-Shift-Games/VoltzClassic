@@ -7,7 +7,7 @@ function StructureUtility.Flag(model, brickcolor)
 		brickcolor = BrickColor.random()
 	end
 
-	for _, v in pairs(model:GetChildren()) do
+	for _, v in model:GetChildren() do
 		if v:IsA("BasePart") then
 			v.BrickColor = brickcolor
 		end
