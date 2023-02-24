@@ -28,7 +28,11 @@ function Recurse(obj, root)
     end
 end
 
-function SnapData.Generate()
+function SnapData.GetSnaps()
+	return Data
+end
+
+function SnapData:Start()
 	for _, v in pairs(toRecurse) do
 		for _, g in v:GetChildren() do
 			if g:FindFirstChild("AdvancedAttachment") then
@@ -37,10 +41,6 @@ function SnapData.Generate()
 			end
 		end
 	end
-end
-
-function SnapData.GetSnaps()
-	return Data
 end
 
 event.OnServerInvoke = SnapData.GetSnaps

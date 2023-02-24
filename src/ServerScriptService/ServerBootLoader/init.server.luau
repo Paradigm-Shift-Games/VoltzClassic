@@ -53,7 +53,6 @@ Players.PlayerAdded:Connect(function(player) LogService.MessageClient(player, "S
 
 -- These calls are all starting up services. 
 -- They may be order-dependent, but I'm not sure.
-SnapData.Generate()
 UpgradeData.Generate()
 Map.Generate()
 TickManager.Activate()
@@ -69,3 +68,4 @@ BackpackService:Start()
 ButtonService:Start()
 RatingService:Start()
 LogService:Start()
+SnapData:Start()
