@@ -74,6 +74,9 @@ function ButtonService.UnBind(button)
 	buttonData[button] = nil
 end
 
-CleanupService.Bind("Buttons", ButtonService.Clean)
-ButtonRemote.OnServerEvent:Connect(onServerEvent)
+function ButtonService:Start()
+	CleanupService.Bind("Buttons", ButtonService.Clean)
+	ButtonRemote.OnServerEvent:Connect(onServerEvent)
+end
+
 return ButtonService
