@@ -69,22 +69,28 @@ local function ClientReport(Player, ErrorCode, StackTrace)
 	ErrorCode = Player.UserId.."/"..Player.Name.."\n"..ErrorCode
 	LogService.ReportError(ErrorCode, StackTrace, nil, true)
 end
-MessageRemote.OnServerEvent:Connect(ClientReport)
 
-local meta = {}
-function meta.__newindex(tab, index, value)
-	if index == "AutoReport" then
-		if value then
-			connection = ScriptContext.Error:Connect(LogService.ReportError)
-		elseif connection ~= nil then
-			connection:Disconnect()
-		end
+function LogService.SetAutoReport(isEnabled: boolean)
+	if isEnabled == LogService.AutoReport then
+		return
 	end
-	rawset(tab, index, value)
+
+	LogService.AutoReport = isEnabled
+
+	if isEnabled then
+		connection = ScriptContext.Error:Connect(LogService.ReportError)
+	else
+		connection:Disconnect()
+		connection = nil
+	end
 end
 
-if LogService.AutoReport then
-	connection = ScriptContext.Error:Connect(LogService.ReportError)
+function LogService:Start()
+	MessageRemote.OnServerEvent:Connect(ClientReport)
+
+	if LogService.AutoReport then
+		connection = ScriptContext.Error:Connect(LogService.ReportError)
+	end
 end
 
-return setmetatable(LogService, meta)
+return LogService

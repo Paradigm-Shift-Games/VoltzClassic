@@ -5,7 +5,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
 local Stats = require(ReplicatedStorage.Stats.Structure)
-local Colorizer = require(ServerScriptService.Services.Colorizer)
+local ColorizerService = require(ServerScriptService.Services.ColorizerService)
 local StructureUtil = require(ReplicatedStorage.StructureUtility)
 local AssemblyService = require(ServerScriptService.Services.AssemblyService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
@@ -16,7 +16,7 @@ function PromoteUpgrade(Object)
 	-- Clear Blueprint Data
 	CollectionService:RemoveTag(Object, "Blueprint")
 	CollectionService:RemoveTag(Object, "NoLeaks")
-	Colorizer.RevertColors(Object)
+	ColorizerService.RevertColors(Object)
 	
 	-- Clear Blueprint Electrical Data
 	Electricity.RemoveStructure(Object)
@@ -42,7 +42,7 @@ function Structure.Promote(Object)
 	-- Clear Blueprint Data
 	CollectionService:RemoveTag(Object, "Blueprint")
 	CollectionService:RemoveTag(Object, "NoLeaks")
-	Colorizer.RevertColors(Object)
+	ColorizerService.RevertColors(Object)
 	
 	-- Clear Blueprint Electrical Data
 	Electricity.RemoveStructure(Object)

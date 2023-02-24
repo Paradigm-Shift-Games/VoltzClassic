@@ -38,11 +38,11 @@ end
 
 ]]
 
-local Colorizer = {}
+local ColorizerService = {}
 
 data = {}
 
-function Colorizer.ColorAsBlueprint(Structure)
+function ColorizerService.ColorAsBlueprint(Structure)
 	data[Structure] = {}
 	local teamColor = Structure:FindFirstChild("Team") and Structure.Team.Value.TeamColor.Color
 	for _, v in Structure:GetDescendants() do
@@ -61,7 +61,7 @@ function Colorizer.ColorAsBlueprint(Structure)
 	end
 end
 
-function Colorizer.DebugColor(Structure, debugColor)
+function ColorizerService.DebugColor(Structure, debugColor)
 	if typeof(debugColor) == "BrickColor" then debugColor = debugColor.Color end
 	data[Structure] = {}
 	for _, v in Structure:GetDescendants() do
@@ -76,7 +76,7 @@ function Colorizer.DebugColor(Structure, debugColor)
 	end
 end
 
-function Colorizer.UpdateBlueprintColor(Structure, charge, cost)
+function ColorizerService.UpdateBlueprintColor(Structure, charge, cost)
 	local completion = charge / cost
 	if not data[Structure] then warn("Attempt to color invalid structure!") return end
 	for part, partData in pairs(data[Structure]) do
@@ -84,8 +84,8 @@ function Colorizer.UpdateBlueprintColor(Structure, charge, cost)
 	end
 end
 
-function Colorizer.ColorAsStructure(Structure)
-	Colorizer.RevertColors(Structure)
+function ColorizerService.ColorAsStructure(Structure)
+	ColorizerService.RevertColors(Structure)
 	local teamColor = Structure:FindFirstChild("Team") and Structure.Team.Value.TeamColor.Color
 	if not teamColor then return end
 	for _, v in Structure:GetDescendants() do
@@ -95,17 +95,17 @@ function Colorizer.ColorAsStructure(Structure)
 	end
 end
 
-function Colorizer.RevertColors(Structure)
+function ColorizerService.RevertColors(Structure)
 	if not data[Structure] then return nil end
 	for part, partData in pairs(data[Structure]) do
 		part.Color = partData.Color
 		part.Transparency = partData.Transparency
 		part.CanCollide = partData.CanCollide
 	end
-	Colorizer.Clean(Structure)
+	ColorizerService.Clean(Structure)
 end
 
-function Colorizer.ColorCharacter(character)
+function ColorizerService.ColorCharacter(character)
 	local player = Players:GetPlayerFromCharacter(character)
 	local teamColor = player.Team.TeamColor
 	for _, v in character:GetChildren() do
@@ -113,8 +113,8 @@ function Colorizer.ColorCharacter(character)
 	end
 end
 
-function Colorizer.Clean(Structure)
+function ColorizerService.Clean(Structure)
 	data[Structure] = nil
 end
 
-return Colorizer
+return ColorizerService

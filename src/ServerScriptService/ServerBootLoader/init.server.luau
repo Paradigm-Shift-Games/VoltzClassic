@@ -17,9 +17,9 @@ require(Packages.Grid.Grids)
 
 -- These are required so they actually load. They should have start methods, but who am I to disagree with the original author?
 local DiscordService = require(Services:WaitForChild("DiscordService"))
-local SnapData = require(Services:WaitForChild("SnapData"))
+local SnapDataService = require(Services:WaitForChild("SnapDataService"))
 local WeldService = require(Services:WaitForChild("WeldService"))
-local UpgradeData = require(Services:WaitForChild("UpgradeData"))
+local UpgradeDataService = require(Services:WaitForChild("UpgradeDataService"))
 local BackpackService = require(Services:WaitForChild("BackpackService"))
 local GameService = require(Services:WaitForChild("GameService"))
 local BargeService = require(Services:WaitForChild("BargeService"))
@@ -28,6 +28,11 @@ local ArsenalService = require(Services:WaitForChild("ArsenalService"))
 local LogService = require(Services:WaitForChild("LogService"))
 local TickManager = require(Services:WaitForChild("TickManager"))
 local SpawnService = require(Services:WaitForChild("SpawnService"))
+local EffectService = require(Services:WaitForChild("EffectService"))
+local SimulationService = require(Services:WaitForChild("SimulationService"))
+local ActionService = require(Services:WaitForChild("ActionService"))
+local ButtonService = require(Services:WaitForChild("ButtonService"))
+local RatingService = require(Services:WaitForChild("RatingService"))
 
 -- There's no need to require the map in any specific order - it has a start method.
 local Map = require(script.Map)
@@ -48,7 +53,20 @@ Players.PlayerAdded:Connect(function(player) LogService.MessageClient(player, "S
 
 -- These calls are all starting up services. 
 -- They may be order-dependent, but I'm not sure.
-SnapData.Generate()
-UpgradeData.Generate()
+UpgradeDataService.Generate()
 Map.Generate()
 TickManager.Activate()
+
+-- These are all services that have a proper start method.
+ArsenalService:Start()
+BargeService:Start()
+EffectService:Start()
+GameService:Start()
+SimulationService:Start()
+ActionService:Start()
+BackpackService:Start()
+ButtonService:Start()
+RatingService:Start()
+LogService:Start()
+SnapDataService:Start()
+SpawnService:Start()

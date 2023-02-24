@@ -176,17 +176,19 @@ local function onPlayerAdded(player)
 	onCharacterAdded(player.Character)
 end
 
-Players.PlayerAdded:Connect(onPlayerAdded)
+function WinService:Start()
+	Players.PlayerAdded:Connect(onPlayerAdded)
 
-for _, player in Players:GetPlayers() do
-	onPlayerAdded(player)
-end
-
-CollectionService:GetInstanceAddedSignal("Spawn"):Connect(onSpawnTagAdded)
-CollectionService:GetInstanceRemovedSignal("Spawn"):Connect(onSpawnTagRemoved)
-
-for _, spawnpad in pairs(CollectionService:GetTagged("Spawn")) do
-	onSpawnTagAdded(spawnpad)
+	for _, player in Players:GetPlayers() do
+		onPlayerAdded(player)
+	end
+	
+	CollectionService:GetInstanceAddedSignal("Spawn"):Connect(onSpawnTagAdded)
+	CollectionService:GetInstanceRemovedSignal("Spawn"):Connect(onSpawnTagRemoved)
+	
+	for _, spawnpad in pairs(CollectionService:GetTagged("Spawn")) do
+		onSpawnTagAdded(spawnpad)
+	end
 end
 
 return WinService

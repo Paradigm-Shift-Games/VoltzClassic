@@ -68,7 +68,9 @@ local function onRemoteEvent(player, enabled)
 	if not emitter then return end
 
 	-- Set Emitter State
-	for _, v in emitter:GetChildren() do v.ParticleEmitter.Enabled = enabled end
+	for _, v in emitter:GetChildren() do
+		v.ParticleEmitter.Enabled = enabled
+	end
 end
 
 local function onPlayerAdded(player)
@@ -80,7 +82,9 @@ function BackpackService.GetBackpack(player)
 	return jetpacks[player]
 end
 
-ThrusterEvent.OnServerEvent:connect(onRemoteEvent)
-Players.PlayerAdded:Connect(onPlayerAdded)
+function BackpackService:Start()
+	ThrusterEvent.OnServerEvent:connect(onRemoteEvent)
+	Players.PlayerAdded:Connect(onPlayerAdded)
+end
 
 return BackpackService

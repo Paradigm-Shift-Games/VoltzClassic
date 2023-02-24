@@ -5,14 +5,14 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
 local Stats = require(ReplicatedStorage.Stats.Structure)
-local Colorizer = require(ServerScriptService.Services.Colorizer)
+local ColorizerService = require(ServerScriptService.Services.ColorizerService)
 local StructureUtil = require(ReplicatedStorage.StructureUtility)
 local Structure = require(ServerScriptService.Services.Structure)
-local UpgradeData = require(ServerScriptService.Services.UpgradeData)
+local UpgradeDataService = require(ServerScriptService.Services.UpgradeDataService)
 local WeldService = require(ServerScriptService.Services.WeldService)
 local DamageService = require(ServerScriptService.Services.DamageService)
 local BuildingConstraints = require(ReplicatedStorage.BuildingConstraints)
-local SnapData = require(ServerScriptService.Services.SnapData).GetSnaps()
+local SnapData = require(ServerScriptService.Services.SnapDataService).GetSnaps()
 local AssemblyService = require(ServerScriptService.Services.AssemblyService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ElectricNode = require(ServerScriptService.Packages.Electricity.Classes.Node)
@@ -198,7 +198,7 @@ function Place(player, team, modelName, buildType, snapState, instantStructure, 
 	emptyHook:BindNode(node)
 	
 	local updatedHook = ElectricHook.New("ChargeUpdated")
-	updatedHook:Connect(function(node) Colorizer.UpdateBlueprintColor(node.structure, node:GetCharge(), node:GetStorage()) end)
+	updatedHook:Connect(function(node) ColorizerService.UpdateBlueprintColor(node.structure, node:GetCharge(), node:GetStorage()) end)
 	updatedHook:BindNode(node)
 	
 	local teamVal = Instance.new("ObjectValue")
@@ -208,10 +208,10 @@ function Place(player, team, modelName, buildType, snapState, instantStructure, 
 	
 	-- Color $$DUPLICATE CODE$$
 	if instantStructure then
-		Colorizer.ColorAsStructure(model)
+		ColorizerService.ColorAsStructure(model)
 		Structure.Promote(model)
 	else
-		Colorizer.ColorAsBlueprint(model)
+		ColorizerService.ColorAsBlueprint(model)
 		CollectionService:AddTag(model, "Blueprint")
 	end
 	
@@ -226,7 +226,7 @@ function Upgrade(model, instantStructure)
 	if model:FindFirstChild("Upgrading") then return false end
 	if model.UpgradeState.Value >= model.MaxUpgrades.Value then return false end
 	model.UpgradeState.Value += 1
-	local upgrade = UpgradeData.GetUpgrade(model, model.UpgradeState.Value)
+	local upgrade = UpgradeDataService.GetUpgrade(model, model.UpgradeState.Value)
 	local upgradeModel = upgrade.model:Clone()
 	if upgradeModel:FindFirstChild("Rename") then upgradeModel.Name = upgradeModel.Rename.Value upgradeModel.Rename:Destroy() end
 	AssemblyService.Attach(upgradeModel, model, "Attach")
@@ -266,15 +266,15 @@ function Upgrade(model, instantStructure)
 	emptyHook:BindNode(node)
 
 	local updatedHook = ElectricHook.New("ChargeUpdated")
-	updatedHook:Connect(function(node) Colorizer.UpdateBlueprintColor(node.structure, node:GetCharge(), node:GetStorage()) end)
+	updatedHook:Connect(function(node) ColorizerService.UpdateBlueprintColor(node.structure, node:GetCharge(), node:GetStorage()) end)
 	updatedHook:BindNode(node)
 	
 	-- Color $$DUPLICATE CODE$$
 	if instantStructure then
-		Colorizer.ColorAsStructure(upgradeModel)
+		ColorizerService.ColorAsStructure(upgradeModel)
 		Structure.Promote(upgradeModel)
 	else
-		Colorizer.ColorAsBlueprint(upgradeModel)
+		ColorizerService.ColorAsBlueprint(upgradeModel)
 		CollectionService:AddTag(upgradeModel, "Blueprint")
 	end
 	

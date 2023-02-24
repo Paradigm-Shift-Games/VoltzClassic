@@ -1,8 +1,6 @@
 -- Author: 4812571
 
 local Queue = require(game.ServerScriptService.Classes.Datastructure.Queue)
-local Colorizer = require(game.ServerScriptService.Services.Colorizer)
-
 
 -- Helper functions
 local function hasContents(tab)

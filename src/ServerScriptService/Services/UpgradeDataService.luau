@@ -1,14 +1,14 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local UpgradeData = {}
+local UpgradeDataService = {}
 
-UpgradeData = {}
+UpgradeDataService = {}
 
-function UpgradeData.Generate()
+function UpgradeDataService.Generate()
 	for _, v in ipairs(ReplicatedStorage.Objects:GetChildren()) do
 		local upgradeFolder = v:FindFirstChild("Upgrades")
 		if upgradeFolder then
-			UpgradeData[v.Name] = {}
+			UpgradeDataService[v.Name] = {}
 			local upgradeState = Instance.new("NumberValue")
 			local maxUpgrades = Instance.new("NumberValue")
 			upgradeState.Name = "UpgradeState"
@@ -19,7 +19,7 @@ function UpgradeData.Generate()
 			maxUpgrades.Parent = v
 			for _, g in ipairs(v.Upgrades:GetChildren()) do
 				local offset = v.PrimaryPart.CFrame:ToObjectSpace(g.PrimaryPart.CFrame)
-				UpgradeData[v.Name][tonumber(g.Name)] = {model = g, offset = offset}
+				UpgradeDataService[v.Name][tonumber(g.Name)] = {model = g, offset = offset}
 			end
 			upgradeFolder.Name = v.Name
 			upgradeFolder.Parent = ReplicatedStorage.Upgrades
@@ -27,8 +27,8 @@ function UpgradeData.Generate()
 	end
 end
 
-function UpgradeData.GetUpgrade(model, upgradeNumber)
-	return UpgradeData[model.Name][upgradeNumber]
+function UpgradeDataService.GetUpgrade(model, upgradeNumber)
+	return UpgradeDataService[model.Name][upgradeNumber]
 end
 
-return UpgradeData
+return UpgradeDataService

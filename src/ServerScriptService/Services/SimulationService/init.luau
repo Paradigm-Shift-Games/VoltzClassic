@@ -49,22 +49,6 @@ local SimulationService = {}
 local simulationClasses = {}
 local binders = {}
 
-function SimulationService.Init()
-	for _, v in script:GetChildren() do
-		simulationClasses[v.Name] = require(v)
-	end
-
-	for className, class in simulationClasses do
-		binders[className] = MicroBinder.new(className, class)
-	end
-
-	for _, binder in binders do
-		binder:Start()
-	end
-end
-
-SimulationService.Init()
-
 function SimulationService.Run(deltaTime)
 	for _, binder in binders do
 		for _, object in binder:GetAll() do
@@ -78,6 +62,20 @@ function SimulationService.Run(deltaTime)
 		if class.StaticUpdate then
 			class.StaticUpdate(deltaTime)
 		end
+	end
+end
+
+function SimulationService:Start()
+	for _, v in script:GetChildren() do
+		simulationClasses[v.Name] = require(v)
+	end
+
+	for className, class in simulationClasses do
+		binders[className] = MicroBinder.new(className, class)
+	end
+
+	for _, binder in binders do
+		binder:Start()
 	end
 end
 

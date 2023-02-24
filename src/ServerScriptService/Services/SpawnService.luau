@@ -3,7 +3,7 @@ local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
-local Colorizer = require(ServerScriptService.Services.Colorizer)
+local ColorizerService = require(ServerScriptService.Services.ColorizerService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local StarterIsland = require(ServerScriptService.ServerBootLoader.Map.StarterIsland)
 
@@ -31,7 +31,7 @@ function SpawnService.SpawnPlayer(player, cframe)
 	for _, v in ipairs(StarterTools) do
 		v:Clone().Parent = player.Backpack
 	end
-	Colorizer.ColorCharacter(character)
+	ColorizerService.ColorCharacter(character)
 	character:SetPrimaryPartCFrame(cframe * spawnOffset)
 end
 
@@ -49,13 +49,16 @@ local function OnPlayerAdded(player)
 	end
 end
 
-RespawnRemote.OnServerEvent:Connect(RequestSpawn)
+function SpawnService:Start()
+	RespawnRemote.OnServerEvent:Connect(RequestSpawn)
 
-task.spawn(function()
 	for _, player in Players:GetPlayers() do
-		OnPlayerAdded(player)
+		task.spawn(function()
+			OnPlayerAdded(player)
+		end)
 	end
-end)
-Players.PlayerAdded:Connect(OnPlayerAdded)
+
+	Players.PlayerAdded:Connect(OnPlayerAdded)
+end
 
 return SpawnService
