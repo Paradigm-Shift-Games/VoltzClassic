@@ -26,5 +26,18 @@ function Run(delta)
 	end
 end	
 
-ActionService.Bind("Break", function(player, state) if state == true then players[player] = true else players[player] = nil end end)
-RunService.Heartbeat:Connect(Run)
+local InteractionBreakService = {}
+
+function InteractionBreakService:Start()
+	ActionService.Bind("Break", function(player, state)
+		if state == true then
+			players[player] = true
+		else
+			players[player] = nil
+		end
+	end)
+
+	RunService.Heartbeat:Connect(Run)
+end
+
+return InteractionBreakService
