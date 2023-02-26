@@ -1,7 +1,7 @@
 local RunService = game:GetService("RunService")
 local ServerScriptService = game:GetService("ServerScriptService")
 
-local MouseData = require(ServerScriptService.MouseData)
+local MouseDataService = require(ServerScriptService.Services.MouseDataService)
 local DamageService = require(ServerScriptService.Services.DamageService)
 local ExplosionService = require(ServerScriptService.Services.ExplosionService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
@@ -29,7 +29,7 @@ local function Rocket(weapon, weaponStats, weaponData)
 	end
 	local FireAttachment = weapon:FindFirstChild("FirePos", true)
 	local barrelPosition = FireAttachment.WorldPosition
-	local _, targetPosition = MouseData.GetMouse(weaponData.Owner)
+	local _, targetPosition = MouseDataService.GetMouse(weaponData.Owner)
 	local targetDirection = (targetPosition - barrelPosition).Unit
 	
 	local directions = {barrelPosition, targetDirection * weaponStats.InitialSpeed}

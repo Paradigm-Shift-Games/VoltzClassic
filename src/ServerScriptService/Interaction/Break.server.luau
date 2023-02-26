@@ -5,7 +5,7 @@ local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
-local MouseData = require(ServerScriptService.MouseData)
+local MouseDataService = require(ServerScriptService.Services.MouseDataService)
 local StructureUtil = require(ReplicatedStorage.StructureUtility)
 local ActionService = require(ServerScriptService.Services.ActionService)
 local DamageService = require(ServerScriptService.Services.DamageService)
@@ -16,7 +16,7 @@ local players = {}
 
 function Run(delta)
 	for v, _ in pairs(players) do
-		local part, position, normal = MouseData.GetMouse(v)
+		local part, position, normal = MouseDataService.GetMouse(v)
 		local target = StructureUtil.GetModel(part)
 		if not target then return nil end
 		if (CollectionService:HasTag(target, "Structure") or CollectionService:HasTag(target, "Blueprint")) and v.Team ~= target.Team.Value then return end
