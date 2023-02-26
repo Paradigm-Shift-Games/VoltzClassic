@@ -7,7 +7,6 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local Stats = require(ReplicatedStorage.Stats.Structure)
 local ColorizerService = require(ServerScriptService.Services.ColorizerService)
 local StructureUtil = require(ReplicatedStorage.StructureUtility)
-local StructureService = require(ServerScriptService.Services.StructureService)
 local UpgradeDataService = require(ServerScriptService.Services.UpgradeDataService)
 local WeldService = require(ServerScriptService.Services.WeldService)
 local DamageService = require(ServerScriptService.Services.DamageService)
@@ -17,19 +16,16 @@ local AssemblyService = require(ServerScriptService.Services.AssemblyService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 local ElectricNode = require(ServerScriptService.Packages.Electricity.Classes.Node)
 local ElectricHook = require(ServerScriptService.Packages.Electricity.Classes.NetworkObjects.Hook)
+local StructureService = require(ServerScriptService.Services.StructureService)
 
-local Blueprint = {}
 local BuildEvent = ReplicatedStorage.Events.Builder
 local UpgradeEvent = ReplicatedStorage.Events.Upgrade
+
+local BlueprintService = {}
 
 local attachNames = {"Distributor Cap", "Cap"}
 
 function ConnectCylinder(cylinder, h1, h2)
-	--[[Hemisphere code
-		local pos1 = h1.CFrame * CFrame.new(h1.Size.X / 2, 0, 0).Position
-		local pos2 = h2.CFrame * CFrame.new(h2.Size.X / 2, 0, 0).Position
-	]]
-	
 	local pos1, pos2 = h1.Position, h2.Position
 	cylinder.Size = Vector3.new((pos1 - pos2).Magnitude, 1.5, 1.5)
 	local cylinderPos = pos1:lerp(pos2, 0.5)
@@ -190,7 +186,7 @@ function Place(player, team, modelName, buildType, snapState, instantStructure, 
 	Electricity.BindStructure(model, node)
 	
 	local fullHook = ElectricHook.New("Filled")
-	fullHook:Connect(function() Structure.Promote(model) end)
+	fullHook:Connect(function() StructureService.Promote(model) end)
 	fullHook:BindNode(node)
 	
 	local emptyHook = ElectricHook.New("Emptied")
@@ -209,7 +205,7 @@ function Place(player, team, modelName, buildType, snapState, instantStructure, 
 	-- Color $$DUPLICATE CODE$$
 	if instantStructure then
 		ColorizerService.ColorAsStructure(model)
-		Structure.Promote(model)
+		StructureService.Promote(model)
 	else
 		ColorizerService.ColorAsBlueprint(model)
 		CollectionService:AddTag(model, "Blueprint")
@@ -258,7 +254,7 @@ function Upgrade(model, instantStructure)
 	Electricity.BindStructure(upgradeModel, node)
 
 	local fullHook = ElectricHook.New("Filled")
-	fullHook:Connect(function() Structure.Promote(upgradeModel) end)
+	fullHook:Connect(function() StructureService.Promote(upgradeModel) end)
 	fullHook:BindNode(node)
 
 	local emptyHook = ElectricHook.New("Emptied")
@@ -272,7 +268,7 @@ function Upgrade(model, instantStructure)
 	-- Color $$DUPLICATE CODE$$
 	if instantStructure then
 		ColorizerService.ColorAsStructure(upgradeModel)
-		Structure.Promote(upgradeModel)
+		StructureService.Promote(upgradeModel)
 	else
 		ColorizerService.ColorAsBlueprint(upgradeModel)
 		CollectionService:AddTag(upgradeModel, "Blueprint")
@@ -290,22 +286,25 @@ function OnBuilderPlace(player, modelName, buildType, snapState,  attachment1, a
 	Place(player, player.Team, modelName, buildType, snapState, false, attachment1, attachment2)
 end
 
-function Blueprint.Upgrade(model)
+
+
+function BlueprintService.Upgrade(model)
 	Upgrade(model)
 end
 
-function Blueprint.Place(team, modelName, attachment1, attachment2, snapState, instantStructure)
+function BlueprintService.Place(team, modelName, attachment1, attachment2, snapState, instantStructure)
 	return Place("Server", team, modelName, "Placing", snapState, instantStructure, attachment1, attachment2)
 end
 
-function Blueprint.EasyPlace(team, modelName, attachedPart, PlacementCFrame, instantStructure)
+function BlueprintService.EasyPlace(team, modelName, attachedPart, PlacementCFrame, instantStructure)
 	local cf = PlacementCFrame:ToWorldSpace(SnapData[modelName].Position)
 	local attachment = {part = attachedPart, offsetCF = attachedPart.CFrame:ToObjectSpace(cf)}
-	return Blueprint.Place(team, modelName, attachment, nil, 1, instantStructure)
+	return BlueprintService.Place(team, modelName, attachment, nil, 1, instantStructure)
 end
 
-BuildEvent.OnServerEvent:Connect(OnBuilderPlace)
-UpgradeEvent.OnServerEvent:Connect(OnBuilderUpgrade)
+function BlueprintService:Start()
+	BuildEvent.OnServerEvent:Connect(OnBuilderPlace)
+	UpgradeEvent.OnServerEvent:Connect(OnBuilderUpgrade)
+end
 
-return Blueprint
-
+return BlueprintService
