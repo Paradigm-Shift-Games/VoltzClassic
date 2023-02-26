@@ -75,7 +75,20 @@ function Run(delta)
 		Electricity.Transfer(player.Character.Backpack, target, delta * Multiplier)
 		if Electricity.GetChargePercent(player.Character.Backpack) == 0 then builder.ClickSound:Play() RemovePlayer(player) end
 	end
-end	
+end
 
-ActionService.Bind("Push", function(player, state) if state == true then AddPlayer(player) else RemovePlayer(player) end end)
-RunService.Heartbeat:Connect(Run)
+local InteractionPushService = {}
+
+function InteractionPushService:Start()
+	ActionService.Bind("Push", function(player, state)
+		if state == true then
+			AddPlayer(player)
+		else
+			RemovePlayer(player)
+		end
+	end)
+
+	RunService.Heartbeat:Connect(Run)
+end
+
+return InteractionPushService
