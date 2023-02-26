@@ -8,7 +8,7 @@ local SimulationService = require(ServerScriptService.Services.SimulationService
 local ProjectileService = require(ServerScriptService.Services.ProjectileService)
 local Network = require(ServerScriptService.Packages.Electricity.Classes.Network)
 
-local TickManager = {}
+local TickManagerService = {}
 
 local activated = false
 local connection
@@ -27,29 +27,29 @@ function Tick(delta)
 	TimerService.Record("Game")
 end
 
-function TickManager.Activate()
-	activated = true
-	TickManager.Enable()	
-end
-
-function TickManager.Enable()
-	if not activated then warn("TickManager inactive!") return false end
+function TickManagerService.Enable()
+	if not activated then warn("TickManagerService inactive!") return false end
 	if not connection then
 		connection = RunService.Heartbeat:Connect(Tick)
 	end
 end
 	
-function TickManager.Disable()
-	if not activated then warn("TickManager inactive!") return false end
+function TickManagerService.Disable()
+	if not activated then warn("TickManagerService inactive!") return false end
 	if connection then
 		connection:Disconnect()
 		connection = nil
 	end
 end
 
-function TickManager.Toggle()
-	if not activated then warn("TickManager inactive!") return false end
-	if connection then TickManager.Disable() else TickManager.Enable() end
+function TickManagerService.Toggle()
+	if not activated then warn("TickManagerService inactive!") return false end
+	if connection then TickManagerService.Disable() else TickManagerService.Enable() end
 end
 
-return TickManager
+function TickManagerService:Start()
+	activated = true
+	TickManagerService.Enable()	
+end
+
+return TickManagerService

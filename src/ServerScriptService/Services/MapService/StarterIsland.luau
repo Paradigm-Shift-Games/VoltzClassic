@@ -4,7 +4,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local Matrix = require(script.Parent.Matrix)
 local Supports = require(script.Parent.Support)
-local Blueprint = require(ServerScriptService.Blueprint)
+local BlueprintService = require(ServerScriptService.Services.BlueprintService)
 local Settings = require(script.Parent.Settings.Default)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
 
@@ -91,9 +91,9 @@ function StarterIsland.AssignIsland(island, team)
 	while not generated do wait() end
 	TeamIslands[team] = island
 	local part, position = GetSafePart(island)
-	local spawnPad = Blueprint.EasyPlace(team, "Spawn", part, CFrame.new(position), true)
+	local spawnPad = BlueprintService.EasyPlace(team, "Spawn", part, CFrame.new(position), true)
 	local spawnPadConnector = spawnPad:WaitForChild("Connectors"):WaitForChild("Connector")
-	Blueprint.Place(team, "Cap", {part = spawnPadConnector, offsetCF = CFrame.new(0, 0.562, 0)}, nil, 1, true)
+	BlueprintService.Place(team, "Cap", {part = spawnPadConnector, offsetCF = CFrame.new(0, 0.562, 0)}, nil, 1, true)
 	Electricity.Push(spawnPad, math.huge, true)
 end
 

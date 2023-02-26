@@ -11,7 +11,7 @@ local Replacer = require(script.Replace)
 local StarterIsland = require(script.StarterIsland)
 local Settings = require(script.Settings.Default)
 
-local Map = {}
+local MapService = {}
 local NoiseKeys = {}
 local generated = false
 
@@ -31,7 +31,7 @@ function Sleep(frequency)
     end
 end
 
-function Map.Generate() -- will take a datastore at some point
+function MapService:Generate() -- will take a datastore at some point
 	if generated then warn("Map generate called > 1 times") end
 	generated = true
 	print("Initializing!")
@@ -93,4 +93,4 @@ function Map.Generate() -- will take a datastore at some point
 	StarterIsland.EnableIslands()
 end
 
-return Map
+return MapService

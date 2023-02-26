@@ -31,8 +31,14 @@ function onHeartBeat(delta)
 	end
 end
 
-for _, v in pairs(workspace.Ocean:GetChildren()) do
-	v.Touched:Connect(onTouch)
+local OceanDataService = {}
+
+function OceanDataService:Start()
+	for _, v in pairs(workspace.Ocean:GetChildren()) do
+		v.Touched:Connect(onTouch)
+	end
+
+	RunService.Heartbeat:Connect(onHeartBeat)
 end
 
-RunService.Heartbeat:Connect(onHeartBeat)
+return OceanDataService

@@ -5,7 +5,7 @@ local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
-local MouseData = require(ServerScriptService.MouseData)
+local MouseDataService = require(ServerScriptService.Services.MouseDataService)
 local StructureUtil = require(ReplicatedStorage.StructureUtility)
 local EffectService = require(ServerScriptService.Services.EffectService)
 local ActionService = require(ServerScriptService.Services.ActionService)
@@ -25,7 +25,7 @@ function AddPlayer(player)
 	tools[player] = builderTool
 
 	-- Get Mouse
-	local part, position, normal = MouseData.GetMouse(player)
+	local part, position, normal = MouseDataService.GetMouse(player)
 	
 	-- Start Sound
 	builderTool.PushSound.Playing = true
@@ -49,7 +49,7 @@ end
 
 function Run(delta)
 	for player, effectID in pairs(beams) do
-		local part, position, normal = MouseData.GetMouse(player)
+		local part, position, normal = MouseDataService.GetMouse(player)
 		local builder = tools[player]
 		local target = StructureUtil.GetModel(part)
 
@@ -75,7 +75,20 @@ function Run(delta)
 		Electricity.Transfer(player.Character.Backpack, target, delta * Multiplier)
 		if Electricity.GetChargePercent(player.Character.Backpack) == 0 then builder.ClickSound:Play() RemovePlayer(player) end
 	end
-end	
+end
 
-ActionService.Bind("Push", function(player, state) if state == true then AddPlayer(player) else RemovePlayer(player) end end)
-RunService.Heartbeat:Connect(Run)
+local InteractionPushService = {}
+
+function InteractionPushService:Start()
+	ActionService.Bind("Push", function(player, state)
+		if state == true then
+			AddPlayer(player)
+		else
+			RemovePlayer(player)
+		end
+	end)
+
+	RunService.Heartbeat:Connect(Run)
+end
+
+return InteractionPushService

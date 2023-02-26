@@ -15,4 +15,10 @@ function JetpackConsume(Player, amount)
 	Electricity.Pull(Player.Character.Backpack, amount)
 end
 
-JetpackEvent.OnServerEvent:Connect(JetpackConsume)
+local JetpackService = {}
+
+function JetpackService:Start()
+	JetpackEvent.OnServerEvent:Connect(JetpackConsume)
+end
+
+return JetpackService

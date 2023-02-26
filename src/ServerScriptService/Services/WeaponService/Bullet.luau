@@ -1,7 +1,7 @@
 local RunService = game:GetService("RunService")
 local ServerScriptService = game:GetService("ServerScriptService")
 
-local MouseData = require(ServerScriptService.MouseData)
+local MouseDataService = require(ServerScriptService.Services.MouseDataService)
 local DamageService = require(ServerScriptService.Services.DamageService)
 local EffectService = require(ServerScriptService.Services.EffectService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
@@ -41,7 +41,7 @@ local function Bullet(weapon, weaponStats, weaponData)
 	end
 	local FireAttachment = weapon:FindFirstChild("FirePos", true)
 	local barrelPosition = FireAttachment.WorldPosition
-	local _, targetPosition = MouseData.GetMouse(weaponData.Owner)
+	local _, targetPosition = MouseDataService.GetMouse(weaponData.Owner)
 	local hitPart, hitPosition = SpreadHitscan(weaponData.Owner, barrelPosition, targetPosition, weaponStats.Range, weaponStats.Spread)
 	EffectService.FireEffect("Bullet", FireAttachment, hitPosition, weaponStats.Effect)
 	DamageService.Damage(hitPart, weaponStats.Damage, weaponStats.DamageType)

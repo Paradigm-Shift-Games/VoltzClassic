@@ -20,6 +20,11 @@
             "$className": "ReplicatedStorage",
             "$path": "src/ReplicatedStorage",
 
+            "Packages": {
+                "$className": "Folder",
+                "$path": "Packages"
+            },
+
             "$ignoreUnknownInstances": true
         },
 

@@ -15,6 +15,8 @@ local WeaponData = {}
 local Registeredweapons = {}
 local FiringModes = {}
 
+local WeaponService = {}
+
 local function Getweapon(player)
 	if player.Character == nil then return nil end
 	for _, child in ipairs(player.Character:GetChildren()) do
@@ -90,12 +92,25 @@ local function Run(delta)
 	end
 end
 
-for _, v in script:GetChildren() do FiringModes[v.Name] = require(v) end
+function WeaponService:Start()
+    for _, v in script:GetChildren() do
+        FiringModes[v.Name] = require(v)
+    end
 
-for _, v in ipairs(ReplicatedStorage.Guns:GetChildren()) do WeldServcice.Unanchor(v) WeldServcice.WeldTool(v) end
+    for _, v in ipairs(ReplicatedStorage.Guns:GetChildren()) do
+        WeldServcice.Unanchor(v)
+        WeldServcice.WeldTool(v)
+    end
 
-for _, player in Players:GetPlayers() do OnPlayerAdded(player) end
-Players.PlayerAdded:Connect(OnPlayerAdded)
-	
-RunService.Heartbeat:Connect(Run)
-ActionService.Bind("GunFire", OnGunFire)
+    for _, player in Players:GetPlayers() do
+        OnPlayerAdded(player)
+    end
+
+    Players.PlayerAdded:Connect(OnPlayerAdded)
+
+    RunService.Heartbeat:Connect(Run)
+
+    ActionService.Bind("GunFire", OnGunFire)
+end
+
+return WeaponService

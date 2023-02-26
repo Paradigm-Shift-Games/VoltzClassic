@@ -1,7 +1,4 @@
-local Teams = game:GetService("Teams")
 local Players = game:GetService("Players")
-
-warn("Admin Initializing")
 
 local Commands = {}
 local commandString = "!"
@@ -50,7 +47,18 @@ local function onPlayerAdded(player)
 	player.Chatted:Connect(function (...) onPlayerChatted(player, ...) end)
 end
 
-for _, player in Players:GetPlayers() do onPlayerAdded(player) end
-for _, v in ipairs(script.Commands:GetChildren()) do Commands[v.Name:lower()] = require(v) end
+local AdminService = {}
 
-Players.PlayerAdded:Connect(onPlayerAdded)
+function AdminService:Start()
+	for _, v in ipairs(script.Commands:GetChildren()) do
+		Commands[v.Name:lower()] = require(v)
+	end
+
+	for _, player in Players:GetPlayers() do
+		onPlayerAdded(player)
+	end
+
+	Players.PlayerAdded:Connect(onPlayerAdded)
+end
+
+return AdminService
