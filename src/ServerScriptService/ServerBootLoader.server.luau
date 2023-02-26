@@ -14,14 +14,14 @@ local Packages = ReplicatedStorage:WaitForChild("Packages")
 -- Import Packages
 local Loader = require(Packages.Loader)
 
+-- Load Stats
+require(game.ReplicatedStorage.Stats.Structure)
+require(game.ReplicatedStorage.Stats.Weapon)
+
 -- Move Instances
 Storage:Destroy()
 Objects.Parent = ReplicatedStorage
 Extras.Parent = ReplicatedStorage
-
--- Load Stats
-require(game.ReplicatedStorage.Stats.Structure)
-require(game.ReplicatedStorage.Stats.Weapon)
 
 -- Load Grids
 require(VoltzPackages.Grid.Grids)
