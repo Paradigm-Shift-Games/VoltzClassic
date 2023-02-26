@@ -33,8 +33,7 @@ local services = Loader.LoadChildren(ServerScriptService:WaitForChild("Services"
 Loader.SpawnAll(services, "Start")
 
 -- Generate Map
-local Map = require(script.Map)
-Map.Generate()
+services.MapService:Generate()
 
 -- Message the client with the version of the game.
 Players.PlayerAdded:Connect(function(player)
