@@ -2,6 +2,8 @@
 
 local ServerScriptService = game:GetService("ServerScriptService")
 
+local Graph = require(ServerScriptService.Classes.Datastructure.Graph)
+
 local CleanupService = require(ServerScriptService.Services.CleanupService)
 
 local WeldService = {}

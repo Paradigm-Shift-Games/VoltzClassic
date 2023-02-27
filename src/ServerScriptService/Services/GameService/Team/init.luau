@@ -6,7 +6,7 @@ local RunService = game:GetService("RunService")
 local TeleportService = game:GetService("TeleportService")
 local ServerScriptService = game:GetService("ServerScriptService")
 
-local StarterIsland = require(ServerScriptService.ServerBootLoader.Map.StarterIsland)
+local StarterIsland = require(ServerScriptService.Services.MapService.StarterIsland)
 
 local Team = {}
 local teamData = {}

@@ -5,7 +5,7 @@ local ServerScriptService = game:GetService("ServerScriptService")
 
 local ColorizerService = require(ServerScriptService.Services.ColorizerService)
 local Electricity = require(ServerScriptService.Packages.Electricity.Interface)
-local StarterIsland = require(ServerScriptService.ServerBootLoader.Map.StarterIsland)
+local StarterIsland = require(ServerScriptService.Services.MapService.StarterIsland)
 
 local SpawnService = {}
 local SpawnStats = require(ReplicatedStorage.Stats.Structure).Spawn
