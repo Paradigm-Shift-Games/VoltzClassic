@@ -11,6 +11,11 @@ local Replacer = require(script.Replace)
 local StarterIsland = require(script.StarterIsland)
 local Settings = require(script.Settings.Default)
 
+-- Data Pipeline Architecture
+local Randomizer = require(script.Randomizer)
+local Generator = require(script.Generator)
+local Builder = require(script.Builder)
+
 local MapService = {}
 local NoiseKeys = {}
 local generated = false
@@ -31,66 +36,99 @@ function Sleep(frequency)
     end
 end
 
-function MapService:Generate() -- will take a datastore at some point
-	if generated then warn("Map generate called > 1 times") end
-	generated = true
-	print("Initializing!")
-	Replacer.Intitialize()
-	Renderer.Initialize()
-	Picker.Initialize()
-	Welder.Initialize()
-	workspace.MapCells.Parent = ReplicatedStorage
-	print("Generating Map!")
-	for x = -Settings.Size, Settings.Size do
-		for z = -Settings.Size, Settings.Size do
-			Sleep(256)
-			if math.sqrt(x*x + z*z) <= Settings.Size then
-				local gapNoise = Noise(x, z, 24, "Gap")
-				local isGap = gapNoise > 0.5 - (Settings.GapSize/2) and gapNoise < 0.5 + (Settings.GapSize/2)
-				if not isGap then
-					--[[ Surface ]]--
-					local isGrass = Noise(x, z, 16, "Grass") < 0.5
-					if isGrass then
-						Matrix.CreateCell(x, z, 0, "Surface Grass")
-					else
-						Matrix.CreateCell(x, z, 0, "Surface Fill")
-					end
-					--[[ Underground ]]--
-					local thickness = math.floor((Noise(x, z, 32, "Thickness") * 2) + 0.5)
-					for y = -thickness, -1 do
-						Matrix.CreateCell(x, z, y, "Surface Fill") 
-					end
-					--[[ Support ]]--
-					if Support.CanGenerate(x, z) then
-						Support.Add(x, z)
-					end
-					--[[ Ruins ]]--
-					local isCity = Settings.CityDensity >= Noise(x, z, 32, "City")
-					local isBuilding = Settings.BuildingDensity >= Noise(x, z, 12, "Ruin")
-					local isAlley = Noise(x, z, 3, "Alley") > 0.5
-					local isRuin = Settings.Ruins and (isCity and isBuilding) and not isAlley
-					if isRuin then
-						local ruinHeight = math.floor(Noise(x, z, 8, "RuinHeight") * 16)
-						for y = 1, ruinHeight do
-							Matrix.CreateCell(x, z, y, "Ruin Fill")
-						end
-					end
-					--[[ Crystals ]]--
-					if not isRuin then
-						if Settings.CrystalSpawnRate >= math.random() then
-							Matrix.CreateCell(x, z, 1, "Resource Crystal")
-						end
-					end
-				end
-			end
-		end
-	end
-	StarterIsland.Generate()
-	Support.Generate()
-	Replacer.Replace()
-	Renderer.Render()
-	Welder.Weld()
-	StarterIsland.EnableIslands()
+local TerrainConfig = {
+	Seed = 123456,
+
+	Island = {
+		MainlandSize = 45,
+
+		StarterIslandDistance = 15,
+		StarterIslandSize = 5,
+		StarterIslandAmount = 6,
+		StarterIslandOffset = (45/2),
+ 
+		Grass = {
+			Scale = 16,
+			Weight = 0.5,
+		},
+
+		Gaps = {
+			Scale = 16,
+			Weight = 0.19,
+		},
+
+		Depth = {
+			Scale = 32,
+			Magnitude = 2,
+		},
+	},
+
+	Crystal = {
+		CrystalSpawnRate = 0.05,
+	},
+
+	Beacon = {
+		BeaconCount = 7,
+		Offset = (45 / 2);
+	},
+
+	Support = {
+		SupportSpacing = 7,
+		SupportHeight = 10,
+	},
+
+	Spire = {
+		Cities = {
+			Scale = 32,
+			Weight = 0.5,
+		},
+
+		Buildings = {
+			Scale = 12,
+			Weight = 0.5,
+		},
+
+		Alleys = {
+			Scale = 3,
+			Weight = 0.5,
+		},
+
+		Height = {
+			Scale = 8,
+			Magnitude = 16,
+		}
+	},
+}
+
+function MapService:Generate(TerrainGrid)
+	-- Source Objects
+	local randomizers = RandomizerSource.CreateRandomizers(TerrainConfig)
+	local replacers = ReplacerSource.CreateReplacers(TerrainConfig)
+	local selectors = SelectorSource.CreateSelectors(TerrainConfig)
+
+	-- Generate Grids
+	local grids = Generator.Generate(TerrainConfig, randomizers)
+	local terrainGrid = Builder.Build(TerrainConfig, randomizers, grids)
+
+	-- Replace Cells
+	local replacementData = Replacer.Replace(terrainGrid, replacers)
+
+	-- Select Templates
+	local selectionData = Selector.Select(selectors, terrainGrid.LargeCells, terrainGrid.SmallCells)
+
+	-- Render Terrain
+	local cellModels = Renderer.Render(TerrainConfig, replacementData.CellGrid, selectionData.LargeTemplates, selectionData.SmallTemplates)
+
+	-- Weld
+	local weldGraph = Welder.Weld(replacementData.CellGrid, cellModels)
+
+	-- Package Results
+	local generationResult = {
+		Models = cellModels,
+		WeldGraph = weldGraph,
+	}
+
+	return generationResult
 end
 
 return MapService

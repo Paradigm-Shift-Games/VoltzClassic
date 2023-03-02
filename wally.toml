@@ -6,3 +6,5 @@ realm = "shared"
 
 [dependencies]
 Loader = "sleitnick/loader@2.0.0"
+TableUtil = "sleitnick/table-util@1.2.0"
+Noise2D = "4812571/noise-2d@0.1.1"
